@@ -1,7 +1,7 @@
 AllCops:
   Exclude:
-    - db/schema.rb
-    - node_modules/**/*
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
   NewCops: enable
   TargetRubyVersion: 2.7
 
@@ -10,20 +10,20 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   Exclude:
-    - config/**/*
-    - db/**/*
-    - config.ru
-    - Gemfile
-    - Rakefile
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'config.ru'
+    - 'Gemfile'
+    - 'Rakefile'
 
 Metrics/CyclomaticComplexity:
   Exclude:
-    - bin/bundle
+    - 'bin/bundle'
 
 Metrics/MethodLength:
   Exclude:
-    - bin/bundle
+    - 'bin/bundle'
 
 Metrics/PerceivedComplexity:
   Exclude:
-    - bin/bundle
+    - 'bin/bundle'
