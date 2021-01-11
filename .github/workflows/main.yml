@@ -41,6 +41,8 @@ jobs:
         RAILS_ENV: test
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: postgres
+    - name: Run webpack
+      run: bundle exec bin/webpack
     - name: Load credentials key
       run: echo '${{ secrets.TEST_CREDENTIALS_KEY }}' > config/credentials/test.key
     - name: Run rubocop
