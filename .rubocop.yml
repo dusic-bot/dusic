@@ -1,5 +1,8 @@
 AllCops:
   NewCops: enable
+  Exclude:
+    - db/schema.rb
+    - node_modules/**/*
 
 Style/Documentation:
   Enabled: false
