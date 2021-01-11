@@ -1,0 +1,25 @@
+AllCops:
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - config/**/*
+    - db/**/*
+    - config.ru
+    - Gemfile
+    - Rakefile
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - bin/bundle
+
+Metrics/MethodLength:
+  Exclude:
+    - bin/bundle
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - bin/bundle
