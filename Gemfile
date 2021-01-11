@@ -43,8 +43,12 @@ group :development, :test do
   # Rubocop RSpec extension
   gem 'rubocop-rspec', require: false
 
+  # Specification and testing
+  gem 'rspec', require: false
   # RSpec for RoR
   gem 'rspec-rails', require: false
+  # RSpec controller testing
+  gem 'rails-controller-testing', require: false
 end
 
 group :development do
