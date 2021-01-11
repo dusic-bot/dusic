@@ -13,6 +13,15 @@ jobs:
     strategy:
       matrix:
         ruby-version: ['2.7']
+    services:
+      postgres:
+        image: postgres:11
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v2
@@ -21,7 +30,24 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
+    - name: Install dependent libraries
+      run: sudo apt-get install libpq-dev
+    - name: Setup Database
+      run: |
+        cp config/database.github-actions.yml config/database.yml
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
+      env:
+        RAILS_ENV: test
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
     - name: Load credentials key
       run: echo '${{ secrets.TEST_CREDENTIALS_KEY }}' > config/credentials/test.key
-    - name: Run tests
-      run: bundle exec rake
+    - name: Run rubocop
+      run: bundle exec rake rubocop
+    - name: Run rspec
+      run: bundle exec rake spec
+        env:
+          RAILS_ENV: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
