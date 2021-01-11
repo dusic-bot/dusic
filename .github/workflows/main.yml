@@ -21,5 +21,7 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
+    - name: Load credentials key
+      run: echo '${{ secrets.TEST_CREDENTIALS_KEY }}' > config/credentials/test.key
     - name: Run tests
       run: bundle exec rake
