@@ -1,5 +1,12 @@
+require:
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-performance
+  - rubocop-rspec
+
 AllCops:
   NewCops: enable
+  TargetRubyVersion: 2.7
 
 Style/Documentation:
   Enabled: false
@@ -23,3 +30,14 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Exclude:
     - bin/bundle
+
+Rails/Present:
+  Exclude:
+    - bin/bundle
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+RSpec/ExpectActual:
+  Exclude:
+    - spec/routes_spec.rb
