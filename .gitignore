@@ -40,3 +40,5 @@ yarn-debug.log*
 /config/credentials/test.key
 
 /spec/examples.txt
+
+/coverage/*

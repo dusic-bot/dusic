@@ -49,6 +49,9 @@ group :development, :test do
   gem 'rspec-rails', require: false
   # RSpec controller testing
   gem 'rails-controller-testing', require: false
+
+  # Code coverage
+  gem 'simplecov'
 end
 
 group :development do
