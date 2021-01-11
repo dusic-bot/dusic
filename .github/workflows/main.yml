@@ -30,10 +30,17 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
+    - name: Set up Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
     - name: Load credentials key
       run: echo '${{ secrets.TEST_CREDENTIALS_KEY }}' > config/credentials/test.key
     - name: Install dependent libraries
-      run: sudo apt-get install libpq-dev
+      run:
+        sudo apt-get install libpq-dev
+        yarn install
+        bundle install
     - name: Setup Database
       run: |
         cp config/database.github-actions.yml config/database.yml
