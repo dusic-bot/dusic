@@ -1,8 +1,9 @@
 AllCops:
-  NewCops: enable
   Exclude:
     - db/schema.rb
     - node_modules/**/*
+  NewCops: enable
+  TargetRubyVersion: 2.7
 
 Style/Documentation:
   Enabled: false
