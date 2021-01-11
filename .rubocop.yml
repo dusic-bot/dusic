@@ -5,9 +5,10 @@ require:
   - rubocop-rspec
 
 AllCops:
-  Exclude:
-    - db/schema.rb
-    - node_modules/**/*
+  # Exclude:
+  #   - db/schema.rb
+  #   - node_modules/**/*
+  #   - vendor/**/*
   NewCops: enable
   TargetRubyVersion: 2.7
 
