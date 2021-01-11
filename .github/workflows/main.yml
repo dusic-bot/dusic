@@ -37,7 +37,7 @@ jobs:
     - name: Load credentials key
       run: echo '${{ secrets.TEST_CREDENTIALS_KEY }}' > config/credentials/test.key
     - name: Install dependent libraries
-      run:
+      run: |
         sudo apt-get install libpq-dev
         yarn install
         bundle install
@@ -51,7 +51,7 @@ jobs:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: postgres
     - name: Run webpack
-      run: bundle exec bin/webpack
+      run: bundle exec rails webpacker:compile
     - name: Run rubocop
       run: bundle exec rake rubocop
     - name: Run rspec
