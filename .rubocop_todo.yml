@@ -20,10 +20,3 @@ Metrics/MethodLength:
 # Configuration parameters: IgnoredMethods.
 Metrics/PerceivedComplexity:
   Max: 9
-
-# Offense count: 37
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Enabled: false

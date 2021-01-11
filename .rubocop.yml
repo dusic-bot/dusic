@@ -15,4 +15,12 @@ AllCops:
   NewCops: enable
 
 Style/Documentation:
-  Enable: false
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - config/**/*
+    - db/**/*
+    - config.ru
+    - Gemfile
+    - Rakefile
