@@ -12,8 +12,26 @@
 
   <body>
     <%= render "shared/topbar" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container mt-2">
+      <% if alert.present? %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= alert %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
+      <% if notice.present? %>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <%= notice %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

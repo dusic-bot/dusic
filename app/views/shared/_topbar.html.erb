@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="<%= root_path %>">Dusic</a>
+  <a class="navbar-brand" href="<%= root_path %>">
+    Dusic
+  </a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -7,6 +9,33 @@
           Home
         </a>
       </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <% if current_user %>
+        <li class="nav-item dropdown">
+          <span class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Logged in as <i><%= current_user.email %></i>
+          </span>
+          <div class="dropdown-menu w-100" aria-labelledby="profileDropdown">
+            <span class="dropdown-item">
+              <%= current_user.email %>
+            </span>
+            <div class="dropdown-divider"></div>
+            <%= button_to 'Signout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_user_session_path %>">
+            Signin
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_user_registration_path %>">
+            Signup
+          </a>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>
