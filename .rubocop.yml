@@ -16,6 +16,7 @@ Style/FrozenStringLiteralComment:
     - config/**/*
     - db/**/*
     - config.ru
+    - Capfile
     - Gemfile
     - Rakefile
 
