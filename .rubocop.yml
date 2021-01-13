@@ -42,3 +42,6 @@ Rails/FilePath:
 RSpec/ExpectActual:
   Exclude:
     - spec/routes_spec.rb
+
+Style/ClassAndModuleChildren:
+  Enabled: false
