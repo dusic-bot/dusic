@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { described_class.new(email: email, password: password) }
+  subject(:user) { build(:user, email: email, password: password) }
 
   let(:email) { 'test@email.com' }
   let(:password) { 'password' }
