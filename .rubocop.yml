@@ -32,6 +32,10 @@ Metrics/PerceivedComplexity:
   Exclude:
     - bin/bundle
 
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - app/controllers/users/registrations_controller.rb
+
 Rails/Present:
   Exclude:
     - bin/bundle
