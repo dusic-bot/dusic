@@ -5,5 +5,7 @@ class CreateDiscordUsers < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :discord_users, :external_id, unique: true
   end
 end

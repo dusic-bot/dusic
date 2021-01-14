@@ -18,4 +18,12 @@ RSpec.describe DiscordUser, type: :model do
       expect { instance.save! }.to raise_error(ActiveRecord::NotNullViolation)
     end
   end
+
+  context 'when already exists' do
+    before { described_class.create(external_id: external_id) }
+
+    it 'fails instance creation' do
+      expect { instance.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+    end
+  end
 end

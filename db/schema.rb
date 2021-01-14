@@ -19,12 +19,14 @@ ActiveRecord::Schema.define(version: 2021_01_14_120640) do
     t.bigint "external_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["external_id"], name: "index_discord_servers_on_external_id", unique: true
   end
 
   create_table "discord_users", force: :cascade do |t|
     t.bigint "external_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["external_id"], name: "index_discord_users_on_external_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

@@ -47,6 +47,9 @@ RSpec/ExpectActual:
   Exclude:
     - spec/routes_spec.rb
 
+RSpec/MultipleMemoizedHelpers:
+  Max: 15
+
 RSpec/NestedGroups:
   Max: 4
 
