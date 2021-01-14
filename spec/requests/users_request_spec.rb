@@ -11,7 +11,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'when admin user exists' do
-      before { User.create(email: 'example@mail.com', password: 'password', admin: true) }
+      before { create(:user, admin: true) }
 
       it do
         get signup_path

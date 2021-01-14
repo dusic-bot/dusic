@@ -14,7 +14,7 @@ RSpec.describe 'RailsAdmin', type: :request do
         get '/admin/rails'
       end
 
-      let(:user) { User.create(email: 'example@email.com', password: 'password', admin: is_admin) }
+      let(:user) { create(:user, admin: is_admin) }
       let(:is_admin) { false }
 
       it { expect(response).to redirect_to('/') }
