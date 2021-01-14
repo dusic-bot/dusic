@@ -32,6 +32,10 @@ Metrics/PerceivedComplexity:
   Exclude:
     - bin/bundle
 
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - app/controllers/users/registrations_controller.rb
+
 Rails/Present:
   Exclude:
     - bin/bundle
@@ -42,6 +46,9 @@ Rails/FilePath:
 RSpec/ExpectActual:
   Exclude:
     - spec/routes_spec.rb
+
+RSpec/NestedGroups:
+  Max: 4
 
 Style/ClassAndModuleChildren:
   Enabled: false

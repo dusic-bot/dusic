@@ -1,13 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="<%= root_path %>">
-    Dusic
-  </a>
+  <%= link_to 'Dusic', root_path, class: 'navbar-brand' %>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="<%= root_path %>">
-          Home
-        </a>
+        <%= link_to 'Home', root_path, class: 'nav-link' %>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -17,23 +13,22 @@
             Logged in as <i><%= current_user.email %></i>
           </span>
           <div class="dropdown-menu w-100" aria-labelledby="profileDropdown">
-            <span class="dropdown-item">
+            <span class="dropdown-item-text">
               <%= current_user.email %>
             </span>
+            <% if current_user.admin %>
+              <%= link_to 'Rails Admin', rails_admin_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
+            <% end %>
             <div class="dropdown-divider"></div>
-            <%= button_to 'Signout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            <%= button_to 'Signout', signout_path, method: :delete, class: 'dropdown-item' %>
           </div>
         </li>
       <% else %>
         <li class="nav-item">
-          <a class="nav-link" href="<%= new_user_session_path %>">
-            Signin
-          </a>
+          <%= link_to 'Signin', signin_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<%= new_user_registration_path %>">
-            Signup
-          </a>
+          <%= link_to 'Signup', signup_path, class: 'nav-link' %>
         </li>
       <% end %>
     </ul>
