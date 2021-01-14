@@ -17,9 +17,14 @@
             Logged in as <i><%= current_user.email %></i>
           </span>
           <div class="dropdown-menu w-100" aria-labelledby="profileDropdown">
-            <span class="dropdown-item">
+            <span class="dropdown-item-text">
               <%= current_user.email %>
             </span>
+            <% if current_user.admin %>
+              <a class="dropdown-item" href="<%= rails_admin_path %>" data-turbolinks="false">
+                Rails Admin
+              </a>
+            <% end %>
             <div class="dropdown-divider"></div>
             <%= button_to 'Signout', signout_path, method: :delete, class: 'dropdown-item' %>
           </div>
