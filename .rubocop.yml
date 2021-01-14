@@ -52,3 +52,6 @@ RSpec/NestedGroups:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
