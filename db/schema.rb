@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_104606) do
+ActiveRecord::Schema.define(version: 2021_01_15_112357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "daily_statistics", force: :cascade do |t|
+    t.bigint "discord_server_id", null: false
+    t.integer "tracks_length", default: 0, null: false
+    t.integer "tracks_amount", default: 0, null: false
+    t.date "date", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discord_server_id", "date"], name: "index_daily_statistics_on_discord_server_id_and_date", unique: true
+  end
 
   create_table "discord_servers", force: :cascade do |t|
     t.bigint "external_id", null: false
