@@ -51,6 +51,9 @@ RSpec/ExpectActual:
   Exclude:
     - spec/routes_spec.rb
 
+RSpec/MessageSpies:
+  Enabled: false
+
 RSpec/MultipleMemoizedHelpers:
   Max: 15
 

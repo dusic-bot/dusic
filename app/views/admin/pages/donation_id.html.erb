@@ -1,0 +1,20 @@
+<h1>Admin features</h1>
+<h3>Donation ID converter</h1>
+
+<%= form_with scope: 'donation', url: admin_donation_id_path, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :id, 'Donation ID:' %>
+    <%= f.text_field :id, class: 'form-control', value: @id, autocomplete: 'off' %>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <%= f.label :user_id, 'User ID:' %>
+      <%= f.number_field :user_id, class: 'form-control', value: @user_id, autocomplete: 'off' %>
+    </div>
+    <div class="form-group col">
+      <%= f.label :server_id, 'Server ID:' %>
+      <%= f.number_field :server_id, class: 'form-control', value: @server_id, autocomplete: 'off' %>
+    </div>
+  </div>
+  <%= f.submit 'Convert', method: :post, class: 'btn btn-primary' %>
+<% end %>
