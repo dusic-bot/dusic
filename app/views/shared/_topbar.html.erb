@@ -18,6 +18,7 @@
             </span>
             <% if current_user.admin %>
               <%= link_to 'Rails Admin', rails_admin_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
+              <%= link_to 'Admin features', admin_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
             <%= button_to 'Signout', signout_path, method: :delete, class: 'dropdown-item' %>

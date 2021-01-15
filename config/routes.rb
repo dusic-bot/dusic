@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#root'
+
+  namespace :admin do
+    get '/', to: 'pages#root'
+  end
 end
