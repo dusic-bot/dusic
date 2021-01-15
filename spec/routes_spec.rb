@@ -9,5 +9,7 @@ RSpec.describe 'routes', type: :routing do
 
   describe '/admin/' do
     it { expect(get: '/admin/').to route_to(controller: 'admin/pages', action: 'root') }
+
+    it { expect(get: '/admin/donation_id').to route_to(controller: 'admin/pages', action: 'donation_id') }
   end
 end

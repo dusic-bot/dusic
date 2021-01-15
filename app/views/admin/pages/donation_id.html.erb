@@ -1,7 +1,7 @@
 <h1>Admin features</h1>
 <h3>Donation ID converter</h1>
 
-<%= form_with scope: 'donation', url: admin_donation_id_path, local: true do |f| %>
+<%= form_with scope: 'donation', url: admin_donation_id_path, local: true, method: :get do |f| %>
   <div class="form-group">
     <%= f.label :id, 'Donation ID:' %>
     <%= f.text_field :id, class: 'form-control', value: @id, autocomplete: 'off' %>
