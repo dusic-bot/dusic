@@ -26,4 +26,16 @@ RSpec.describe DiscordServer, type: :model do
       expect { instance.save! }.to raise_error(ActiveRecord::RecordNotUnique)
     end
   end
+
+  describe '#dm?' do
+    subject(:result) { instance.dm? }
+
+    it { expect(result).to be(false) }
+
+    context 'when 0 id' do
+      let(:external_id) { 0 }
+
+      it { expect(result).to be(true) }
+    end
+  end
 end

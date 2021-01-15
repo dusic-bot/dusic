@@ -20,6 +20,10 @@ Style/FrozenStringLiteralComment:
     - Gemfile
     - Rakefile
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
 Metrics/CyclomaticComplexity:
   Exclude:
     - bin/bundle

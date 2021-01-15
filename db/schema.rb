@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_120640) do
+ActiveRecord::Schema.define(version: 2021_01_14_220241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 2021_01_14_120640) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["external_id"], name: "index_discord_users_on_external_id", unique: true
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.bigint "discord_server_id", null: false
+    t.bigint "dj_role"
+    t.string "language", limit: 2, default: "ru", null: false
+    t.boolean "autopause", default: true, null: false
+    t.integer "volume", default: 100, null: false
+    t.string "prefix"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discord_server_id"], name: "index_settings_on_discord_server_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
