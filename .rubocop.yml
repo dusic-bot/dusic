@@ -20,6 +20,10 @@ Style/FrozenStringLiteralComment:
     - Gemfile
     - Rakefile
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
 Metrics/CyclomaticComplexity:
   Exclude:
     - bin/bundle
@@ -47,8 +51,14 @@ RSpec/ExpectActual:
   Exclude:
     - spec/routes_spec.rb
 
+RSpec/MultipleMemoizedHelpers:
+  Max: 15
+
 RSpec/NestedGroups:
   Max: 4
 
 Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/NumericLiterals:
   Enabled: false

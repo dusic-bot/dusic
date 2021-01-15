@@ -58,6 +58,9 @@ group :development, :test do
 
   # Code coverage
   gem 'simplecov'
+
+  # Fixtures
+  gem 'factory_bot_rails'
 end
 
 group :development do
