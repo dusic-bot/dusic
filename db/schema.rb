@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_113807) do
+ActiveRecord::Schema.define(version: 2021_01_15_115343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,28 @@ ActiveRecord::Schema.define(version: 2021_01_15_113807) do
     t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vkdonate_donations", force: :cascade do |t|
+    t.bigint "donation_id", null: false
+    t.text "message"
+    t.bigint "vk_user_external_id", null: false
+    t.bigint "external_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["donation_id"], name: "index_vkdonate_donations_on_donation_id", unique: true
+    t.index ["external_id"], name: "index_vkdonate_donations_on_external_id", unique: true
+  end
+
+  create_table "vkponchik_donations", force: :cascade do |t|
+    t.bigint "donation_id", null: false
+    t.text "message"
+    t.bigint "vk_user_external_id", null: false
+    t.bigint "external_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["donation_id"], name: "index_vkponchik_donations_on_donation_id", unique: true
+    t.index ["external_id"], name: "index_vkponchik_donations_on_external_id", unique: true
   end
 
 end
