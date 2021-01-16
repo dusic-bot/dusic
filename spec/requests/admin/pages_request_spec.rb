@@ -58,4 +58,32 @@ RSpec.describe 'Admin::Pages', type: :request do
       end
     end
   end
+
+  describe 'GET #audios' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      get '/admin/audios', params: params
+    end
+
+    let(:params) { {} }
+
+    it :aggregate_failures do
+      request
+      expect(response).to render_template('admin/pages/audios')
+      expect(response).to render_template('layouts/application')
+      expect(response).to have_http_status(:ok)
+    end
+
+    context 'when params specified' do
+      let(:params) { { audios: { manager: 'vk', type: 'auto', query: 'test' } } }
+
+      it :aggregate_failures do
+        expect(AudiosFetcherService).to receive(:call)
+        request
+        expect(response).to render_template('admin/pages/audios')
+        expect(response).to render_template('layouts/application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
