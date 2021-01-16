@@ -15,6 +15,5 @@ Rails.application.routes.draw do
     get '/', to: 'pages#root'
 
     get '/donation_id', to: 'pages#donation_id', as: :donation_id
-    post '/donation_id', to: 'pages#donation_id_convert'
   end
 end
