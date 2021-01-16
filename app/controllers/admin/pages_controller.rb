@@ -10,4 +10,12 @@ class Admin::PagesController < AdminController
     @id, @user_id, @server_id = DonationIdDataFillerService.call(donation_params)
     flash.alert = 'Wrong arguments specified' if @id.blank?
   end
+
+  def audios
+    @audios = []
+    return if params[:audios].blank?
+
+    audios_params = params.require(:audios).permit(:manager, :type, :query)
+    @audios = AudiosFetcherService.call(audios_params)
+  end
 end
