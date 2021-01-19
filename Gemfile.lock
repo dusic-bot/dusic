@@ -111,6 +111,7 @@ GEM
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
+    handling_queue (1.1.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.8.7)
@@ -365,6 +366,7 @@ DEPENDENCIES
   capistrano-rvm
   devise
   factory_bot_rails
+  handling_queue
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
