@@ -16,6 +16,6 @@ class Admin::PagesController < AdminController
     return if params[:audios].blank?
 
     audios_params = params.require(:audios).permit(:manager, :type, :query)
-    @audios = AudiosFetcherService.call(audios_params)
+    @audios = AudiosFetcherService.call(audios_params).response
   end
 end

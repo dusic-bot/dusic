@@ -16,6 +16,12 @@
   </div>
   <div class="col-8 col-offset-1">
     <h4>Audios</h4>
-    <!-- TODO -->
+    <% if @audios.present? %>
+      <% @audios.each do |el| %>
+        <%= render_audio_item(el) %>
+      <% end %>
+    <% else %>
+      <span>Nothing found</span>
+    <% end %>
   </div>
 </div>

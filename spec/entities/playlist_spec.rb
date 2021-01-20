@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Playlist do
-  subject(:instance) { described_class.new(external, manager, id) }
+  subject(:instance) { described_class.new(external, manager, id, audios) }
 
   let(:external) { { stub: true } }
   let(:manager) { :vk }
   let(:id) { 'id' }
+  let(:audios) { [] }
 
   describe '.new' do
     it { expect { instance }.not_to raise_error }
@@ -29,6 +30,12 @@ RSpec.describe Playlist do
     subject(:result) { instance.id }
 
     it { expect(result).to be(id) }
+  end
+
+  describe '#audios' do
+    subject(:result) { instance.audios }
+
+    it { expect(result).to be(audios) }
   end
 
   describe 'delegation' do

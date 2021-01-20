@@ -78,7 +78,7 @@ RSpec.describe 'Admin::Pages', type: :request do
       let(:params) { { audios: { manager: 'vk', type: 'auto', query: 'test' } } }
 
       it :aggregate_failures do
-        expect(AudiosFetcherService).to receive(:call)
+        allow(AudiosFetcherService).to receive(:call).and_return(AudioResponse.empty)
         request
         expect(response).to render_template('admin/pages/audios')
         expect(response).to render_template('layouts/application')

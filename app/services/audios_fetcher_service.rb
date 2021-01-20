@@ -2,7 +2,10 @@
 
 class AudiosFetcherService
   def self.call(params)
-    # TODO
-    []
+    case params[:manager]&.to_sym
+    when :vk then VK_AUDIO_MANAGER.request(params[:type], params[:query])
+    else
+      AudioResponse.empty
+    end
   end
 end

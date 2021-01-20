@@ -3,12 +3,13 @@
 require 'delegate'
 
 class Playlist < SimpleDelegator
-  attr_accessor :manager, :id, :external
+  attr_accessor :manager, :id, :external, :audios
 
-  def initialize(external, manager, id)
+  def initialize(external, manager, id, audios)
     @external = external
     @manager = manager
     @id = id
+    @audios = audios
 
     super(@external)
   end
