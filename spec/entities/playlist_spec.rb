@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Playlist do
-  subject(:instance) { described_class.new(external, manager, id, audios) }
+  subject(:instance) { build(:playlist, external: external, manager: manager, id: id, audios: audios) }
 
   let(:external) { { stub: true } }
   let(:manager) { :vk }

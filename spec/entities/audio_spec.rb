@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Audio do
-  subject(:instance) { described_class.new(external, manager, id) }
+  subject(:instance) { build(:audio, external: external, manager: manager, id: id) }
 
   let(:external) { { stub: true } }
   let(:manager) { :vk }

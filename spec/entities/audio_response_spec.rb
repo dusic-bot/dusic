@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe AudioResponse do
-  subject(:instance) { described_class.new(request_type, response) }
+  subject(:instance) { build(:audio_response, request_type: request_type, response: response) }
 
   let(:request_type) { 'request_type_stub' }
   let(:response) { 'response_stub' }
