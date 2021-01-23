@@ -3,10 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Audio do
-  subject(:instance) { build(:audio, external: external, manager: manager, id: id) }
+  subject(:instance) { build(:audio, external: external, id: id) }
 
   let(:external) { { stub: true } }
-  let(:manager) { :vk }
   let(:id) { 'id' }
 
   describe '.new' do
@@ -19,21 +18,9 @@ RSpec.describe Audio do
     it { expect(result).to be(external) }
   end
 
-  describe '#manager' do
-    subject(:result) { instance.manager }
-
-    it { expect(result).to be(manager) }
-  end
-
   describe '#id' do
     subject(:result) { instance.id }
 
     it { expect(result).to be(id) }
-  end
-
-  describe 'delegation' do
-    it 'delegates to external' do
-      expect(instance[:stub]).to be(true)
-    end
   end
 end

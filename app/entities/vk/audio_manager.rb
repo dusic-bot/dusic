@@ -97,7 +97,7 @@ module Vk
     end
 
     def convert_audio(audio)
-      Audio.new(audio, :vk, audio.full_id)
+      Vk::Audio.new(audio, audio.full_id)
     end
 
     def convert_playlist(playlist)
@@ -106,7 +106,7 @@ module Vk
       audios = playlist.map { |e| convert_single(e) }
       audios.compact!
 
-      Playlist.new(playlist, :vk, id, audios)
+      Vk::Playlist.new(playlist, id, audios)
     end
   end
 end

@@ -3,10 +3,9 @@
 FactoryBot.define do
   factory :playlist do
     external { 'stub' }
-    manager { :vk }
     id { '1_0_a' }
     audios { [] }
 
-    initialize_with { new(external, manager, id, audios) }
+    initialize_with { new(external, id, audios) }
   end
 end

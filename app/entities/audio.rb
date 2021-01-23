@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-require 'delegate'
+class Audio
+  attr_reader :external, :id
 
-class Audio < SimpleDelegator
-  attr_accessor :external, :manager, :id
-
-  def initialize(external, manager, id)
+  def initialize(external, id)
     @external = external
-    @manager = manager
     @id = id
-
-    super(@external)
   end
 end

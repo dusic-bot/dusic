@@ -50,7 +50,9 @@ RSpec.describe Vk::AudioManager do
       it :aggregate_failures do
         expect(result).to be_a(AudioResponse)
         expect(result.request_type).to eq(request_type_stub)
-        expect(result.response).to eq(response_stub)
+        expect(result.response).to be_a(Array)
+        expect(result.response.size).to eq(1)
+        expect(result.response.first.external).to be(vkmusic_audio_stub)
       end
     end
 
@@ -65,7 +67,9 @@ RSpec.describe Vk::AudioManager do
       it :aggregate_failures do
         expect(result).to be_a(AudioResponse)
         expect(result.request_type).to eq(type)
-        expect(result.response).to eq(response_stub)
+        expect(result.response).to be_a(Array)
+        expect(result.response.size).to eq(1)
+        expect(result.response.first.external).to be(vkmusic_audio_stub)
       end
     end
 
@@ -80,7 +84,9 @@ RSpec.describe Vk::AudioManager do
       it :aggregate_failures do
         expect(result).to be_a(AudioResponse)
         expect(result.request_type).to eq(type)
-        expect(result.response).to eq([response_stub])
+        expect(result.response).to be_a(Array)
+        expect(result.response.size).to eq(1)
+        expect(result.response.first.external).to be(vkmusic_playlist_stub)
       end
     end
 
@@ -95,7 +101,9 @@ RSpec.describe Vk::AudioManager do
       it :aggregate_failures do
         expect(result).to be_a(AudioResponse)
         expect(result.request_type).to eq(type)
-        expect(result.response).to eq([response_stub])
+        expect(result.response).to be_a(Array)
+        expect(result.response.size).to eq(1)
+        expect(result.response.first.external).to be(vkmusic_playlist_stub)
       end
     end
 
@@ -110,7 +118,9 @@ RSpec.describe Vk::AudioManager do
       it :aggregate_failures do
         expect(result).to be_a(AudioResponse)
         expect(result.request_type).to eq(type)
-        expect(result.response).to eq([response_stub])
+        expect(result.response).to be_a(Array)
+        expect(result.response.size).to eq(1)
+        expect(result.response.first.external).to be(vkmusic_playlist_stub)
       end
     end
 
@@ -125,7 +135,9 @@ RSpec.describe Vk::AudioManager do
       it :aggregate_failures do
         expect(result).to be_a(AudioResponse)
         expect(result.request_type).to eq(type)
-        expect(result.response).to eq(response_stub)
+        expect(result.response).to be_a(Array)
+        expect(result.response.size).to eq(1)
+        expect(result.response.first.external).to be(vkmusic_audio_stub)
       end
     end
 
@@ -140,7 +152,9 @@ RSpec.describe Vk::AudioManager do
       it :aggregate_failures do
         expect(result).to be_a(AudioResponse)
         expect(result.request_type).to eq(type)
-        expect(result.response).to eq(response_stub)
+        expect(result.response).to be_a(Array)
+        expect(result.response.size).to eq(1)
+        expect(result.response.first.external).to be(vkmusic_audio_stub)
       end
     end
 
