@@ -69,11 +69,11 @@ module Vk
       vk_request_wrap { @client.artist(url: url) }
     end
 
-    def vk_request_wrapper
-      convert_all(yield)
+    def vk_request_wrap
+      convert_all(yield).compact
     rescue StandardError => e
       Rails.logger.error("VK audio convertion error: #{e}\n#{e.backtrace}")
-      nil
+      []
     end
 
     def convert_all(data)
@@ -101,7 +101,7 @@ module Vk
     end
 
     def convert_playlist(playlist)
-      id = [owner_id, id, access_hash].join('_')
+      id = [playlist.owner_id, playlist.id, playlist.access_hash].join('_')
 
       audios = playlist.map { |e| convert_single(e) }
       audios.compact!
