@@ -23,4 +23,28 @@ RSpec.describe Audio do
 
     it { expect(result).to be(id) }
   end
+
+  describe '#artist' do
+    subject(:result) { instance.artist }
+
+    it { expect { result }.to raise_error(NotImplementedError) }
+  end
+
+  describe '#title' do
+    subject(:result) { instance.title }
+
+    it { expect { result }.to raise_error(NotImplementedError) }
+  end
+
+  describe '#duration' do
+    subject(:result) { instance.duration }
+
+    it { expect { result }.to raise_error(NotImplementedError) }
+  end
+
+  describe '#duration_str' do
+    subject(:result) { instance.duration_str }
+
+    it { expect { result }.to raise_error(NotImplementedError) }
+  end
 end

@@ -8,4 +8,12 @@ class Playlist
     @id = id
     @audios = audios
   end
+
+  def title
+    raise NotImplementedError
+  end
+
+  def size
+    @audios.size
+  end
 end

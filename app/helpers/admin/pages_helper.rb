@@ -11,17 +11,17 @@ module Admin::PagesHelper
   private
 
   def render_playlist(item)
-    <<~HTML
-      <i>#{item.title} (#{pluralize(item.size, 'audio')})</i>
-      <ul>#{render_playlist_audios(item)}</ul>
-    HTML
+    title = tag.i { "#{item.title} (#{pluralize(item.size, 'audio')})" }
+    audios = tag.ul { render_playlist_audios(item.audios) }
+
+    tag.li { safe_join([title, audios]) }
   end
 
   def render_playlist_audios(audios)
-    audios.map { |a| "<li>#{render_audio(a)}</li>" }.join
+    safe_join(audios.map { |a| render_audio(a) })
   end
 
   def render_audio(item)
-    "#{item.artist} - #{item.title} [#{item.duration_str}]"
+    tag.li { "#{item.artist} - #{item.title} [#{item.duration_str}]" }
   end
 end
