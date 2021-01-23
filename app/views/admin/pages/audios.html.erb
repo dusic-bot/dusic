@@ -2,10 +2,13 @@
   <div class="col-3">
     <h4>Search parameters</h4>
     <%= form_with scope: 'audios', method: :get do |f| %>
-      <%= f.hidden_field :manager, value: 'vk' %>
+      <div class="form-group">
+        <%= f.label :manager, 'Audio manager:' %>
+        <%= f.select :manager, options_from_collection_for_select(%w[vk], :to_s, :capitalize), {}, class: 'form-control' %>
+      </div>
       <div class="form-group">
         <%= f.label :type, 'Request type:' %>
-        <%= f.select :type, options_from_collection_for_select(%w[auto playlist audios post find wall artist], :to_s, :capitalize), {}, id: 'type', class: 'form-control' %>
+        <%= f.select :type, options_from_collection_for_select(%w[auto playlist audios post find wall artist], :to_s, :capitalize), {}, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= f.label :query, 'Query:' %>

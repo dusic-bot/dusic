@@ -19,7 +19,7 @@ RSpec.describe AudiosFetcherService do
 
     it do
       stub_const('VK_AUDIO_MANAGER', instance_double(Vk::AudioManager))
-      expect(VK_AUDIO_MANAGER).to receive(:request).with(type, query)
+      expect(VK_AUDIO_MANAGER).to receive(:request).with(:type_stub, 'query_stub')
       result
     end
   end
