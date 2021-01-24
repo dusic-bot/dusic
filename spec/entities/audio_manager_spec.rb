@@ -12,4 +12,8 @@ RSpec.describe AudioManager do
   describe '#request' do
     it { expect { instance.request(1, 2) }.to raise_error(NotImplementedError) }
   end
+
+  describe '#url' do
+    it { expect { instance.url('audio') }.to raise_error(NotImplementedError) }
+  end
 end

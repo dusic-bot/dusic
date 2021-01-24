@@ -5,5 +5,9 @@ class AudioManager
     raise NotImplementedError
   end
 
+  def url(audio)
+    raise NotImplementedError
+  end
+
   def initialize; end
 end
