@@ -203,4 +203,68 @@ RSpec.describe Vk::AudioManager do
       end
     end
   end
+
+  describe '#url' do
+    subject(:result) { instance.url(audio) }
+
+    let(:audio) { build(:vk_audio, external: external) }
+    let(:external) { nil }
+
+    it { expect(result).to be_nil }
+
+    context 'when with external audio' do
+      let(:external) { VkMusic::Audio.new(**vk_audio_data) }
+      let(:vk_audio_data) { {} }
+
+      it { expect(result).to be_nil }
+
+      context 'when it have cached decoded url' do
+        let(:vk_audio_data) { { url: 'url' } }
+
+        it { expect(result).to eq('url') }
+      end
+
+      context 'when it have cached encoded url' do
+        let(:vk_audio_data) { { url_encoded: 'url_encoded', url: nil, client_id: 42 } }
+
+        before do
+          allow(VkMusic::Utility::LinkDecoder).to receive(:call).with('url_encoded', 42).and_return('decoded_url')
+        end
+
+        it { expect(result).to eq('decoded_url') }
+      end
+
+      context 'when it have cached id' do
+        let(:vk_audio_data) { { id: 0, owner_id: 1, secret1: 'a', secret2: 'b' } }
+        let(:vk_audio_with_url) { VkMusic::Audio.new(url: 'url_from_remote') }
+
+        before do
+          allow(vk_client).to receive(:get_urls).with(['1_0_a_b']).and_return([vk_audio_with_url])
+        end
+
+        it { expect(result).to eq('url_from_remote') }
+
+        context 'when requesting second time' do
+          let(:second_result) { instance.url(audio) }
+
+          it :aggregate_failures do
+            expect(vk_client).to receive(:get_urls)
+            expect(result).to eq('url_from_remote')
+            expect(vk_client).not_to receive(:get_urls)
+            expect(second_result).to eq('url_from_remote')
+          end
+        end
+      end
+
+      context 'when url fetch error' do
+        let(:vk_audio_data) { { id: 0, owner_id: 1, secret1: 'a', secret2: 'b' } }
+
+        before do
+          allow(vk_client).to receive(:get_urls).with(['1_0_a_b']).and_raise(RuntimeError)
+        end
+
+        it { expect(result).to be_nil }
+      end
+    end
+  end
 end

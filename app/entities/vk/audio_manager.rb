@@ -14,14 +14,19 @@ module Vk
       AudioResponse.new(type, fetch_data(type, query))
     end
 
+    def url(audio)
+      return audio.url if audio.instance_variable_defined?(:@url)
+
+      audio.url = audio.external.nil? ? nil : get_vkmusic_audio_url(audio.external).presence
+    end
+
     def initialize(login, password)
       @client = VkMusic::Client.new(login: login, password: password)
 
       @url_handler = HandlingQueue.new(slice: 10, interval: 2) do |arr|
         ids = arr.map(&:obj)
-        audios = @client.get_urls(ids)
-        Rails.logger.debug "Fetched #{audios.compact.size}/#{audios.size} audios"
-        a.each.with_index { |e, i| e.re = audios[i] }
+        audios = fetch_audios(ids)
+        arr.each.with_index { |el, i| el.re = audios[i] }
       end
 
       super()
@@ -72,7 +77,7 @@ module Vk
     def vk_request_wrap
       convert_all(yield).compact
     rescue StandardError => e
-      Rails.logger.error("VK audio convertion error: #{e}\n#{e.backtrace}")
+      Rails.logger.error "VK audio convertion error: #{e}\n#{e.backtrace}"
       []
     end
 
@@ -91,7 +96,7 @@ module Vk
       when VkMusic::Audio then convert_audio(data)
       when VkMusic::Playlist then convert_playlist(data)
       else
-        Rails.logger.error("Failed to convert object returned by VK lib: #{data}")
+        Rails.logger.error "Failed to convert object returned by VK lib: #{data}"
         nil
       end
     end
@@ -102,11 +107,27 @@ module Vk
 
     def convert_playlist(playlist)
       id = [playlist.owner_id, playlist.id, playlist.access_hash].join('_')
-
-      audios = playlist.map { |e| convert_single(e) }
-      audios.compact!
+      audios = playlist.map { |e| convert_single(e) }.tap(&:compact!)
 
       Vk::Playlist.new(playlist, id, audios)
+    end
+
+    def get_vkmusic_audio_url(vkmusic_audio)
+      return vkmusic_audio.url if vkmusic_audio.url_available?
+
+      full_id = vkmusic_audio.full_id
+      return if full_id.blank?
+
+      @url_handler.handle(full_id)&.url
+    end
+
+    def fetch_audios(ids)
+      audios = @client.get_urls(ids)
+      Rails.logger.debug "Fetched #{audios.compact.size}/#{audios.size} audios"
+      audios
+    rescue StandardError => e
+      Rails.logger.error "VK audio url fetch error: #{e}\n#{e.backtrace}"
+      Array.new(ids.size, nil)
     end
   end
 end

@@ -58,7 +58,7 @@ RSpec/MultipleMemoizedHelpers:
   Max: 15
 
 RSpec/NestedGroups:
-  Max: 4
+  Max: 5
 
 Style/ClassAndModuleChildren:
   Enabled: false
