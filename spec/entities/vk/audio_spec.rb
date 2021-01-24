@@ -31,4 +31,16 @@ RSpec.describe Vk::Audio do
 
     it { expect(result).to eq('00:01:00') }
   end
+
+  describe '#url' do
+    subject(:result) { instance.url }
+
+    it { expect(result).to be_nil }
+
+    context 'when reassigned' do
+      before { instance.url = 'url' }
+
+      it { expect(result).to eq('url') }
+    end
+  end
 end
