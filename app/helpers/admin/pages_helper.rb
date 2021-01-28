@@ -42,7 +42,8 @@ module Admin::PagesHelper
   end
 
   def render_audio_download_button(item)
-    html_params = { class: 'btn btn-light btn-sm float-right', data: { manager: manager(item), id: item.id } }
+    html_params = { class: 'btn btn-light btn-sm float-right js-audio-download-button-binder',
+                    data: { manager: manager(item), id: item.id } }
 
     tag.div(**html_params) { fa_icon 'download' }
   end

@@ -3,15 +3,22 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import Rails from '@rails/ujs';
+import Turbolinks from 'turbolinks';
+import * as ActiveStorage from '@rails/activestorage';
+import '../channels/index';
 
-import "bootstrap"
+// Bootstrap
+import 'bootstrap';
 
-import "@fortawesome/fontawesome-free/js/all";
+// FontAwesome
+import '@fortawesome/fontawesome-free/js/all';
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+// JQuery
+import 'jquery';
+
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
+
+require('../audio-download-button-binder');
