@@ -20,9 +20,9 @@
   <div class="col-8 col-offset-1">
     <h4>Audios</h4>
     <% if @audios.present? %>
-      <ul>
+      <ul class="list-group list-group-flush">
         <% @audios.each do |el| %>
-          <%= render_audio_item(el) %>
+          <%= render_audio_item(el, class: 'list-group-item') %>
         <% end %>
       </ul>
     <% else %>
