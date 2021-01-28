@@ -21,4 +21,4 @@ Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 
-require('../audio-download-button-binder');
+require('javascript/audio-download-button-binder');
