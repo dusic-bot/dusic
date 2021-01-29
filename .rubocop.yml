@@ -24,6 +24,9 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
 
+Metrics/ClassLength:
+  Max: 120
+
 Metrics/CyclomaticComplexity:
   Exclude:
     - bin/bundle
