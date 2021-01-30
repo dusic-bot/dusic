@@ -12,7 +12,7 @@ class RemoteFileDownloaderService
 
       return result if result.blank?
 
-      # NOTE: Since OpenURI can return StringIO for small files, we need to covnert it
+      # NOTE: Since OpenURI can return StringIO for small files, we need to convert it
       result.is_a?(Tempfile) ? result : string_io_to_tempfile(result)
     end
 
