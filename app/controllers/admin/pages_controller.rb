@@ -26,6 +26,6 @@ class Admin::PagesController < AdminController
     io = AudioLoaderService.call(audio_params)
     return head :not_found if io.nil?
 
-    send_data io, filename: "#{audio_params[:manager]}#{audio_params[:id]}.#{audio_params[:format]}"
+    send_data io.read, filename: "#{audio_params[:manager]}#{audio_params[:id]}.#{audio_params[:format]}"
   end
 end

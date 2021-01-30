@@ -1,5 +1,5 @@
 import jQuery from 'jquery';
-import { sleep } from 'javascript/sleep';
+import download from 'downloadjs';
 
 function audioDownload(manager, id, format) {
   window.console.debug(`AJAX ${format}: ${manager}#${id}`);
@@ -30,13 +30,13 @@ function audioButtonClick() {
   $button.prop('disabled', true);
   $button.children().first().addClass('spinning');
 
-  audioDownload(manager, id, format).then(({ raw_data, jqXHR }) => {
+  audioDownload(manager, id, format).then(({ data, jqXHR }) => {
     const name = `${audio_name}.${format}`;
     const type = jqXHR.getResponseHeader('content-type');
 
     window.console.debug(`Downloading ${name}, type: ${type}`);
 
-    download(raw_data, name, type);
+    download(data, name, type);
 
     $button.html(oldHtml);
     $button.prop('disabled', false);

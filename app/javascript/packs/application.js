@@ -17,6 +17,9 @@ import '@fortawesome/fontawesome-free/js/all';
 // JQuery
 import 'jquery';
 
+// Download JS
+import 'downloadjs';
+
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
