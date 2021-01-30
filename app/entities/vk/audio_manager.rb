@@ -17,7 +17,12 @@ module Vk
     def url(audio)
       return audio.url if audio.instance_variable_defined?(:@url)
 
-      audio.url = audio.external.nil? ? nil : get_vkmusic_audio_url(audio.external).presence
+      audio.url =
+        if audio.external.present?
+          get_vkmusic_audio_url(audio.external).presence
+        elsif audio.id.present?
+          get_vkmusic_audio_url_from_id(audio.id).presence
+        end
     end
 
     def initialize(login, password)
@@ -118,6 +123,10 @@ module Vk
       full_id = vkmusic_audio.full_id
       return if full_id.blank?
 
+      get_vkmusic_audio_url_from_id(full_id)
+    end
+
+    def get_vkmusic_audio_url_from_id(full_id)
       @url_handler.handle(full_id)&.url
     end
 

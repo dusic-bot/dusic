@@ -207,10 +207,22 @@ RSpec.describe Vk::AudioManager do
   describe '#url' do
     subject(:result) { instance.url(audio) }
 
-    let(:audio) { build(:vk_audio, external: external) }
+    let(:audio) { build(:vk_audio, external: external, id: id) }
     let(:external) { nil }
+    let(:id) { nil }
 
     it { expect(result).to be_nil }
+
+    context 'when with id' do
+      let(:id) { '1_0_a_b' }
+      let(:vk_audio_with_url) { VkMusic::Audio.new(url: 'url_from_remote') }
+
+      before do
+        allow(vk_client).to receive(:get_urls).with(['1_0_a_b']).and_return([vk_audio_with_url])
+      end
+
+      it { expect(result).to eq('url_from_remote') }
+    end
 
     context 'when with external audio' do
       let(:external) { VkMusic::Audio.new(**vk_audio_data) }
