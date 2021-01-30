@@ -35,6 +35,9 @@ Metrics/MethodLength:
   Exclude:
     - bin/bundle
 
+Metrics/ParameterLists:
+  Max: 8
+
 Metrics/PerceivedComplexity:
   Exclude:
     - bin/bundle
