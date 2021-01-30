@@ -18,4 +18,14 @@ class Admin::PagesController < AdminController
     audios_params = params.require(:audios).permit(:manager, :type, :query)
     @audios = AudiosFetcherService.call(audios_params).response
   end
+
+  def audio
+    return if params[:audio].blank?
+
+    audio_params = params.require(:audio).permit(:manager, :id, :format)
+    io = AudioLoaderService.call(audio_params)
+    return head :not_found if io.nil?
+
+    send_data io, filename: "#{audio_params[:manager]}#{audio_params[:id]}.#{audio_params[:format]}"
+  end
 end

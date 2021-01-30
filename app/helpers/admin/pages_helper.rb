@@ -35,14 +35,17 @@ module Admin::PagesHelper
   end
 
   def render_audio(item, **li_html_params)
-    info = tag.span { "#{item.artist} - #{item.title} [#{item.duration_str}]" }
+    title = tag.span(class: 'text-truncate') { "#{item.artist} - #{item.title}" }
+    duration = tag.span { "[#{item.duration_str}]" }
     download_button = render_audio_download_button(item)
 
-    tag.li(**li_html_params) { safe_join([info, download_button]) }
+    li_html_params[:class] += ' d-flex'
+
+    tag.li(**li_html_params) { safe_join([title, duration, download_button]) }
   end
 
   def render_audio_download_button(item)
-    html_params = { class: 'btn btn-light btn-sm float-right js-audio-download-button-binder',
+    html_params = { class: 'btn btn-light btn-sm ml-auto js-audio-download-button-binder',
                     data: { manager: manager(item), id: item.id } }
 
     tag.div(**html_params) { fa_icon 'download' }

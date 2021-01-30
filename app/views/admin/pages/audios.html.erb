@@ -17,7 +17,7 @@
       <%= f.submit 'Load', class: 'btn btn-primary' %>
     <% end %>
   </div>
-  <div class="col-8 col-offset-1">
+  <div class="col-6">
     <h4>Audios</h4>
     <% if @audios.present? %>
       <ul class="list-group list-group-flush">
@@ -28,5 +28,12 @@
     <% else %>
       <span>Nothing found</span>
     <% end %>
+  </div>
+  <div class="col-3">
+    <h6>Audios download parameters</h6>
+    <div class="form-group">
+      <%= label_tag :format, 'Output format:' %>
+      <%= select_tag :format, options_from_collection_for_select(FormatConverterService::FORMATS, :to_s, :to_s), class: 'form-control js-audio-download-format' %>
+    </div>
   </div>
 </div>
