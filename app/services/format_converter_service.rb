@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FormatConverterService
-  FORMATS = %i[m3u8 mp3 dca s16le].freeze
+  FORMATS = %i[mp3 m3u8url m3u8 dca s16le].freeze
 
   class << self
     def call(io, initial_format, format, *args, **opts)
@@ -11,9 +11,35 @@ class FormatConverterService
 
       method_name = "#{initial_format}_to_#{format}".to_sym
 
-      return nil unless respond_to?(method_name)
+      send(method_name, io, *args, **opts)
+    rescue NameError => e
+      Rails.logger.debug "Failed conversion #{initial_format} -> #{format}: No converter(#{e})"
+      nil
+    end
 
-      send(method_name, io, *args, **opts).read
+    protected
+
+    def m3u8url_to_dca(io, *args, **opts)
+      tmp = m3u8url_to_mp3(io, *args, **opts)
+      mp3_to_dca(tmp, *args, **opts)
+    end
+
+    def m3u8url_to_mp3(io, *_args, **_opts)
+      url = io.read
+      null_input = File.open(File::NULL, File::RDONLY | File::BINARY)
+      external_converter(
+        null_input,
+        "ffmpeg  -loglevel 0 -i '#{url}' -vn -map_metadata -1 -c:v copy -c:a copy -f mp3 pipe:1",
+        name: 'ffmpeg: m3u8url->mp3'
+      )
+    end
+
+    def mp3_to_dca(io, *_args, volume: 1.0, sample_rate: 48000, channels: 2, **_opts)
+      external_converter(
+        io,
+        "mp3_to_dca --quiet -i pipe:0 -o pipe:1 -v #{volume} -r #{sample_rate} -c #{channels}",
+        name: 'mp3_to_dca'
+      )
     end
 
     private

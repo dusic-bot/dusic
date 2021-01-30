@@ -2,7 +2,7 @@
 
 class AudioLoaderService
   FORMATS = {
-    vk: :m3u8
+    vk: :m3u8url
   }.freeze
 
   class << self
@@ -27,9 +27,10 @@ class AudioLoaderService
     end
 
     def get_io(url, manager, format = nil)
-      initial_io = RemoteFileDownloaderService.call(url)
+      io = StringIO.new(url)
+
       initial_format = FORMATS[manager]
-      FormatConverterService.call(initial_io, initial_format, format || initial_format)
+      FormatConverterService.call(io, initial_format, format || initial_format)
     end
   end
 end

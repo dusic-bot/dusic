@@ -23,11 +23,11 @@ RSpec.describe AudioLoaderService do
 
     context 'when id present' do
       let(:id) { '1_0_a_b' }
-      let(:expected_requested_format) { :m3u8 }
+      let(:expected_requested_format) { :m3u8url }
 
       before do
-        allow(RemoteFileDownloaderService).to receive(:call).with('url_stub').and_return('io_stub')
-        allow(FormatConverterService).to receive(:call).with('io_stub', :m3u8, expected_requested_format)
+        allow(StringIO).to receive(:new).with('url_stub').and_return('io_stub')
+        allow(FormatConverterService).to receive(:call).with('io_stub', :m3u8url, expected_requested_format)
                                                        .and_return('converted_io_stub')
       end
 
@@ -35,7 +35,7 @@ RSpec.describe AudioLoaderService do
 
       context 'when requested format is empty string' do
         let(:format) { '' }
-        let(:expected_requested_format) { :m3u8 }
+        let(:expected_requested_format) { :m3u8url }
 
         it { expect(result).to eq('converted_io_stub') }
       end
