@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class FormatConverterService
-  FORMATS = %i[mp3 m3u8url m3u8 dca s16le].freeze
+  FORMATS = %i[mp3 m3u8url m3u8 dca].freeze
 
   class << self
     def call(io, initial_format, format, *args, **opts)
-      return io if initial_format == format
+      return if io.nil? || FORMATS.exclude?(initial_format) || FORMATS.exclude?(format)
 
-      return nil if FORMATS.exclude?(initial_format) || FORMATS.exclude?(format)
+      return io if initial_format == format
 
       method_name = "#{initial_format}_to_#{format}".to_sym
 
