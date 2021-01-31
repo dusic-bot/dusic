@@ -86,4 +86,40 @@ RSpec.describe 'Admin::Pages', type: :request do
       end
     end
   end
+
+  describe 'GET #audio' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      get '/admin/audio', params: params
+    end
+
+    let(:params) { {} }
+
+    it do
+      request
+      expect(response).to have_http_status(:not_found)
+    end
+
+    context 'when params specified' do
+      let(:params) { { audio: { manager: 'vk', id: '1_0_a_b', format: 'mp3' } } }
+      let(:response_io) { StringIO.new('data') }
+
+      before { allow(AudioLoaderService).to receive(:call).and_return(response_io) }
+
+      it :aggregate_failures do
+        request
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to eq('data')
+      end
+
+      context 'when nil returned' do
+        let(:response_io) { nil }
+
+        it do
+          request
+          expect(response).to have_http_status(:not_found)
+        end
+      end
+    end
+  end
 end

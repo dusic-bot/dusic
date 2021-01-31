@@ -20,7 +20,7 @@ class Admin::PagesController < AdminController
   end
 
   def audio
-    return if params[:audio].blank?
+    return head :not_found if params[:audio].blank?
 
     audio_params = params.require(:audio).permit(:manager, :id, :format)
     io = AudioLoaderService.call(audio_params)
