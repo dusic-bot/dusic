@@ -10,4 +10,13 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#root'
+
+  namespace :admin do
+    get '/', to: 'pages#root'
+
+    get '/donation_id', to: 'pages#donation_id', as: :donation_id
+
+    get '/audios', to: 'pages#audios', as: :audios
+    get '/audio', to: 'pages#audio', as: :audio
+  end
 end

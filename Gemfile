@@ -34,6 +34,15 @@ gem 'devise'
 # DB administrating
 gem 'rails_admin'
 
+# VK music
+gem 'vk_music', '>= 4.1.1'
+
+# Small gem for calling same method from time to time
+gem 'handling_queue'
+
+# Font awesome icons
+gem 'font-awesome-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

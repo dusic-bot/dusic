@@ -24,6 +24,9 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
 
+Metrics/ClassLength:
+  Max: 120
+
 Metrics/CyclomaticComplexity:
   Exclude:
     - bin/bundle
@@ -31,6 +34,9 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   Exclude:
     - bin/bundle
+
+Metrics/ParameterLists:
+  Max: 8
 
 Metrics/PerceivedComplexity:
   Exclude:
@@ -51,11 +57,14 @@ RSpec/ExpectActual:
   Exclude:
     - spec/routes_spec.rb
 
+RSpec/MessageSpies:
+  Enabled: false
+
 RSpec/MultipleMemoizedHelpers:
   Max: 15
 
 RSpec/NestedGroups:
-  Max: 4
+  Max: 5
 
 Style/ClassAndModuleChildren:
   Enabled: false
