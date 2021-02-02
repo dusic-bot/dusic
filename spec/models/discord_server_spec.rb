@@ -27,6 +27,36 @@ RSpec.describe DiscordServer, type: :model do
     end
   end
 
+  describe '#today_statistic' do
+    subject(:result) { instance.today_statistic }
+
+    let(:instance) { create(:discord_server, external_id: external_id) }
+
+    it { expect(result).to be_nil }
+
+    context 'when DailyStatistic present' do
+      let(:daily_statistic) { create(:daily_statistic, discord_server: ds_discord_server, date: ds_date) }
+      let(:ds_discord_server) { instance }
+      let(:ds_date) { Time.zone.today }
+
+      before { daily_statistic }
+
+      it { expect(result).to eq(daily_statistic) }
+
+      context 'when DailyStatistic on another date' do
+        let(:ds_discord_server) { create(:discord_server, external_id: 42) }
+
+        it { expect(result).to be_nil }
+      end
+
+      context 'when DailyStatistic for another server' do
+        let(:ds_date) { Time.zone.tomorrow }
+
+        it { expect(result).to be_nil }
+      end
+    end
+  end
+
   describe '#dm?' do
     subject(:result) { instance.dm? }
 
