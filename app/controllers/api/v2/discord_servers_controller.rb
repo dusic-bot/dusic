@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V2::ServersController < Api::V2Controller
+class Api::V2::DiscordServersController < Api::V2Controller
   def index
     # TODO
   end

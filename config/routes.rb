@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v2 do
-      resources :servers, only: %i[index show update]
+      resources :discord_servers, only: %i[index show update]
 
       get '/audios/', to: 'audios#index', as: :audios
       get '/audios/:manager/:id', to: 'audios#show', as: :audio
