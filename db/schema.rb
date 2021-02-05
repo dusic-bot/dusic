@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_115343) do
+ActiveRecord::Schema.define(version: 2021_02_04_201103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,12 @@ ActiveRecord::Schema.define(version: 2021_01_15_115343) do
   create_table "donations", force: :cascade do |t|
     t.integer "size", default: 0, null: false
     t.datetime "date", null: false
-    t.bigint "discord_server_external_id"
-    t.bigint "discord_user_external_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "discord_server_id"
+    t.bigint "discord_user_id"
+    t.index ["discord_server_id"], name: "index_donations_on_discord_server_id"
+    t.index ["discord_user_id"], name: "index_donations_on_discord_user_id"
   end
 
   create_table "settings", force: :cascade do |t|
