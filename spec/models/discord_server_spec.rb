@@ -57,6 +57,38 @@ RSpec.describe DiscordServer, type: :model do
     end
   end
 
+  describe '#last_donation' do
+    subject(:result) { instance.last_donation }
+
+    let(:instance) { create(:discord_server, external_id: external_id) }
+
+    it { expect(result).to be_nil }
+
+    context 'when Donation present' do
+      let(:donation) { create(:donation, discord_server: d_discord_server, date: d_date) }
+      let(:d_discord_server) { instance }
+      let(:d_date) { Time.zone.today }
+
+      before { donation }
+
+      it { expect(result).to eq(donation) }
+
+      context 'when two Donations' do
+        let(:donation_but_later) { create(:donation, discord_server: d_discord_server, date: d_date + 1.week) }
+
+        before { donation_but_later }
+
+        it { expect(result).to eq(donation_but_later) }
+      end
+
+      context 'when donation for another server' do
+        let(:d_discord_server) { create(:discord_server, external_id: 42) }
+
+        it { expect(result).to be_nil }
+      end
+    end
+  end
+
   describe '#dm?' do
     subject(:result) { instance.dm? }
 

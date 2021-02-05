@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :discord_user do
-    external_id { 208117693537058817 }
+    sequence(:external_id) { |n| 208117693537058817 + n }
   end
 end

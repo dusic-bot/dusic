@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :discord_server do
-    external_id { 482473013246296084 }
+    sequence(:external_id) { |n| 482473013246296084 + n }
 
     trait :dm do
       external_id { 0 }
