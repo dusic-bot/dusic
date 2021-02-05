@@ -26,7 +26,11 @@ module Vk
     end
 
     def initialize(login, password)
-      @client = VkMusic::Client.new(login: login, password: password)
+      @login = login
+      @password = password
+
+      # NOTE: Instantly login in production mode
+      client if Rails.env.production?
 
       @url_handler = HandlingQueue.new(slice: 10, interval: 2) do |arr|
         ids = arr.map(&:obj)
@@ -38,6 +42,10 @@ module Vk
     end
 
     private
+
+    def client
+      @client ||= VkMusic::Client.new(login: @login, password: @password)
+    end
 
     def guess_type(arg)
       VkMusic::Utility::DataTypeGuesser.call(arg)
@@ -56,27 +64,27 @@ module Vk
     end
 
     def playlist(url)
-      vk_request_wrap { @client.playlist(url: url) }
+      vk_request_wrap { client.playlist(url: url) }
     end
 
     def audios(url)
-      vk_request_wrap { @client.audios(url: url) }
+      vk_request_wrap { client.audios(url: url) }
     end
 
     def wall(url)
-      vk_request_wrap { @client.wall(url: url) }
+      vk_request_wrap { client.wall(url: url) }
     end
 
     def post(url)
-      vk_request_wrap { @client.post(url: url) }
+      vk_request_wrap { client.post(url: url) }
     end
 
     def find(query)
-      vk_request_wrap { @client.find(query) }
+      vk_request_wrap { client.find(query) }
     end
 
     def artist(url)
-      vk_request_wrap { @client.artist(url: url) }
+      vk_request_wrap { client.artist(url: url) }
     end
 
     def vk_request_wrap
@@ -131,7 +139,7 @@ module Vk
     end
 
     def fetch_audios(ids)
-      audios = @client.get_urls(ids)
+      audios = client.get_urls(ids)
       Rails.logger.debug "Fetched #{audios.compact.size}/#{audios.size} audios"
       audios
     rescue StandardError => e
