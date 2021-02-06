@@ -28,8 +28,20 @@ RSpec.describe 'Api::V2::DiscordServersController', type: :request do
     context 'when no such server' do
       let(:discord_server) { nil }
 
-      it do
+      before { allow(DiscordServerBlueprint).to receive(:render).and_return(['stub']) }
+
+      it 'creates new one', :aggregate_failures do
+        expect(DiscordServerBlueprint).to receive(:render)
+        expect(DiscordServer).to receive(:create!)
         get '/api/v2/discord_servers/1/', headers: { 'Accept' => 'application/json' }
+        expect(response).to have_http_status(:ok)
+        expect(response_json).to eq(['stub'])
+      end
+    end
+
+    context 'when bad id' do
+      it :aggregate_failures do
+        get '/api/v2/discord_servers/abc/', headers: { 'Accept' => 'application/json' }
         expect(response).to have_http_status(:not_found)
       end
     end

@@ -6,11 +6,11 @@ class Api::V2::DiscordServersController < Api::V2Controller
   end
 
   def show
-    @server = DiscordServer.find_by(external_id: params[:id])
+    server = DiscordServer.find_or_create_by!(external_id: params[:id])
 
-    return head :not_found if @server.nil?
-
-    render json: DiscordServerBlueprint.render(@server)
+    render json: DiscordServerBlueprint.render(server)
+  rescue ActiveRecord::RecordInvalid
+    head :not_found
   end
 
   def update

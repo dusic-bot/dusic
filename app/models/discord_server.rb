@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class DiscordServer < ApplicationRecord
+  validates :external_id, numericality: { greater_than: 0 }
+
   has_one :setting, dependent: :destroy
   has_one :statistic, dependent: :destroy
 
