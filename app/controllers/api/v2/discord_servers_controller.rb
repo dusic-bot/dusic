@@ -4,7 +4,15 @@ class Api::V2::DiscordServersController < Api::V2Controller
   before_action :set_server, only: %i[show update]
 
   def index
-    # TODO
+    shard_id = params[:shard_id].to_i
+    shard_num = params[:shard_num].to_i
+
+    shard_id = 0 if shard_id < 0
+    shard_num = 1 if shard_num <= 0
+
+    servers = DiscordServer.of_shard(shard_id, shard_num)
+
+    render json: DiscordServerBlueprint.render(servers)
   end
 
   def show

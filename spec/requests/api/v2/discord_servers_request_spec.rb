@@ -6,10 +6,37 @@ RSpec.describe 'Api::V2::DiscordServersController', type: :request do
   subject(:response_json) { JSON.parse(response.body) }
 
   describe 'GET #index' do
-    pending :aggregate_failures do
-      get '/api/v2/discord_servers/', headers: { 'Accept' => 'application/json' }
+    subject(:request) { get '/api/v2/discord_servers/', params: params, headers: { 'Accept' => 'application/json' } }
+
+    let(:params) { {} }
+    let(:servers) { create_list(:discord_server, 5) }
+
+    before { servers }
+
+    it :aggregate_failures do
+      request
       expect(response).to have_http_status(:ok)
-      # TODO
+      expect(response_json.pluck('id')).to eq(servers.pluck(:external_id))
+    end
+
+    context 'when shard data specified' do
+      let(:params) { { shard_id: 0, shard_num: 1 } }
+
+      it :aggregate_failures do
+        request
+        expect(response).to have_http_status(:ok)
+        expect(response_json.pluck('id')).to eq(servers.pluck(:external_id))
+      end
+
+      context 'when gibberish' do
+        let(:params) { { shard_id: 'yes', shard_num: -1 } }
+
+        it :aggregate_failures do
+          request
+          expect(response).to have_http_status(:ok)
+          expect(response_json.pluck('id')).to eq(servers.pluck(:external_id))
+        end
+      end
     end
   end
 
