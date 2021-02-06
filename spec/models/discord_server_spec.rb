@@ -7,8 +7,10 @@ RSpec.describe DiscordServer, type: :model do
 
   let(:external_id) { 482473013246296084 }
 
-  it 'allows instance creation' do
+  it 'allows instance creation and creates statistic and setting', :aggregate_failures do
     expect { instance.save! }.not_to raise_error
+    expect(instance.setting).to be_a(Setting)
+    expect(instance.statistic).to be_a(Statistic)
   end
 
   context 'when nil id' do

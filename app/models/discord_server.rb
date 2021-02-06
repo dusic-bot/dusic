@@ -14,6 +14,8 @@ class DiscordServer < ApplicationRecord
           class_name: 'Donation',
           inverse_of: :discord_server
 
+  after_create :create_setting, :create_statistic
+
   def dm?
     external_id.zero?
   end
