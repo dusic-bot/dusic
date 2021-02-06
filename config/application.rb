@@ -33,6 +33,7 @@ module Dusic
     config.eager_load_paths << Rails.root.join('app', 'services')
     config.eager_load_paths << Rails.root.join('app', 'entities')
     config.eager_load_paths << Rails.root.join('app', 'queries')
+    config.eager_load_paths << Rails.root.join('app', 'blueprints')
 
     # Don't generate system test files.
     config.generators.system_tests = nil
