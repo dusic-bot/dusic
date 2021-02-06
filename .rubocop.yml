@@ -53,6 +53,9 @@ Rails/Present:
 Rails/FilePath:
   EnforcedStyle: arguments
 
+RSpec/ExampleLength:
+  Max: 10
+
 RSpec/ExpectActual:
   Exclude:
     - spec/routes_spec.rb
