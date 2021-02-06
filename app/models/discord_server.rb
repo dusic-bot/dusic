@@ -14,6 +14,10 @@ class DiscordServer < ApplicationRecord
           class_name: 'Donation',
           inverse_of: :discord_server
 
+  scope :of_shard, lambda { |shard_id, shard_num|
+    where('(discord_servers.external_id >> 22) % ? = ?', shard_num, shard_id)
+  }
+
   after_create :create_setting, :create_statistic
 
   def dm?

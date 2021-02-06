@@ -29,6 +29,46 @@ RSpec.describe DiscordServer, type: :model do
     end
   end
 
+  describe '.of_shard' do
+    subject(:result) { described_class.of_shard(shard_id, shard_num) }
+
+    let(:shard_id) { 0 }
+    let(:shard_num) { 1 }
+    let(:servers_count) { 32 }
+    let(:dm_server) { create(:discord_server, external_id: 0) }
+
+    before do
+      dm_server
+      create_list(:discord_server, servers_count)
+    end
+
+    it :aggregate_failures do
+      expect(result).to match_array(described_class.all)
+      expect((result.sample.external_id >> 22) % shard_num).to eq(shard_id)
+    end
+
+    context 'when several shards' do
+      let(:shard_id) { 0 }
+      let(:shard_num) { 8 }
+
+      it :aggregate_failures do
+        expect(result.count).to be < described_class.count
+        expect(result).to include(dm_server)
+        expect((result.sample.external_id >> 22) % shard_num).to eq(shard_id)
+      end
+
+      context 'when another shard' do
+        let(:shard_id) { 1 }
+
+        it :aggregate_failures do
+          expect(result.count).to be < described_class.count
+          expect(result).not_to include(dm_server)
+          expect((result.sample.external_id >> 22) % shard_num).to eq(shard_id)
+        end
+      end
+    end
+  end
+
   describe '#today_statistic' do
     subject(:result) { instance.today_statistic }
 
