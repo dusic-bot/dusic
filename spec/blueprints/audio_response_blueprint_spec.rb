@@ -28,6 +28,7 @@ RSpec.describe AudioResponseBlueprint do
       [
         {
           'id' => '1_0_a_b',
+          'manager' => 'vk',
           'artist' => 'artist',
           'title' => 'title',
           'duration' => 42
