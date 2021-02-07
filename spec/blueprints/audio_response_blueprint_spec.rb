@@ -19,6 +19,16 @@ RSpec.describe AudioResponseBlueprint do
 
   it { expect(result).to eq(expected_json) }
 
+  context 'when empty response' do
+    let(:audio_response) { AudioResponse.empty }
+
+    let(:expected_json) do
+      { 'request_type' => nil, 'response' => nil }
+    end
+
+    it { expect(result).to eq(expected_json) }
+  end
+
   context 'when response_items contain Audio' do
     let(:response_items) do
       [
