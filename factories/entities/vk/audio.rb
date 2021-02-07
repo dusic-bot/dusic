@@ -6,5 +6,15 @@ FactoryBot.define do
     id { '1_0_a_b' }
 
     initialize_with { new(external, id) }
+
+    trait :with_vk_music_external do
+      transient do
+        artist { 'artist' }
+        title { 'title' }
+        duration { 60 }
+      end
+
+      external { VkMusic::Audio.new(artist: artist, title: title, duration: duration) }
+    end
   end
 end
