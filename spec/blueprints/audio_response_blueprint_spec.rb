@@ -21,7 +21,9 @@ RSpec.describe AudioResponseBlueprint do
 
   context 'when response_items contain Audio' do
     let(:response_items) do
-      [build(:vk_audio, :with_vk_music_external, id: '1_0_a_b', duration: 42)]
+      [
+        build(:vk_audio, :with_vk_music_external, id: '1_0_a_b', duration: 42)
+      ]
     end
 
     let(:expected_response_json) do
@@ -33,6 +35,47 @@ RSpec.describe AudioResponseBlueprint do
           'title' => 'title',
           'duration' => 42
         }
+      ]
+    end
+
+    it { expect(result).to eq(expected_json) }
+  end
+
+  context 'when response_items contain Playlist' do
+    let(:response_items) do
+      [
+        build(
+          :vk_playlist, :with_vk_music_external,
+          id: '1_0_a', title: 'title', subtitle: 'subtitle',
+          audios: [
+            build(:vk_audio, :with_vk_music_external, id: '1_0_a_b', duration: 42),
+            build(:vk_audio, :with_vk_music_external, id: '1_1_a_b', duration: 600)
+          ]
+        )
+      ]
+    end
+
+    let(:expected_response_json) do
+      [
+        'id' => '1_0_a',
+        'manager' => 'vk',
+        'title' => 'title - subtitle',
+        'audios' => [
+          {
+            'id' => '1_0_a_b',
+            'manager' => 'vk',
+            'artist' => 'artist',
+            'title' => 'title',
+            'duration' => 42
+          },
+          {
+            'id' => '1_1_a_b',
+            'manager' => 'vk',
+            'artist' => 'artist',
+            'title' => 'title',
+            'duration' => 600
+          }
+        ]
       ]
     end
 

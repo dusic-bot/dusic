@@ -7,4 +7,7 @@ class PlaylistBlueprint < Blueprinter::Base
     when Vk::Playlist then 'vk'
     end
   end
+
+  field :title
+  association :audios, blueprint: AudioBlueprint
 end
