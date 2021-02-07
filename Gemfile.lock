@@ -126,6 +126,7 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     json (2.5.1)
+    jwt (2.2.2)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -371,6 +372,7 @@ DEPENDENCIES
   factory_bot_rails
   font-awesome-rails
   handling_queue
+  jwt
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
