@@ -6,9 +6,8 @@ RSpec.describe 'Api::V2::AudiosController', type: :request do
   subject(:response_json) { JSON.parse(response.body) }
 
   describe 'GET #index' do
-    subject(:request) { get '/api/v2/audios/', params: params, headers: { 'Accept' => 'application/json' } }
+    subject(:request) { get '/api/v2/audios/', headers: { 'Accept' => 'application/json' } }
 
-    let(:params) { {} }
     let(:audio_response) { build(:audio_response) }
 
     before do
@@ -24,10 +23,39 @@ RSpec.describe 'Api::V2::AudiosController', type: :request do
   end
 
   describe 'GET #show' do
-    pending :aggregate_failures do
-      get '/api/v2/audios/vk/1_0_a_b/', headers: { 'Accept' => 'application/json' }
-      expect(response).to have_http_status(:ok)
-      # TODO
+    subject(:request) do
+      get "/api/v2/audios/#{manager}/#{id}/", params: params, headers: { 'Accept' => 'application/json' }
+    end
+
+    let(:manager) { 'manager' }
+    let(:id) { 'id' }
+    let(:params) { {} }
+
+    it do
+      request
+      expect(response).to have_http_status(:not_found)
+    end
+
+    context 'when vk manager' do
+      let(:manager) { 'vk' }
+      let(:response_io) { StringIO.new('data') }
+
+      before { allow(AudioLoaderService).to receive(:call).and_return(response_io) }
+
+      it :aggregate_failures do
+        request
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to eq('data')
+      end
+
+      context 'when nil returned' do
+        let(:response_io) { nil }
+
+        it do
+          request
+          expect(response).to have_http_status(:not_found)
+        end
+      end
     end
   end
 end

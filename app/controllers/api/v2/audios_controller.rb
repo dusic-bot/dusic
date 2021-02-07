@@ -9,6 +9,10 @@ class Api::V2::AudiosController < Api::V2Controller
   end
 
   def show
-    # TODO
+    audio_params = params.permit(:manager, :id, :format)
+    io = AudioLoaderService.call(audio_params)
+    return head :not_found if io.nil?
+
+    send_data io.read, filename: "#{audio_params[:manager]}#{audio_params[:id]}.#{audio_params[:format]}"
   end
 end
