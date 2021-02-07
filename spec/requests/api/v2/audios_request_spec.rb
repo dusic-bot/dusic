@@ -3,12 +3,23 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V2::AudiosController', type: :request do
+  subject(:response_json) { JSON.parse(response.body) }
+
   describe 'GET #index' do
-    pending :aggregate_failures do
-      get '/api/v2/audios/', headers: { 'Accept' => 'application/json' }
+    subject(:request) { get '/api/v2/audios/', params: params, headers: { 'Accept' => 'application/json' } }
+
+    let(:params) { {} }
+    let(:audio_response) { build(:audio_response) }
+
+    before do
+      allow(AudiosFetcherService).to receive(:call).and_return(audio_response)
+      allow(AudioResponseBlueprint).to receive(:render).with(audio_response).and_return(['stub'])
+    end
+
+    it :aggregate_failures do
+      request
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)).to be_a(Hash)
-      # TODO
+      expect(JSON.parse(response.body)).to eq(['stub'])
     end
   end
 
