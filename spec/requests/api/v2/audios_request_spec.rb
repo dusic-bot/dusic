@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'shared_contexts/api_v2_authorization'
 
 RSpec.describe 'Api::V2::AudiosController', type: :request do
   subject(:response_json) { JSON.parse(response.body) }
 
+  include_context 'with api v2 authorization', '/api/v2/audios/'
+
   describe 'GET #index' do
-    subject(:request) { get '/api/v2/audios/', headers: { 'Accept' => 'application/json' } }
+    subject(:request) { get '/api/v2/audios/', headers: headers }
 
     let(:audio_response) { build(:audio_response) }
 
@@ -24,7 +27,7 @@ RSpec.describe 'Api::V2::AudiosController', type: :request do
 
   describe 'GET #show' do
     subject(:request) do
-      get "/api/v2/audios/#{manager}/#{id}/", params: params, headers: { 'Accept' => 'application/json' }
+      get "/api/v2/audios/#{manager}/#{id}/", params: params, headers: headers
     end
 
     let(:manager) { 'manager' }
