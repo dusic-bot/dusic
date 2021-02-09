@@ -11,7 +11,7 @@ RSpec.describe DailyStatistic, type: :model do
   let(:discord_server) { create(:discord_server) }
   let(:tracks_length) { 0 }
   let(:tracks_amount) { 0 }
-  let(:date) { Date.current }
+  let(:date) { Time.zone.today }
 
   it 'allows instance creation' do
     expect { instance.save! }.not_to raise_error

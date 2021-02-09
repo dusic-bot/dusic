@@ -1,0 +1,15 @@
+<h1>Admin features</h1>
+<h3>JWT token generator</h1>
+
+<%= form_with url: admin_jwt_token_path, local: true, method: :post do |f| %>
+  <div class="form-group">
+    <%= f.label :payload, 'Payload:' %>
+    <%= f.text_area :payload, class: 'form-control', value: @id, autocomplete: 'off' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag 'Generated token:' %>
+    <%= text_area_tag 'token', @token, class: 'form-control', autocomplete: 'off', disabled: 'true' %>
+  </div>
+  <%= f.submit 'Generate', class: 'btn btn-primary' %>
+<% end %>
+

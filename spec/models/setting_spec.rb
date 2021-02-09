@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Setting, type: :model do
-  subject(:instance) do
-    build(:setting, discord_server: discord_server, language: language, volume: volume, prefix: prefix)
+  subject(:update_instance) do
+    discord_server.setting.update!(language: language, volume: volume, prefix: prefix)
   end
 
   let(:discord_server) { create(:discord_server) }
@@ -12,53 +12,53 @@ RSpec.describe Setting, type: :model do
   let(:volume) { 100 }
   let(:prefix) { nil }
 
-  it 'allows instance creation' do
-    expect { instance.save! }.not_to raise_error
+  it 'allows instance update' do
+    expect { update_instance }.not_to raise_error
   end
 
   context 'when settings for server already exist' do
-    before { create(:setting, discord_server: discord_server) }
+    subject(:create_new_instance) { create(:setting, discord_server: discord_server) }
 
-    it 'fails instance creation' do
-      expect { instance.save! }.to raise_error(ActiveRecord::RecordNotUnique)
+    it 'fails new instance create' do
+      expect { create_new_instance }.to raise_error(ActiveRecord::RecordNotUnique)
     end
   end
 
   context 'when unknown language' do
     let(:language) { 'kz' }
 
-    it 'fails instance creation' do
-      expect { instance.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    it 'fails instance update' do
+      expect { update_instance }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
   context 'when volume is out of bounds' do
     let(:volume) { 100500 }
 
-    it 'fails instance creation' do
-      expect { instance.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    it 'fails instance update' do
+      expect { update_instance }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
   context 'when with custom prefix' do
     let(:prefix) { '!' }
 
-    it 'allows instance creation' do
-      expect { instance.save! }.not_to raise_error
+    it 'allows instance update' do
+      expect { update_instance }.not_to raise_error
     end
 
     context 'when empty prefix' do
       let(:prefix) { '' }
 
-      it 'fails instance creation' do
-        expect { instance.save! }.to raise_error(ActiveRecord::RecordInvalid)
+      it 'fails instance update' do
+        expect { update_instance }.to raise_error(ActiveRecord::RecordInvalid)
       end
 
       context 'when DM server' do
         let(:discord_server) { create(:discord_server, :dm) }
 
-        it 'allows instance creation' do
-          expect { instance.save! }.not_to raise_error
+        it 'allows instance update' do
+          expect { update_instance }.not_to raise_error
         end
       end
     end
@@ -67,7 +67,7 @@ RSpec.describe Setting, type: :model do
       let(:prefix) { 'A A' }
 
       it 'fails instance creation' do
-        expect { instance.save! }.to raise_error(ActiveRecord::RecordInvalid)
+        expect { update_instance }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
   end

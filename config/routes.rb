@@ -16,7 +16,18 @@ Rails.application.routes.draw do
 
     get '/donation_id', to: 'pages#donation_id', as: :donation_id
 
+    match '/jwt_token', to: 'pages#jwt_token', via: %i[get post], as: :jwt_token
+
     get '/audios', to: 'pages#audios', as: :audios
     get '/audio', to: 'pages#audio', as: :audio
+  end
+
+  namespace :api do
+    namespace :v2 do
+      resources :discord_servers, only: %i[index show update]
+
+      get '/audios/', to: 'audios#index', as: :audios
+      get '/audios/:manager/:id', to: 'audios#show', as: :audio
+    end
   end
 end

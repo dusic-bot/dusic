@@ -7,5 +7,15 @@ FactoryBot.define do
     audios { [] }
 
     initialize_with { new(external, id, audios) }
+
+    trait :with_vk_music_external do
+      transient do
+        title { 'title' }
+        subtitle { 'subtitle' }
+        external_audios { [] }
+      end
+
+      external { VkMusic::Playlist.new(external_audios, title: title, subtitle: subtitle) }
+    end
   end
 end

@@ -15,8 +15,6 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -35,13 +33,19 @@ gem 'devise'
 gem 'rails_admin'
 
 # VK music
-gem 'vk_music', '>= 4.1.1'
+gem 'vk_music', '>= 4.1.2'
 
 # Small gem for calling same method from time to time
 gem 'handling_queue'
 
 # Font awesome icons
 gem 'font-awesome-rails'
+
+# Models serialization
+gem 'blueprinter'
+
+# JSON web token authentication
+gem 'jwt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
