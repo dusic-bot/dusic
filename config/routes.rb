@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
     get '/donation_id', to: 'pages#donation_id', as: :donation_id
 
+    match '/jwt_token', to: 'pages#jwt_token', via: %i[get post], as: :jwt_token
+
     get '/audios', to: 'pages#audios', as: :audios
     get '/audio', to: 'pages#audio', as: :audio
   end

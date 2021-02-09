@@ -11,6 +11,15 @@ class Admin::PagesController < AdminController
     flash.alert = 'Wrong arguments specified' if @id.blank?
   end
 
+  def jwt_token
+    return if params[:payload].nil?
+
+    payload = JSON.parse(params[:payload].to_s)
+    @token = JwtEncoderService.call(payload)
+  rescue JSON::ParserError
+    flash.alert = 'JSON parsing error! Specify correct payload'
+  end
+
   def audios
     @audios = []
     return if params[:audios].blank?

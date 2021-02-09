@@ -59,6 +59,61 @@ RSpec.describe 'Admin::Pages', type: :request do
     end
   end
 
+  describe 'GET #jwt_token' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      get '/admin/jwt_token'
+    end
+
+    it :aggregate_failures do
+      request
+      expect(response).to render_template('admin/pages/jwt_token')
+      expect(response).to render_template('layouts/application')
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe 'POST #jwt_token' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      post '/admin/jwt_token', params: params
+    end
+
+    let(:params) { {} }
+
+    it :aggregate_failures do
+      request
+      expect(flash[:alert]).to be_blank
+      expect(response).to render_template('admin/pages/jwt_token')
+      expect(response).to render_template('layouts/application')
+      expect(response).to have_http_status(:ok)
+    end
+
+    context 'when payload provided' do
+      let(:params) { { payload: '{}' } }
+
+      it :aggregate_failures do
+        request
+        expect(flash[:alert]).to be_blank
+        expect(response).to render_template('admin/pages/jwt_token')
+        expect(response).to render_template('layouts/application')
+        expect(response).to have_http_status(:ok)
+      end
+
+      context 'when wrong payload' do
+        let(:params) { { payload: 'e' } }
+
+        it :aggregate_failures do
+          request
+          expect(flash[:alert]).not_to be_blank
+          expect(response).to render_template('admin/pages/jwt_token')
+          expect(response).to render_template('layouts/application')
+          expect(response).to have_http_status(:ok)
+        end
+      end
+    end
+  end
+
   describe 'GET #audios' do
     subject(:request) do
       sign_in create(:user, admin: true)
