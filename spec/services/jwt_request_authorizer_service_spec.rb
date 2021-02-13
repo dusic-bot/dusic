@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe JwtAuthorizerService do
+RSpec.describe JwtRequestAuthorizerService do
   subject(:result) { described_class.call(request, access_level: required_access_level) }
 
   let(:request) { nil }

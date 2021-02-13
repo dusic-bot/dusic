@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class JwtAuthorizerService
+class JwtRequestAuthorizerService
   def self.call(request, access_level:)
     token = request.headers['Authorization'].to_s.delete_prefix('Bearer ')
     body = JwtDecoderService.call(token)
