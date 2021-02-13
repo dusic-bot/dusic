@@ -27,6 +27,12 @@ RSpec.describe JwtAuthorizerService do
 
       it { expect(result).to be(true) }
 
+      context 'when JwtDecoderService raises error' do
+        before { allow(JwtDecoderService).to receive(:call).and_raise(StandardError) }
+
+        it { expect(result).to be(false) }
+      end
+
       context 'when access level is low' do
         let(:access_level) { 0 }
 
