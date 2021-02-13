@@ -3,43 +3,53 @@
 require 'rails_helper'
 
 RSpec.describe JwtRequestAuthorizerService do
-  subject(:result) { described_class.call(request, access_level: required_access_level) }
+  subject(:result) { described_class.call(request, **options) }
 
   let(:request) { nil }
-  let(:required_access_level) { 42 }
+  let(:options) { { access_level: 42 } }
 
-  it { expect(result).to be(false) }
+  it :aggregate_failures do
+    expect(JwtAuthorizerService).not_to receive(:call)
+    expect(result).to be(false)
+  end
 
   context 'when with actual request' do
     let(:request) { instance_double('ActionDispatch::Request', headers: headers) }
     let(:headers) { {} }
 
-    it { expect(result).to be(false) }
+    it :aggregate_failures do
+      expect(JwtAuthorizerService).not_to receive(:call)
+      expect(result).to be(false)
+    end
 
     context 'when empty header present' do
       let(:headers) { { 'Authorization' => nil } }
 
-      it { expect(result).to be(false) }
+      it :aggregate_failures do
+        expect(JwtAuthorizerService).to receive(:call).with('', **options).and_call_original
+        expect(result).to be(false)
+      end
     end
 
     context 'when incorrect header present' do
       let(:headers) { { 'Authorization' => 'Pizza time' } }
 
-      it { expect(result).to be(false) }
+      it :aggregate_failures do
+        expect(JwtAuthorizerService).to receive(:call).with('Pizza time', **options).and_call_original
+        expect(result).to be(false)
+      end
     end
 
     context 'when correct header present' do
       let(:headers) do
-        { 'Authorization' => JwtAuthorizationHeaderGeneratorService.call(access_level: access_level) }
+        { 'Authorization' => 'Bearer STUB' }
       end
-      let(:access_level) { 100500 }
 
-      it { expect(result).to be(true) }
+      before { allow(JwtAuthorizerService).to receive(:call).with('STUB', **options).and_return(true) }
 
-      context 'when access level is low' do
-        let(:access_level) { 0 }
-
-        it { expect(result).to be(false) }
+      it :aggregate_failures do
+        expect(JwtAuthorizerService).to receive(:call).with('STUB', **options)
+        expect(result).to be(true)
       end
     end
   end
