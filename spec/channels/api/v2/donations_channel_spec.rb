@@ -10,6 +10,6 @@ RSpec.describe Api::V2::DonationsChannel, type: :channel do
   it :aggregate_failures do
     subscribe
     expect(subscription).to be_confirmed
-    expect(subscription).to have_stream_from('donations/new')
+    expect(subscription).to have_stream_from('donations/create')
   end
 end
