@@ -17,7 +17,7 @@ RSpec.describe DiscordServer, type: :model do
     let(:external_id) { nil }
 
     it 'fails instance creation' do
-      expect { instance.save! }.to raise_error(ActiveRecord::NotNullViolation)
+      expect { instance.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
