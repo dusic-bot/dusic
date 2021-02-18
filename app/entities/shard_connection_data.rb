@@ -21,4 +21,8 @@ class ShardConnectionData
   def ==(other)
     token == other.token && shard_id == other.shard_id && shard_num == other.shard_num && bot_id == other.bot_id
   end
+
+  def identifier
+    "#{shard_id}_#{shard_num}_#{bot_id}"
+  end
 end

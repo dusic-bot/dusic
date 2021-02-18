@@ -5,7 +5,7 @@ module Api
     class ShardsChannel < ApplicationCable::Channel
       def subscribed
         stream_from 'shards'
-        stream_from "shards/#{current_shard.shard_id}_#{current_shard.shard_num}_#{current_shard.bot_id}"
+        stream_from "shards/#{current_shard.identifier}"
       end
     end
   end

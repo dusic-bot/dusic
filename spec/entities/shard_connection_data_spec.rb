@@ -42,4 +42,14 @@ RSpec.describe ShardConnectionData do
       it { expect(result).to be(true) }
     end
   end
+
+  describe '#identifier' do
+    subject(:result) { instance.identifier }
+
+    let(:shard_id) { 0 }
+    let(:shard_num) { 1 }
+    let(:bot_id) { 13 }
+
+    it { expect(result).to eq('0_1_13') }
+  end
 end
