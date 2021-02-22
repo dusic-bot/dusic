@@ -7,5 +7,5 @@ class Donation < ApplicationRecord
   validates :date, presence: true
   validates :size, numericality: { greater_than_or_equal_to: 0 }
 
-  after_create { |record| NewDonationStreamerService.call(record) }
+  after_create { |record| NewDonationBroadcasterService.call(record) }
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe NewDonationStreamerService do
+RSpec.describe NewDonationBroadcasterService do
   subject(:call) { described_class.call(donation) }
 
   let(:donation) { build_stubbed(:donation) }
