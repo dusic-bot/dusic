@@ -1,0 +1,81 @@
+<h1>Admin features</h1>
+<h3>Websocket server</h1>
+
+<%= form_with class: 'js-websocket-server', method: :post, local: true do |f| %>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-3">
+        <div class="btn-group-vertical">
+          <%= f.button value: 'reload', class: "btn btn-primary", data: {} do %>
+            <span>Reload data</span>
+            <span class="float-right ml-3"><%= fa_icon 'sync' %></span>
+          <% end %>
+          <%= f.button value: 'update_data', class: "btn btn-default", data: {} do %>
+            <span>Update data</span>
+            <span class="float-right ml-3"><%= fa_icon 'retweet' %></span>
+          <% end %>
+          <%= f.button value: 'disconnect', class: "btn btn-danger", data: { confirm: 'Are you sure?' } do %>
+            <span>Disconnect all</span>
+            <span class="float-right ml-3"><%= fa_icon 'sign-out-alt' %></span>
+          <% end %>
+          <%= f.button value: 'restart', class: "btn btn-danger", data: { confirm: 'Are you sure?' } do %>
+            <span>Restart all</span>
+            <span class="float-right ml-3"><%= fa_icon 'sign-out-alt' %></span>
+          <% end %>
+          <%= f.button value: 'stop', class: "btn btn-danger", data: { confirm: 'Are you sure?' } do %>
+            <span>Stop all</span>
+            <span class="float-right ml-3"><%= fa_icon 'sign-out-alt' %></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-8 offset-1">
+        <div class="card">
+          <div class="card-header">
+            <p>
+              Amount of clients:
+              <b><%= 13 %></b>
+            </p>
+            <p>
+              Amount of servers:
+              <b><%= 13 %></b>
+            </p>
+            <p>
+              Amount of cached servers:
+              <b><%= 13 %></b>
+            </p>
+            <p>
+              Amount of active servers:
+              <b><%= 13 %></b>
+            </p>
+          </div>
+          <table class="card-body table table-striped table-bordered mb-0">
+            <thead class="text-center">
+              <tr>
+                <td rowspan=2 class="align-middle">Clients</td>
+                <td colspan=3>Server counts</td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td>Cached</td>
+                <td>Active</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="custom-control custom-checkbox">
+                    <%= f.check_box 'clients', { multiple: true, checked: true, class: "custom-control-input" }, '42_0_1', nil %>
+                    <label class="custom-control-label" for="clients_<%= '42_0_1' %>"><%= '42_0_1' %></label>
+                  </div>
+                </td>
+                <td><%= 1 %></td>
+                <td><%= 2 %></td>
+                <td><%= 3 %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
