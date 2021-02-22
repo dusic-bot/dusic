@@ -37,15 +37,15 @@
             </p>
             <p>
               Amount of servers:
-              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.servers_count } %></b>
+              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.servers_count.to_i } %></b>
             </p>
             <p>
               Amount of cached servers:
-              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.cached_servers_count } %></b>
+              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.cached_servers_count.to_i } %></b>
             </p>
             <p>
               Amount of active servers:
-              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.active_servers_count } %></b>
+              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.active_servers_count.to_i } %></b>
             </p>
           </div>
           <table class="card-body table table-striped table-bordered mb-0">
