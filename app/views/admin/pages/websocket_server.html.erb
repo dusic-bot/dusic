@@ -32,26 +32,26 @@
         <div class="card">
           <div class="card-header">
             <p>
-              Amount of clients:
-              <b><%= 13 %></b>
+              Amount of shards:
+              <b><%= ActionCable.server.connections.size %></b>
             </p>
             <p>
               Amount of servers:
-              <b><%= 13 %></b>
+              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.servers_count } %></b>
             </p>
             <p>
               Amount of cached servers:
-              <b><%= 13 %></b>
+              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.cached_servers_count } %></b>
             </p>
             <p>
               Amount of active servers:
-              <b><%= 13 %></b>
+              <b><%= ActionCable.server.connections.sum { |c| c.current_shard.active_servers_count } %></b>
             </p>
           </div>
           <table class="card-body table table-striped table-bordered mb-0">
             <thead class="text-center">
               <tr>
-                <td rowspan=2 class="align-middle">Clients</td>
+                <td rowspan=2 class="align-middle">Shards</td>
                 <td colspan=3>Server counts</td>
               </tr>
               <tr>
@@ -61,17 +61,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <%= f.check_box 'clients', { multiple: true, checked: true, class: "custom-control-input" }, '42_0_1', nil %>
-                    <label class="custom-control-label" for="clients_<%= '42_0_1' %>"><%= '42_0_1' %></label>
-                  </div>
-                </td>
-                <td><%= 1 %></td>
-                <td><%= 2 %></td>
-                <td><%= 3 %></td>
-              </tr>
+              <% ActionCable.server.connections.each do |c| %>
+                <tr>
+                  <td>
+                    <div class="custom-control custom-checkbox">
+                      <%= f.check_box 'clients', { multiple: true, checked: true, class: "custom-control-input" }, c.current_shard.identifier, nil %>
+                      <label class="custom-control-label" for="clients_<%= c.current_shard.identifier %>"><%= c.current_shard.identifier %></label>
+                    </div>
+                  </td>
+                  <td><%= c.current_shard.servers_count %></td>
+                  <td><%= c.current_shard.cached_servers_count %></td>
+                  <td><%= c.current_shard.active_servers_count %></td>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>

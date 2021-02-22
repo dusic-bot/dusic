@@ -39,5 +39,6 @@ class Admin::PagesController < AdminController
   end
 
   def websocket_server
+    # TODO
   end
 end
