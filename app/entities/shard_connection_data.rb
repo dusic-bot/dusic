@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ShardConnectionData
+  attr_accessor :servers_count, :cached_servers_count, :active_servers_count
+
   attr_reader :token, :shard_id, :shard_num, :bot_id
 
   def initialize(token, shard_id, shard_num, bot_id)

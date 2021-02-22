@@ -52,4 +52,10 @@ RSpec.describe ShardConnectionData do
 
     it { expect(result).to eq('0_1_13') }
   end
+
+  describe 'attributes' do
+    it do
+      expect(instance).to have_attributes(servers_count: nil, cached_servers_count: nil, active_servers_count: nil)
+    end
+  end
 end
