@@ -39,6 +39,9 @@ class Admin::PagesController < AdminController
   end
 
   def websocket_server
-    # TODO
+    return if params[:websocket_server].blank?
+
+    websocket_params = params.require(:websocket_server).permit(:action, clients: [])
+    WebsocketServerOrdererService.call(websocket_params[:action], websocket_params[:clients])
   end
 end

@@ -206,5 +206,17 @@ RSpec.describe 'Admin::Pages', type: :request do
       expect(response).to render_template('layouts/application')
       expect(response).to have_http_status(:ok)
     end
+
+    context 'when with parameters' do
+      let(:params) { { websocket_server: { action: 'action', clients: %w[arg1 arg2] } } }
+
+      it :aggregate_failures do
+        expect(WebsocketServerOrdererService).to receive(:call).with('action', %w[arg1 arg2])
+        request
+        expect(response).to render_template('admin/pages/websocket_server')
+        expect(response).to render_template('layouts/application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 end
