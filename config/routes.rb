@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin/rails', as: 'rails_admin'
+  mount ActionCable.server => '/ws', as: 'websocket'
 
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   devise_scope :user do
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
 
     get '/audios', to: 'pages#audios', as: :audios
     get '/audio', to: 'pages#audio', as: :audio
+
+    match '/websocket_server', to: 'pages#websocket_server', via: %i[get post], as: :websocket_server
   end
 
   namespace :api do

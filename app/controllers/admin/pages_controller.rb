@@ -37,4 +37,11 @@ class Admin::PagesController < AdminController
 
     send_data io.read, filename: "#{audio_params[:manager]}#{audio_params[:id]}.#{audio_params[:format]}"
   end
+
+  def websocket_server
+    return if params[:websocket_server].blank?
+
+    websocket_params = params.require(:websocket_server).permit(:action, clients: [])
+    WebsocketServerOrdererService.call(websocket_params[:action], websocket_params[:clients])
+  end
 end

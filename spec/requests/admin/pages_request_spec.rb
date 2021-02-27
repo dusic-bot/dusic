@@ -177,4 +177,46 @@ RSpec.describe 'Admin::Pages', type: :request do
       end
     end
   end
+
+  describe 'GET #websocket_server' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      get '/admin/websocket_server'
+    end
+
+    it :aggregate_failures do
+      request
+      expect(response).to render_template('admin/pages/websocket_server')
+      expect(response).to render_template('layouts/application')
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe 'POST #websocket_server' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      post '/admin/websocket_server', params: params
+    end
+
+    let(:params) { {} }
+
+    it :aggregate_failures do
+      request
+      expect(response).to render_template('admin/pages/websocket_server')
+      expect(response).to render_template('layouts/application')
+      expect(response).to have_http_status(:ok)
+    end
+
+    context 'when with parameters' do
+      let(:params) { { websocket_server: { action: 'action', clients: %w[arg1 arg2] } } }
+
+      it :aggregate_failures do
+        expect(WebsocketServerOrdererService).to receive(:call).with('action', %w[arg1 arg2])
+        request
+        expect(response).to render_template('admin/pages/websocket_server')
+        expect(response).to render_template('layouts/application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end

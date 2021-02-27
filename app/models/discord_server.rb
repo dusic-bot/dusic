@@ -18,6 +18,8 @@ class DiscordServer < ApplicationRecord
     where('(discord_servers.external_id >> 22) % ? = ?', shard_num, shard_id)
   }
 
+  validates :external_id, presence: true
+
   after_create :create_setting, :create_statistic
 
   def dm?

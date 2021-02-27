@@ -23,6 +23,7 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+    - config/**/*
 
 Metrics/ClassLength:
   Max: 120
