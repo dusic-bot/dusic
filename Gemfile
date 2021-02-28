@@ -47,6 +47,9 @@ gem 'blueprinter'
 # JSON web token authentication
 gem 'jwt'
 
+# Vkponchik donations
+gem 'vkponchik'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
