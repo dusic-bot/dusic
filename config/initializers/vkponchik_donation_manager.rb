@@ -6,5 +6,5 @@ Rails.configuration.after_initialize do
 
   ::VKPONCHIK_CLIENT = Vkponchik::Client.new(credentials[:group_id], credentials[:api_key])
 
-  VkponchikDonationsCheckJob.set(wait: 15.seconds).perform_later
+  VkponchikDonationsCheckJob.set(wait: 15.seconds).perform_later unless Rails.env.test?
 end
