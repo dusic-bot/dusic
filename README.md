@@ -13,8 +13,10 @@ vk:
   password: 'password'
 donations:
   vkponchik:
+    group_id: 0
     api_key: ''
   vkdonate:
+    group_id: 0
     api_key: ''
 hmac_secret: `https://cloud.google.com/network-connectivity/docs/vpn/how-to/generating-pre-shared-key`
 secret_key_base: `rake secret`
