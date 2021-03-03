@@ -1,22 +1,53 @@
 # frozen_string_literal: true
 
 class VkponchikDonationCreatorService
-  def self.call(data)
-    # TODO
-    # { 'id' => '1', 'date' => '1610498453676', 'amount' => '1', 'user' => '157230821', 'msg' => 'message' }
-    #
-    # Rails.logger.info "New Vkponchik donation: #{donation}"
-    # m = donation['msg']&.match(/[a-zA-Z]+_[a-zA-Z]+/)
-    # ids = m ? VkponchikDonationManager.decode_donator_id(m[0]) : []
-    # h = {
-    #   id: donation['id'],
-    #   message: donation['msg'] || '',
-    #   vk_user_id: donation['user'],
-    #   date: Time.at(donation['date'].to_i / 1000).to_datetime,
-    #   user_id: ids[0] || nil,
-    #   server_id: ids[1] || nil,
-    #   size: donation['amount']
-    # }
-    # VkponchikDonation.create_from_data(h)
+  DONATION_IDENTIFIERS_REGEX = /([a-zA-Z]+_[a-zA-Z]+)/.freeze
+
+  class << self
+    def call(data)
+      return if data.blank?
+
+      donation = create_donation(data)
+      create_vkponchik_donation(donation, data)
+    rescue StandardError => e
+      Rails.logger.error "Vkponchik donation creation error: #{e}\n#{e.backtrace}"
+      nil
+    end
+
+    private
+
+    def create_donation(data)
+      message = data['msg'] || ''
+      server, user = get_server_and_user(message)
+
+      Donation.create!(
+        size: data['amount'].to_i,
+        date: Time.zone.at(data['date'].to_i / 1000),
+        discord_server_id: server&.id,
+        discord_user_id: user&.id
+      )
+    end
+
+    def create_vkponchik_donation(donation, data)
+      VkponchikDonation.create!(
+        donation: donation,
+        message: data['msg'],
+        vk_user_external_id: data['user'].to_i,
+        external_id: data['id'].to_i
+      )
+    end
+
+    def get_server_and_user(message)
+      donation_identifiers = message.match(DONATION_IDENTIFIERS_REGEX)
+      return [nil, nil] if donation_identifiers.blank?
+
+      user_external_id, server_external_id = DonationIdDecoderService.call(donation_identifiers.captures.first)
+      server = DiscordServer.find_or_create_by(external_id: server_external_id)
+      user = DiscordUser.find_or_create_by(external_id: user_external_id)
+      [server, user]
+    rescue StandardError => e
+      Rails.logger.error "Vkponchik donation server and/or user creation error: #{e}\n#{e.backtrace}"
+      [nil, nil]
+    end
   end
 end
