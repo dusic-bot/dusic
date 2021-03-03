@@ -17,23 +17,19 @@ class VkponchikDonationCreatorService
     private
 
     def create_donation(data)
-      message = data['msg'] || ''
-      server, user = get_server_and_user(message)
+      size = data['amount']&.to_i
+      date = data['date'] ? Time.zone.at(data['date'].to_i / 1000) : nil
+      server, user = get_server_and_user(data['msg'] || '')
 
-      Donation.create!(
-        size: data['amount'].to_i,
-        date: Time.zone.at(data['date'].to_i / 1000),
-        discord_server_id: server&.id,
-        discord_user_id: user&.id
-      )
+      Donation.create!(size: size, date: date, discord_server_id: server&.id, discord_user_id: user&.id)
     end
 
     def create_vkponchik_donation(donation, data)
       VkponchikDonation.create!(
         donation: donation,
         message: data['msg'],
-        vk_user_external_id: data['user'].to_i,
-        external_id: data['id'].to_i
+        vk_user_external_id: data['user']&.to_i,
+        external_id: data['id']&.to_i
       )
     end
 

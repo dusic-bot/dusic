@@ -102,4 +102,10 @@ RSpec.describe VkponchikDonationCreatorService do
       end
     end
   end
+
+  context 'when gibberish in data' do
+    let(:data) { { 'error' => 'yes' } }
+
+    it { expect(result).to be_nil }
+  end
 end
