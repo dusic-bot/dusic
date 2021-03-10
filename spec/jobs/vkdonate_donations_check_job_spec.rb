@@ -9,7 +9,7 @@ RSpec.describe VkdonateDonationsCheckJob, type: :job do
   end
 
   it :aggregate_failures do
-    expect(VkdonateDonationsCheckService).to receive(:call)
+    expect(VkdonateDonationsCheckerService).to receive(:call)
     described_class.perform_later
     expect(described_class).to have_been_performed.on_queue('donations').exactly(:once)
     expect(described_class).to have_been_enqueued.on_queue('donations').exactly(:once)

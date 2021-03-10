@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VkdonateDonationsCheckService do
+RSpec.describe VkdonateDonationsCheckerService do
   subject(:call) { described_class.call }
 
   let(:client) { instance_double(Vkdonate::Client) }

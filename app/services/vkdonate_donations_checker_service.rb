@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-class VkponchikDonationsCheckService
-  REQUEST_COUNT = 100
-  PAGES_FETCH_INTERVAL = 6.seconds
+class VkdonateDonationsCheckerService
+  REQUEST_COUNT = 50
+  PAGES_FETCH_INTERVAL = 5.seconds
 
   class << self
     def call
-      last_external_id = VkponchikDonation.order(external_id: :desc).first&.external_id
+      last_external_id = VkdonateDonation.order(external_id: :desc).first&.external_id
       donations_data = fetch_donations_until(last_external_id)
-      donations_data.each { |data| VkponchikDonationCreatorService.call(data) }
+      donations_data.each { |data| VkdonateDonationCreatorService.call(data) }
     end
 
     private
@@ -19,7 +19,7 @@ class VkponchikDonationsCheckService
       loop do
         page = request(donations.size)
         donations.concat(page)
-        last_index = donations.find_index { |d| d['id'].to_i <= last_external_id.to_i }
+        last_index = donations.find_index { |d| d.id <= last_external_id.to_i }
         break if last_index.present? || page.empty? || page.size != REQUEST_COUNT
 
         sleep PAGES_FETCH_INTERVAL
@@ -28,9 +28,9 @@ class VkponchikDonationsCheckService
     end
 
     def request(offset)
-      ::VKPONCHIK_CLIENT.request('donates/get', len: REQUEST_COUNT, offset: offset)[:list]
+      ::VKDONATE_CLIENT.donates(count: REQUEST_COUNT, offset: offset)
     rescue StandardError => e
-      Rails.logger.error "Vkponchik request error: #{e}\n#{e.backtrace}"
+      Rails.logger.error "Vkdonate request error: #{e}\n#{e.backtrace}"
       []
     end
   end

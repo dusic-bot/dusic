@@ -8,7 +8,7 @@ class VkdonateDonationsCheckJob < ApplicationJob
   after_perform { reschedule }
 
   def perform
-    VkdonateDonationsCheckService.call
+    VkdonateDonationsCheckerService.call
   end
 
   private
