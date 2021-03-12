@@ -29,9 +29,6 @@ module Vk
       @login = login
       @password = password
 
-      # NOTE: Instantly login in production mode
-      client if Rails.env.production?
-
       @url_handler = HandlingQueue.new(slice: 10, interval: 2) do |arr|
         ids = arr.map(&:obj)
         audios = fetch_audios(ids)
