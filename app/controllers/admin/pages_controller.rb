@@ -44,4 +44,14 @@ class Admin::PagesController < AdminController
     websocket_params = params.require(:websocket_server).permit(:action, clients: [])
     WebsocketServerOrdererService.call(websocket_params[:action], websocket_params[:clients])
   end
+
+  def donation_adder
+    return if params[:donation].blank?
+
+    donation_params = params.require(:donation).permit(:message, :size, :date)
+    date = Date.parse(donation_params[:date]).beginning_of_day
+
+    donation = DonationCreatorService.call(donation_params[:size].to_i, date, donation_params[:message].to_s)
+    flash[:notice] = 'Donation created' if donation
+  end
 end

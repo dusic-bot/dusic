@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     get '/audio', to: 'pages#audio', as: :audio
 
     match '/websocket_server', to: 'pages#websocket_server', via: %i[get post], as: :websocket_server
+
+    match '/donation_adder', to: 'pages#donation_adder', via: %i[get post], as: :donation_adder
   end
 
   namespace :api do
