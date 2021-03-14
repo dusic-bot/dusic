@@ -39,6 +39,7 @@ module Admin::PagesHelper
     duration = tag.span { "[#{item.duration_str}]" }
     download_button = render_audio_download_button(item)
 
+    li_html_params[:class] ||= ''
     li_html_params[:class] += ' d-flex'
 
     tag.li(**li_html_params) { safe_join([title, duration, download_button]) }
