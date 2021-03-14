@@ -49,9 +49,9 @@ class Admin::PagesController < AdminController
     return if params[:donation].blank?
 
     donation_params = params.require(:donation).permit(:message, :size, :date)
-    date = Date.parse(donation_params[:date]).beginning_of_day
-
-    donation = DonationCreatorService.call(donation_params[:size].to_i, date, donation_params[:message].to_s)
-    flash[:notice] = 'Donation created' if donation
+    DonationAdderService.call(donation_params)
+    flash.notice = 'Donation created'
+  rescue Date::Error
+    flash.alert = 'Please specify correct date!'
   end
 end
