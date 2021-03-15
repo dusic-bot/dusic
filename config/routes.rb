@@ -19,20 +19,26 @@ Rails.application.routes.draw do
 
     match '/jwt_token', to: 'pages#jwt_token', via: %i[get post], as: :jwt_token
 
-    get '/audios', to: 'pages#audios', as: :audios
-    get '/audio', to: 'pages#audio', as: :audio
-
     match '/websocket_server', to: 'pages#websocket_server', via: %i[get post], as: :websocket_server
 
     match '/donation_adder', to: 'pages#donation_adder', via: %i[get post], as: :donation_adder
+
+    resources :audios, only: %i[index] do
+      collection do
+        get '/:manager/:id', to: 'audios#show', as: :audio
+      end
+    end
   end
 
   namespace :api do
     namespace :v2 do
       resources :discord_servers, only: %i[index show update]
 
-      get '/audios/', to: 'audios#index', as: :audios
-      get '/audios/:manager/:id', to: 'audios#show', as: :audio
+      resources :audios, only: %i[index] do
+        collection do
+          get '/:manager/:id', to: 'audios#show', as: :audio
+        end
+      end
     end
   end
 end
