@@ -31,8 +31,11 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :discord_servers, only: %i[index show update]
 
-      get '/audios/', to: 'audios#index', as: :audios
-      get '/audios/:manager/:id', to: 'audios#show', as: :audio
+      resources :audios, only: %i[index] do
+        collection do
+          get '/:manager/:id', to: 'audios#show', as: :audio
+        end
+      end
     end
   end
 end
