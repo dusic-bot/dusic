@@ -7,8 +7,8 @@ function audioDownload(manager, id, format) {
   return new Promise((resolve, reject) => {
     jQuery.ajax({
       type: 'GET',
-      url: 'audio',
-      data: { audio: { manager, id, format } },
+      url: `audios/${manager}/${id}`,
+      data: { format },
       xhrFields: { responseType: 'blob' },
       success: (data, textStatus, jqXHR) => { resolve({ data, textStatus, jqXHR }); },
       error: reject,
