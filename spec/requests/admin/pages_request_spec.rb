@@ -219,4 +219,73 @@ RSpec.describe 'Admin::Pages', type: :request do
       end
     end
   end
+
+  describe 'GET #donation_adder' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      get '/admin/donation_adder'
+    end
+
+    it :aggregate_failures do
+      request
+      expect(response).to render_template('admin/pages/donation_adder')
+      expect(response).to render_template('layouts/application')
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe 'POST #donation_adder' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      post '/admin/donation_adder', params: params
+    end
+
+    let(:params) { {} }
+
+    it :aggregate_failures do
+      expect(DonationAdderService).not_to receive(:call)
+      request
+      expect(response).to render_template('admin/pages/donation_adder')
+      expect(response).to render_template('layouts/application')
+      expect(response).to have_http_status(:ok)
+    end
+
+    context 'when with parameters' do
+      let(:params) { { donation: { message: 'msg', size: 10, date: '2021-03-14' } } }
+
+      it :aggregate_failures do
+        expect(DonationAdderService).to receive(:call).and_call_original
+        request
+        expect(flash.notice).to eq('Donation created')
+        expect(response).to render_template('admin/pages/donation_adder')
+        expect(response).to render_template('layouts/application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when params are empty' do
+      let(:params) { { donation: {} } }
+
+      it :aggregate_failures do
+        expect(DonationAdderService).not_to receive(:call)
+        request
+        expect(response).to render_template('admin/pages/donation_adder')
+        expect(response).to render_template('layouts/application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when params are gibberish' do
+      let(:params) { { donation: { message: 'msg', size: 10, date: 'random date lol' } } }
+
+      it :aggregate_failures do
+        expect(DonationAdderService).to receive(:call).and_call_original
+        request
+        expect(flash.alert).to eq('Please specify correct date!')
+        expect(response).to render_template('admin/pages/donation_adder')
+        expect(response).to render_template('layouts/application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
