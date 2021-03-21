@@ -11,6 +11,7 @@ class Api::V2::DiscordServersController < Api::V2Controller
     shard_num = 1 if shard_num <= 0
 
     servers = DiscordServer.of_shard(shard_id, shard_num)
+                           .includes(:setting, :statistic, :today_statistic, :last_donation)
 
     render json: DiscordServerBlueprint.render(servers)
   end
