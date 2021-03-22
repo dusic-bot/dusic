@@ -30,8 +30,7 @@ RSpec.describe DiscordServerBlueprint do
     end
     let(:donation_datetime) { Time.current }
     let(:expected_last_donation_json) do
-      { 'id' => donation.id, 'size' => 10, 'date' => donation_datetime.to_s,
-        'discord_user_external_id' => nil, 'discord_server_external_id' => 1 }
+      { 'id' => donation.id, 'size' => 10, 'date' => donation_datetime.to_s, 'user_id' => nil, 'server_id' => 1 }
     end
 
     before { donation }
