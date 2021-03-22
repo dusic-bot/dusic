@@ -25,10 +25,13 @@ RSpec.describe DiscordServerBlueprint do
   it { expect(result).to eq(expected_json) }
 
   context 'when with donation' do
-    let(:donation) { create(:donation, discord_server: discord_server, size: 10, date: donation_datetime) }
+    let(:donation) do
+      create(:donation, discord_server: discord_server, discord_user: nil, size: 10, date: donation_datetime)
+    end
     let(:donation_datetime) { Time.current }
     let(:expected_last_donation_json) do
-      { 'id' => donation.id, 'size' => 10, 'date' => donation_datetime.to_s }
+      { 'id' => donation.id, 'size' => 10, 'date' => donation_datetime.to_s,
+        'discord_user_external_id' => nil, 'discord_server_external_id' => 1 }
     end
 
     before { donation }
