@@ -2,11 +2,10 @@
 
 FactoryBot.define do
   factory :shard_connection_data do
-    token { 'token' }
     shard_id { 0 }
     shard_num { 1 }
     bot_id { 42 }
 
-    initialize_with { new(token, shard_id, shard_num, bot_id) }
+    initialize_with { new(shard_id, shard_num, bot_id) }
   end
 end
