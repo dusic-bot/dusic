@@ -85,13 +85,13 @@ RSpec.describe DiscordServer, type: :model do
 
       it { expect(result).to eq(daily_statistic) }
 
-      context 'when DailyStatistic on another date' do
+      context 'when DailyStatistic for another server' do
         let(:ds_discord_server) { create(:discord_server, external_id: 42) }
 
         it { expect(result).to be_nil }
       end
 
-      context 'when DailyStatistic for another server' do
+      context 'when DailyStatistic on another date' do
         let(:ds_date) { Time.zone.tomorrow }
 
         it { expect(result).to be_nil }

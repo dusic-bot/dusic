@@ -51,4 +51,12 @@ RSpec.describe DiscordServerBlueprint do
 
     it { expect(result).to eq(expected_json) }
   end
+
+  context 'when several days after server start' do
+    it do
+      Timecop.freeze(Time.current + 1.week) do
+        expect(result).to eq(expected_json)
+      end
+    end
+  end
 end
