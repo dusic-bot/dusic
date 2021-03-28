@@ -75,6 +75,9 @@ group :development, :test do
   # RSpec controller testing
   gem 'rails-controller-testing', require: false
 
+  # Time travelling in tests
+  gem 'timecop'
+
   # Code coverage
   gem 'simplecov'
 
