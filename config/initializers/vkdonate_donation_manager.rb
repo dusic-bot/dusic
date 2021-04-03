@@ -6,5 +6,9 @@ Rails.configuration.after_initialize do
 
   ::VKDONATE_CLIENT = Vkdonate::Client.new(credentials[:api_key])
 
-  VkdonateDonationsCheckJob.set(wait: 25.seconds).perform_later unless Rails.env.test?
+  if defined?(RAILS_SERVER)
+    VkdonateDonationsCheckJob.set(wait: 25.seconds).perform_later
+  else
+    Rails.logger.debug 'Vkdonate donations check job disabled in non-server environment'
+  end
 end
