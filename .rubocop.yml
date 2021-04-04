@@ -24,6 +24,7 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
     - config/**/*
+    - lib/tasks/once/**/*.rake
 
 Metrics/ClassLength:
   Max: 120
@@ -72,6 +73,10 @@ RSpec/NestedGroups:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Style/HashSyntax:
+  Exclude:
+    - lib/tasks/**/*.rake
 
 Style/NumericLiterals:
   Enabled: false

@@ -6,5 +6,9 @@ Rails.configuration.after_initialize do
 
   ::VKPONCHIK_CLIENT = Vkponchik::Client.new(credentials[:group_id], credentials[:api_key])
 
-  VkponchikDonationsCheckJob.set(wait: 15.seconds).perform_later unless Rails.env.test?
+  if defined?(RAILS_SERVER)
+    VkponchikDonationsCheckJob.set(wait: 15.seconds).perform_later
+  else
+    Rails.logger.debug 'Vkponchik donations check job disabled in non-server environment'
+  end
 end
