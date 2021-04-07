@@ -2,7 +2,7 @@
 lock '~> 3.15.0'
 
 set :application, 'Dusic'
-set :repo_url, 'git@github.com:fizvlad/dusic.git'
+set :repo_url, 'git@github.com:dusic-bot/dusic.git'
 
 # Default branch is :master
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
