@@ -10,7 +10,9 @@ RSpec.describe VkdonateDonationCreatorService do
   it { expect(result).to be_nil }
 
   context 'when data present' do
-    let(:data) { Vkdonate::Donate.new(id: 1, uid: 157230821, date: date, sum: 1, msg: message) }
+    let(:data) do
+      Vkdonate::Donate.new(id: 1, uid: 157230821, date: date, sum: 1, msg: message, anon: false, visible: true)
+    end
     let(:date) { DateTime.parse('2020-12-15 12:30:42 UTC+3') }
     let(:message) { nil }
 
@@ -40,7 +42,7 @@ RSpec.describe VkdonateDonationCreatorService do
 
       it :aggregate_failures do
         expect(result).to be_a(VkdonateDonation)
-        expect(result.message).to be_nil
+        expect(result.message).to eq('')
       end
     end
 
