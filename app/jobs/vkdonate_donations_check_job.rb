@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class VkdonateDonationsCheckJob < ApplicationJob
-  INTERVAL = 45.minutes # TODO: AFTER FULL RELEASE: minutes -> seconds
+  INTERVAL = 45.seconds
 
   queue_as :donations
 
