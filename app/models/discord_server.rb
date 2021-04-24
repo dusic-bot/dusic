@@ -10,7 +10,7 @@ class DiscordServer < ApplicationRecord
   has_one :today_statistic, -> { where(date: Time.zone.today) },
           class_name: 'DailyStatistic',
           inverse_of: :discord_server
-  has_one :last_donation, -> { order(date: :desc).limit(1) },
+  has_one :last_donation, -> { order(date: :desc) },
           class_name: 'Donation',
           inverse_of: :discord_server
 
