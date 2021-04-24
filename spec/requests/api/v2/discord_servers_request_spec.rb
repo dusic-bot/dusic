@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'shared_contexts/api_v2_authorization'
 
 RSpec.describe 'Api::V2::DiscordServersController', type: :request do
   subject(:response_json) { JSON.parse(response.body) }
@@ -11,7 +12,8 @@ RSpec.describe 'Api::V2::DiscordServersController', type: :request do
     subject(:request) { get '/api/v2/discord_servers/', params: params, headers: headers }
 
     let(:params) { {} }
-    let(:servers) { create_list(:discord_server, 5) }
+    let(:servers) { create_list(:discord_server, servers_count) }
+    let(:servers_count) { 5 }
 
     before { servers }
 
@@ -19,6 +21,32 @@ RSpec.describe 'Api::V2::DiscordServersController', type: :request do
       request
       expect(response).to have_http_status(:ok)
       expect(response_json.pluck('id')).to eq(servers.pluck(:external_id))
+    end
+
+    context 'when 2 servers got donations' do
+      let(:server_with_donation) { create(:discord_server) }
+      let(:donation) { create(:donation, discord_server: server_with_donation) }
+      let(:server_with_donation2) { create(:discord_server) }
+      let(:donation2) { create(:donation, discord_server: server_with_donation2) }
+
+      let(:server_with_donation_json) do
+        response_json.find { |json| json['id'] == server_with_donation.external_id }
+      end
+      let(:server_with_donation_json2) do
+        response_json.find { |json| json['id'] == server_with_donation2.external_id }
+      end
+
+      before do
+        donation
+        donation2
+      end
+
+      it :aggregate_failures do
+        request
+        expect(response).to have_http_status(:ok)
+        expect(server_with_donation_json['last_donation']).not_to be_nil
+        expect(server_with_donation_json2['last_donation']).not_to be_nil
+      end
     end
 
     context 'when shard data specified' do
