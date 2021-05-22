@@ -8,7 +8,7 @@ RSpec.describe NewDonationBroadcasterService do
   let(:donation) { build_stubbed(:donation) }
 
   before do
-    allow(DonationBlueprint).to receive(:render_as_hash).with(donation).and_return({ stub: 'true' })
+    allow(DonationBlueprint).to receive(:render).with(donation).and_return('{"stub":"true"}')
   end
 
   it do
