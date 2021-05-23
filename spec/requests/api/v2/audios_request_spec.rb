@@ -6,7 +6,7 @@ require 'shared_contexts/api_v2_authorization'
 RSpec.describe 'Api::V2::AudiosController', type: :request do
   subject(:response_json) { JSON.parse(response.body) }
 
-  include_context 'with api v2 authorization', '/api/v2/audios/'
+  include_context 'with api v2 authorization', '/api/v2/audios/', '/api/v2/audios/'
 
   describe 'GET #index' do
     subject(:request) { get '/api/v2/audios/', headers: headers }
