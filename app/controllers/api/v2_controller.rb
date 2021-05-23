@@ -6,6 +6,13 @@ class Api::V2Controller < ApiController
   private
 
   def authenticate
-    head :unauthorized unless JwtRequestAuthorizerService.call(request, access_level: 1)
+    head :unauthorized unless JwtRequestAuthorizerService.call(request, **authentication_options)
   end
+
+  # Abstract methods
+  # :nocov:
+  def authentication_options
+    raise NotImplementedError
+  end
+  # :nocov:
 end

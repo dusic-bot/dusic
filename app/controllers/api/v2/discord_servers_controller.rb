@@ -35,4 +35,8 @@ class Api::V2::DiscordServersController < Api::V2Controller
 
     @server = DiscordServer.find_or_create_by!(external_id: id)
   end
+
+  def authentication_options
+    { controller: '/api/v2/discord_servers/' }
+  end
 end

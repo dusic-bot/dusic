@@ -15,4 +15,10 @@ class Api::V2::AudiosController < Api::V2Controller
 
     send_data io.read, filename: "#{audio_params[:manager]}#{audio_params[:id]}.#{audio_params[:format]}"
   end
+
+  private
+
+  def authentication_options
+    { controller: '/api/v2/audios/' }
+  end
 end
