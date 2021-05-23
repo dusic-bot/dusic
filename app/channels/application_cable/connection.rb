@@ -12,7 +12,7 @@ module ApplicationCable
     private
 
     def authenticate
-      reject_unauthorized_connection unless JwtRequestAuthorizerService.call(request, access_level: 1)
+      reject_unauthorized_connection unless JwtRequestAuthorizerService.call(request, controller: 'application_cable')
     end
 
     def setup_shard_data
