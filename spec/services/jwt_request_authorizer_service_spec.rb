@@ -6,7 +6,7 @@ RSpec.describe JwtRequestAuthorizerService do
   subject(:result) { described_class.call(request, **options) }
 
   let(:request) { nil }
-  let(:options) { { access_level: 42 } }
+  let(:options) { { controller: 'stub' } }
 
   it :aggregate_failures do
     expect(JwtAuthorizerService).not_to receive(:call)
