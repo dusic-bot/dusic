@@ -39,10 +39,17 @@ class ExternalDonationCreatorService
     def donation_class
       raise NotImplementedError
     end
+
+    def previous_donations_query(data)
+      raise NotImplementedError
+    end
     # :nocov:
 
     def create_donation(data)
-      DonationCreatorService.call(size(data), date(data), message(data) || '')
+      DonationCreatorService.call(
+        size(data), date(data), message(data) || '',
+        previous_donations_query: previous_donations_query(data)
+      )
     end
 
     def create_external_donation(donation, data)

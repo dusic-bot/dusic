@@ -27,5 +27,11 @@ class VkponchikDonationCreatorService < ExternalDonationCreatorService
     def donation_class
       VkponchikDonation
     end
+
+    def previous_donations_query(data)
+      external_donations = VkponchikDonation.where(vk_user_external_id: vk_user_external_id(data))
+
+      Donation.where(id: external_donations.select(:donation_id))
+    end
   end
 end
