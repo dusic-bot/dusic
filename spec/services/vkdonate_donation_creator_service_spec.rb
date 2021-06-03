@@ -111,4 +111,41 @@ RSpec.describe VkdonateDonationCreatorService do
 
     it { expect(result).to be_nil }
   end
+
+  context 'when previously donated' do
+    let(:previous_donation) do
+      create(:donation, discord_server: create(:discord_server), discord_user: create(:discord_user))
+    end
+    let(:previous_vk_donation) do
+      create(:vkdonate_donation, vk_user_external_id: 157230821, donation: previous_donation)
+    end
+
+    before { previous_vk_donation }
+
+    it { expect(result).to be_nil }
+
+    context 'when data provided' do
+      let(:data) do
+        Vkdonate::Donate.new(id: 1, uid: 157230821, date: date, sum: 1, msg: message, anon: false, visible: true)
+      end
+      let(:date) { DateTime.parse('2020-12-15 12:30:42 UTC+3') }
+      let(:message) { nil }
+
+      it :aggregate_failures do
+        expect(result).to be_a(VkdonateDonation)
+        expect(result.donation.discord_server).to eq(previous_donation.discord_server)
+        expect(result.donation.discord_user).to eq(previous_donation.discord_user)
+      end
+
+      context 'when new identifier provided' do
+        let(:message) { 'fRydUVZYSwb_svRNDhRVJSe' }
+
+        it :aggregate_failures do
+          expect(result).to be_a(VkdonateDonation)
+          expect(result.donation.discord_server.external_id).to eq(702456545560100934)
+          expect(result.donation.discord_user.external_id).to eq(208117693537058817)
+        end
+      end
+    end
+  end
 end
