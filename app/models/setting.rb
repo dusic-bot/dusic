@@ -13,6 +13,6 @@ class Setting < ApplicationRecord
     return if prefix.nil?
 
     errors.add(:prefix, 'can not be blank for regular server') if prefix.empty? && !discord_server.dm?
-    errors.add(:prefix, 'have bad format') unless prefix.match?(/^\S{0,6}$/)
+    errors.add(:prefix, 'have bad format') unless prefix.match?(/^\S{0,64}$/)
   end
 end
