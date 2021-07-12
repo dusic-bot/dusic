@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin/rails', as: 'rails_admin'
+  mount Blazer::Engine => '/admin/blazer', as: 'blazer'
   mount ActionCable.server => '/ws', as: 'websocket'
 
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
