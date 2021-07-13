@@ -36,7 +36,7 @@ data_sources:
 audit: true
 
 # change the time zone
-time_zone: "UTC+3"
+time_zone: "Moscow"
 
 # class name of the user model
 user_class: User
