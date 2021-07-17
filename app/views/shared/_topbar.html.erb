@@ -1,38 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
   <%= link_to 'Dusic', root_path, class: 'navbar-brand' %>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <%= link_to 'Home', root_path, class: 'nav-link' %>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <% if current_user %>
-        <li class="nav-item dropdown">
-          <span class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <ul class="navbar-nav collapse navbar-collapse">
+    <li class="nav-item">
+      <%= link_to 'Home', root_path, class: 'nav-link' %>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <% if current_user %>
+      <li class="nav-item dropdown">
+        <span class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </span>
+        <div class="dropdown-menu dropdown-menu-right position-absolute" aria-labelledby="profileDropdown">
+          <span class="dropdown-item-text text-nowrap">
             Logged in as <i><%= current_user.email %></i>
           </span>
-          <div class="dropdown-menu w-100" aria-labelledby="profileDropdown">
-            <span class="dropdown-item-text">
-              <%= current_user.email %>
-            </span>
-            <% if current_user.admin %>
-              <%= link_to 'Rails Admin', rails_admin_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
-              <%= link_to 'Blazer', blazer_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
-              <%= link_to 'Admin features', admin_path, class: 'dropdown-item' %>
-            <% end %>
+          <div class="dropdown-divider"></div>
+          <% if current_user.admin %>
+            <%= link_to 'Rails Admin', rails_admin_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
+            <%= link_to 'Blazer', blazer_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
+            <%= link_to 'Admin features', admin_path, class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
-            <%= button_to 'Signout', signout_path, method: :delete, class: 'dropdown-item' %>
-          </div>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Signin', signin_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Signup', signup_path, class: 'nav-link' %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+          <% end %>
+          <%= button_to 'Signout', signout_path, method: :delete, class: 'dropdown-item' %>
+        </div>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to 'Signin', signin_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Signup', signup_path, class: 'nav-link' %>
+      </li>
+    <% end %>
+  </ul>
 </nav>
