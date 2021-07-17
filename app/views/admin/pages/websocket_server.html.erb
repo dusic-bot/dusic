@@ -4,8 +4,8 @@
 <%= form_with method: :post, local: true do |f| %>
   <div class="container mt-5">
     <div class="row">
-      <div class="col-3">
-        <div class="btn-group-vertical">
+      <div class="col-12 col-sm-4 col-md-3">
+        <div class="btn-group-vertical w-100 mb-4">
           <%= f.button name: 'websocket_server[action]', value: 'reload', class: 'btn btn-primary', data: {} do %>
             <span>Reload data</span>
             <span class="float-right ml-3"><%= fa_icon 'sync' %></span>
@@ -28,7 +28,7 @@
           <% end %>
         </div>
       </div>
-      <div class="col-8 offset-1">
+      <div class="col-12 col-sm-8 offset-md-1">
         <div class="card">
           <div class="card-header">
             <p>
