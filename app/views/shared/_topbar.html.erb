@@ -25,13 +25,6 @@
           <%= button_to 'Signout', signout_path, method: :delete, class: 'dropdown-item' %>
         </div>
       </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to 'Signin', signin_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Signup', signup_path, class: 'nav-link' %>
-      </li>
     <% end %>
   </ul>
 </nav>
