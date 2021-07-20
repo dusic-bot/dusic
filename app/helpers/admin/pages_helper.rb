@@ -36,7 +36,7 @@ module Admin::PagesHelper
 
   def render_audio(item, **li_html_params)
     title = tag.span(class: 'text-truncate') { "#{item.artist} - #{item.title}" }
-    duration = tag.span { "[#{item.duration_str}]" }
+    duration = tag.span(class: 'ml-auto') { "[#{item.duration_str}]" }
     download_button = render_audio_download_button(item)
 
     li_html_params[:class] ||= ''
@@ -46,7 +46,7 @@ module Admin::PagesHelper
   end
 
   def render_audio_download_button(item)
-    html_params = { class: 'btn btn-light btn-sm ml-auto js-audio-download-button-binder',
+    html_params = { class: 'btn btn-light btn-sm ml-1 js-audio-download-button-binder',
                     data: { manager: manager(item), id: item.id } }
 
     tag.div(**html_params) { fa_icon 'download' }
