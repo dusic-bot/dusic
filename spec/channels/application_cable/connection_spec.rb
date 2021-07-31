@@ -27,7 +27,7 @@ RSpec.describe ApplicationCable::Connection, type: :channel do
   end
 
   context 'when valid' do
-    let(:token) { JwtAuthorizationHeaderGeneratorService.call(access_level: 1) }
+    let(:token) { JwtAuthorizationHeaderGeneratorService.call(access: { controllers: ['application_cable'] }) }
     let(:shard_id) { 0 }
     let(:shard_num) { 1 }
     let(:bot_id) { 42 }
@@ -35,15 +35,6 @@ RSpec.describe ApplicationCable::Connection, type: :channel do
     it do
       request
       expect(connection.current_shard.identifier).to eq('0_1_42')
-    end
-
-    context 'when new token format' do
-      let(:token) { JwtAuthorizationHeaderGeneratorService.call(access: { controllers: ['application_cable'] }) }
-
-      it do
-        request
-        expect(connection.current_shard.identifier).to eq('0_1_42')
-      end
     end
   end
 end

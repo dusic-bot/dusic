@@ -27,5 +27,7 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.excluded_models = [Blazer::Audit, Blazer::Check, Blazer::DashboardQuery, Blazer::Dashboard, Blazer::Query]
+  unless Rails.env.test?
+    config.excluded_models = [Blazer::Audit, Blazer::Check, Blazer::DashboardQuery, Blazer::Dashboard, Blazer::Query]
+  end
 end
