@@ -23,5 +23,3 @@ import 'downloadjs';
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
-
-require('javascript/audio-download-button-binder');
