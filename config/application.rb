@@ -37,5 +37,11 @@ module Dusic
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Default locale
+    config.i18n.default_locale = :ru
+
+    # Available locales
+    I18n.available_locales = [:ru, :en]
   end
 end
