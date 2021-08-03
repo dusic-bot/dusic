@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12 col-sm-4">
-    <h4>Search parameters</h4>
+    <h4><%= t('admin.audios.search_parameters') %></h4>
     <%= form_with scope: 'audios', class: 'mb-4', method: :get do |f| %>
       <div class="form-group">
         <%= f.label :manager, 'Audio manager:' %>
