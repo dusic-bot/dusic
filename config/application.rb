@@ -42,6 +42,9 @@ module Dusic
     config.i18n.default_locale = :ru
 
     # Available locales
-    I18n.available_locales = [:ru, :en]
+    config.i18n.available_locales = %i[ru en]
+
+    # Locale directories
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
   end
 end
