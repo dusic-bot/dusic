@@ -1,0 +1,9 @@
+ru:
+  admin:
+    pages:
+      jwt_token:
+        admin_features: "Админский функционал"
+        jwt_token_generator: "Генератор JWT токенов"
+        payload_label: "Данные:"
+        token_label: "Сгенерированный токен:"
+        generate_button: "Сгенерировать"

@@ -1,0 +1,9 @@
+en:
+  admin:
+    pages:
+      jwt_token:
+        admin_features: "Admin features"
+        jwt_token_generator: "JWT token generator"
+        payload_label: "Payload:"
+        token_label: "Generated token:"
+        generate_button: "Generate"
