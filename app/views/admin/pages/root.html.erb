@@ -1,9 +1,9 @@
-<h1>Admin features</h1>
+<h1><%= t('.admin_features') %></h1>
 
 <ul>
-  <li><%= link_to 'Donation ID', admin_donation_id_path %></li>
-  <li><%= link_to 'JWT token generator', admin_jwt_token_path %></li>
-  <li><%= link_to 'Audios', admin_audios_path %></li>
-  <li><%= link_to 'Websocket server', admin_websocket_server_path %></li>
-  <li><%= link_to 'Donation adder', admin_donation_adder_path %></li>
+  <li><%= link_to t('.donation_id'), admin_donation_id_path %></li>
+  <li><%= link_to t('.jwt_token'), admin_jwt_token_path %></li>
+  <li><%= link_to t('.audios'), admin_audios_path %></li>
+  <li><%= link_to t('.websocket_server'), admin_websocket_server_path %></li>
+  <li><%= link_to t('.donation_adder'), admin_donation_adder_path %></li>
 </ul>
