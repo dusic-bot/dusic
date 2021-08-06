@@ -1,0 +1,20 @@
+en:
+  admin:
+    pages:
+      websocket_server:
+        admin_features: "Admin features"
+        websocket_server: "Websocket server"
+        reload_button: "Reload data"
+        update_button: "Update data"
+        disconnect_button: "Disconnect"
+        restart_button: "Restart"
+        stop_button: "Stop"
+        amount_of_shards: "Amount of shards:"
+        amount_of_servers: "Amount of servers:"
+        amount_of_cached_servers: "Amount of cached servers:"
+        amount_of_active_servers: "Amount of active servers:"
+        shards: "Shard"
+        server_counts: "Количества серверов"
+        total: "Total"
+        cached: "Cached"
+        active: "Active"
