@@ -1,0 +1,5 @@
+ru:
+  pages:
+    root:
+      dusic: "Dusic"
+      main_text: "Музыкальный бот для Discord, воспроизводящий музыку из VK"
