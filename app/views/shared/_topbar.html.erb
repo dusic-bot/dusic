@@ -17,8 +17,8 @@
           </span>
           <div class="dropdown-divider"></div>
           <% if current_user.admin %>
-            <%= link_to t('.rails_admin'), rails_admin_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
-            <%= link_to t('.blazer'), blazer_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
+            <%= link_to t('.rails_admin'), rails_admin_path, class: 'dropdown-item', 'data-turbolinks': 'false' %>
+            <%= link_to t('.blazer'), blazer_path, class: 'dropdown-item', 'data-turbolinks': 'false' %>
             <%= link_to t('.admin_features'), admin_path, class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
           <% end %>
