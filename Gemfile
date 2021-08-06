@@ -71,6 +71,9 @@ group :development, :test do
   # Rubocop RSpec extension
   gem 'rubocop-rspec', require: false
 
+  # Bring cops into erb
+  gem 'erb_lint', require: false
+
   # Specification and testing
   gem 'rspec', require: false
   # RSpec for RoR
