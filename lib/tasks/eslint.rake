@@ -5,7 +5,7 @@
 desc 'Run ESLint check'
 task :eslint do
   puts 'Running ESLint...'
-  abort('ESLint failed!') unless system('yarn run eslint app/javascript/**/*.js')
+  abort('ESLint failed!') unless system('yarn run eslint app/javascript app/assets/javascript')
   puts
 end
 

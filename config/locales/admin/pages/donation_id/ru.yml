@@ -1,0 +1,10 @@
+ru:
+  admin:
+    pages:
+      donation_id:
+        admin_features: "Админский функционал"
+        donation_id: "Конвертер донат-идентификаторов"
+        donation_id_label: "Донат-идентификатор:"
+        server_id_label: "ID сервера:"
+        user_id_label: "ID пользователя:"
+        convert_button: "Конвертировать"

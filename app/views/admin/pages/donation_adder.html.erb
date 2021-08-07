@@ -1,18 +1,18 @@
-<h1>Admin features</h1>
-<h3>Donation adder</h1>
+<h1><%= t('.admin_features') %></h1>
+<h3><%= t('.donation_adder') %></h1>
 
 <%= form_with scope: 'donation', url: admin_donation_adder_path, local: true, method: :post do |f| %>
   <div class="form-group">
-    <%= f.label :message, 'Message:' %>
+    <%= f.label :message, t('.message_label') %>
     <%= f.text_field :message, class: 'form-control', autocomplete: 'off' %>
   </div>
   <div class="form-group">
-    <%= f.label :size, 'Size:' %>
+    <%= f.label :size, t('.size_label') %>
     <%= f.number_field :size, class: 'form-control', required: true, autocomplete: 'off', min: 0, value: 0 %>
   </div>
   <div class="form-group">
-    <%= f.label :date, 'Date:' %>
+    <%= f.label :date, t('.date_label') %>
     <%= f.date_field :date, class: 'form-control', required: true, autocomplete: 'off', min: Date.current, value: Date.current %>
   </div>
-  <%= f.submit 'Add', class: 'btn btn-primary' %>
+  <%= f.submit t('.add_button'), class: 'btn btn-primary' %>
 <% end %>

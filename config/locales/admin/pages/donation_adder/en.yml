@@ -1,0 +1,10 @@
+en:
+  admin:
+    pages:
+      donation_adder:
+        admin_features: "Admin features"
+        donation_adder: "Donation adder"
+        message_label: "Message:"
+        size_label: "Size:"
+        date_label: "Date:"
+        add_button: "Add"

@@ -1,0 +1,10 @@
+en:
+  admin:
+    pages:
+      donation_id:
+        admin_features: "Admin features"
+        donation_id: "Donation ID converter"
+        donation_id_label: "Donation ID:"
+        server_id_label: "Server ID:"
+        user_id_label: "User ID:"
+        convert_button: "Convert"

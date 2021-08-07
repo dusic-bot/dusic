@@ -1,30 +1,30 @@
 <div class="row">
   <div class="col-12 col-sm-4">
-    <h4>Search parameters</h4>
+    <h4><%= t('.search_parameters') %></h4>
     <%= form_with scope: 'audios', class: 'mb-4', method: :get do |f| %>
       <div class="form-group">
-        <%= f.label :manager, 'Audio manager:' %>
+        <%= f.label :manager, t('.audio_manager_label') %>
         <%= f.select :manager, options_from_collection_for_select(%w[vk], :to_s, :capitalize), {}, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.label :type, 'Request type:' %>
+        <%= f.label :type, t('.request_type_label') %>
         <%= f.select :type, options_from_collection_for_select(%w[auto playlist audios post find wall artist], :to_s, :capitalize), {}, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.label :query, 'Query:' %>
-        <%= f.text_field :query, class: 'form-control', placeholder: 'URL or search query', autocomplete: 'off' %>
+        <%= f.label :query, t('.query_label') %>
+        <%= f.text_field :query, class: 'form-control', placeholder: t('.query_placeholder'), autocomplete: 'off' %>
       </div>
       <%= f.submit 'Load', class: 'btn btn-primary w-100' %>
     <% end %>
 
-    <h6>Download parameters</h6>
+    <h6><%= t('.download_parameters') %></h6>
     <div class="form-group">
-      <%= label_tag :format, 'Output format:' %>
+      <%= label_tag :format, t('.output_format_label') %>
       <%= select_tag :format, options_from_collection_for_select(FormatConverterService::FORMATS, :to_s, :to_s), class: 'form-control js-audio-download-format' %>
     </div>
   </div>
   <div class="col-12 col-sm-8">
-    <h4>Audios</h4>
+    <h4><%= t('.audios') %></h4>
     <% if @audios.present? %>
       <ul class="list-group list-group-flush">
         <% @audios.each do |el| %>
@@ -32,7 +32,9 @@
         <% end %>
       </ul>
     <% else %>
-      <span>Nothing found</span>
+      <span><%= t('.nothing_found') %></span>
     <% end %>
   </div>
 </div>
+
+<%= javascript_pack_tag 'admin/audios', 'data-turbolinks-track': 'reload' %>

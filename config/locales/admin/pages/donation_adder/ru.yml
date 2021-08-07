@@ -1,0 +1,10 @@
+ru:
+  admin:
+    pages:
+      donation_adder:
+        admin_features: "Админский функционал"
+        donation_adder: "Добавление донатов"
+        message_label: "Сообщение:"
+        size_label: "Размер:"
+        date_label: "Дата:"
+        add_button: "Добавить"

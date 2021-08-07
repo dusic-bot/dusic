@@ -1,28 +1,28 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <%= link_to 'Dusic', root_path, class: 'navbar-brand' %>
+  <%= link_to t('.dusic'), root_path, class: 'navbar-brand' %>
   <ul class="navbar-nav collapse navbar-collapse">
     <li class="nav-item">
-      <%= link_to 'Home', root_path, class: 'nav-link' %>
+      <%= link_to t('.home'), root_path, class: 'nav-link' %>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">
     <% if current_user %>
       <li class="nav-item dropdown">
         <span class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profile
+          <%= t('.profile') %>
         </span>
         <div class="dropdown-menu dropdown-menu-right position-absolute" aria-labelledby="profileDropdown">
           <span class="dropdown-item-text text-nowrap">
-            Logged in as <i><%= current_user.email %></i>
+            <%= t('.logged_in_as_html', email: current_user.email) %>
           </span>
           <div class="dropdown-divider"></div>
           <% if current_user.admin %>
-            <%= link_to 'Rails Admin', rails_admin_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
-            <%= link_to 'Blazer', blazer_path, class: 'dropdown-item', :'data-turbolinks' => 'false' %>
-            <%= link_to 'Admin features', admin_path, class: 'dropdown-item' %>
+            <%= link_to t('.rails_admin'), rails_admin_path, class: 'dropdown-item', 'data-turbolinks': 'false' %>
+            <%= link_to t('.blazer'), blazer_path, class: 'dropdown-item', 'data-turbolinks': 'false' %>
+            <%= link_to t('.admin_features'), admin_path, class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
           <% end %>
-          <%= button_to 'Signout', signout_path, method: :delete, class: 'dropdown-item' %>
+          <%= button_to t('.signout'), signout_path, method: :delete, class: 'dropdown-item' %>
         </div>
       </li>
     <% end %>

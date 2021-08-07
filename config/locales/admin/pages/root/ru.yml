@@ -1,0 +1,10 @@
+ru:
+  admin:
+    pages:
+      root:
+        admin_features: "Админский функционал"
+        donation_id: "Конвертер донат-идентификаторов"
+        jwt_token: "Генератор JWT токенов"
+        audios: "Аудиозаписи"
+        websocket_server: "Websocket сервер"
+        donation_adder: "Добавление донатов"

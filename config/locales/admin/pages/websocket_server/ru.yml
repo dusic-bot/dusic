@@ -1,0 +1,21 @@
+ru:
+  admin:
+    pages:
+      websocket_server:
+        admin_features: "Админский функционал"
+        websocket_server: "Websocket сервер"
+        reload_button: "Перезагрузить страницу"
+        update_button: "Обновить данные"
+        disconnect_button: "Отключить"
+        restart_button: "Перезагрузить"
+        stop_button: "Остановить"
+        amount_of_shards: "Количество шардов:"
+        amount_of_servers: "Количество серверов:"
+        amount_of_cached_servers: "Количество кэшированных серверов:"
+        amount_of_active_servers: "Количество активных серверов:"
+        shards: "Шард"
+        server_counts: "Количество серверов"
+        total: "Всего"
+        cached: "Кэшированных"
+        active: "Активных"
+

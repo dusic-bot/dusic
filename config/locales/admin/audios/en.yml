@@ -1,0 +1,13 @@
+en:
+  admin:
+    audios:
+      index:
+        search_parameters: "Search parameters"
+        audio_manager_label: "Audio manager:"
+        request_type_label: "Request type:"
+        query_label: "Query:"
+        query_placeholder: "URL or search query"
+        download_parameters: "Download parameters"
+        output_format_label: "Output format:"
+        audios: "Audios"
+        nothing_found: "Nothing found"

@@ -1,0 +1,13 @@
+ru:
+  admin:
+    audios:
+      index:
+        search_parameters: "Параметры поиска"
+        audio_manager_label: "Аудио менеджер:"
+        request_type_label: "Тип запроса:"
+        query_label: "Запрос:"
+        query_placeholder: "URL или поисковой запрос"
+        download_parameters: "Параметры загрузки"
+        output_format_label: "Формат файла"
+        audios: "Аудио"
+        nothing_found: "Ничего не найдено"
