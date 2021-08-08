@@ -1,0 +1,6 @@
+<% if local_assigns[:content].present? %>
+  <div class="alert <%= local_assigns[:class] %>">
+    <input type="checkbox" class="alert__close-button"></button>
+    <div class="alert__content"><%= local_assigns[:content] %></div>
+  </div>
+<% end %>

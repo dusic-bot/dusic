@@ -12,15 +12,18 @@
 
   <body>
     <div class="page">
+      <div class="page__fixed-top">
+        <%= render 'layouts/application/alert', class: 'alert_danger', content: alert %>
+        <%= render 'layouts/application/alert', class: 'alert_primary', content: notice %>
+      </div>
       <div class="page__header">
-        Navigation bar
+        <%= render 'layouts/application/header' %>
       </div>
       <div class="page__content">
-        Content
         <%= yield %>
       </div>
       <div class="page__footer">
-        Footer
+        <%= render 'layouts/application/footer' %>
       </div>
     </div>
   </body>
