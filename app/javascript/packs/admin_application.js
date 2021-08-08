@@ -8,6 +8,18 @@ import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
 import '../channels/index';
 
+// Bootstrap
+import 'bootstrap';
+
+// FontAwesome
+import '@fortawesome/fontawesome-free/js/all';
+
+// JQuery
+import 'jquery';
+
+// Download JS
+import 'downloadjs';
+
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();

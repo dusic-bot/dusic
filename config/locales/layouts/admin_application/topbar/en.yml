@@ -1,6 +1,6 @@
 en:
   layouts:
-    application:
+    admin_application:
       topbar:
         dusic: "Dusic"
         home: "Home"

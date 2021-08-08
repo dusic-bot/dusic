@@ -1,6 +1,6 @@
 ru:
   layouts:
-    application:
+    admin_application:
       topbar:
         dusic: "Dusic"
         home: "Главная"
