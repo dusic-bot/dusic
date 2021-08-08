@@ -24,7 +24,7 @@ RSpec.describe 'Admin::Pages', type: :request do
 
         it :aggregate_failures do
           expect(response).to render_template('admin/pages/root')
-          expect(response).to render_template('layouts/application')
+          expect(response).to render_template('layouts/admin_application')
           expect(response).to have_http_status(:ok)
         end
       end
@@ -42,7 +42,7 @@ RSpec.describe 'Admin::Pages', type: :request do
     it :aggregate_failures do
       request
       expect(response).to render_template('admin/pages/donation_id')
-      expect(response).to render_template('layouts/application')
+      expect(response).to render_template('layouts/admin_application')
       expect(response).to have_http_status(:ok)
     end
 
@@ -53,7 +53,7 @@ RSpec.describe 'Admin::Pages', type: :request do
         expect(DonationIdDataFillerService).to receive(:call)
         request
         expect(response).to render_template('admin/pages/donation_id')
-        expect(response).to render_template('layouts/application')
+        expect(response).to render_template('layouts/admin_application')
         expect(response).to have_http_status(:ok)
       end
     end
@@ -68,7 +68,7 @@ RSpec.describe 'Admin::Pages', type: :request do
     it :aggregate_failures do
       request
       expect(response).to render_template('admin/pages/jwt_token')
-      expect(response).to render_template('layouts/application')
+      expect(response).to render_template('layouts/admin_application')
       expect(response).to have_http_status(:ok)
     end
   end
@@ -85,7 +85,7 @@ RSpec.describe 'Admin::Pages', type: :request do
       request
       expect(flash[:alert]).to be_blank
       expect(response).to render_template('admin/pages/jwt_token')
-      expect(response).to render_template('layouts/application')
+      expect(response).to render_template('layouts/admin_application')
       expect(response).to have_http_status(:ok)
     end
 
@@ -96,7 +96,7 @@ RSpec.describe 'Admin::Pages', type: :request do
         request
         expect(flash[:alert]).to be_blank
         expect(response).to render_template('admin/pages/jwt_token')
-        expect(response).to render_template('layouts/application')
+        expect(response).to render_template('layouts/admin_application')
         expect(response).to have_http_status(:ok)
       end
 
@@ -107,7 +107,7 @@ RSpec.describe 'Admin::Pages', type: :request do
           request
           expect(flash[:alert]).not_to be_blank
           expect(response).to render_template('admin/pages/jwt_token')
-          expect(response).to render_template('layouts/application')
+          expect(response).to render_template('layouts/admin_application')
           expect(response).to have_http_status(:ok)
         end
       end
@@ -123,7 +123,7 @@ RSpec.describe 'Admin::Pages', type: :request do
     it :aggregate_failures do
       request
       expect(response).to render_template('admin/pages/websocket_server')
-      expect(response).to render_template('layouts/application')
+      expect(response).to render_template('layouts/admin_application')
       expect(response).to have_http_status(:ok)
     end
   end
@@ -139,7 +139,7 @@ RSpec.describe 'Admin::Pages', type: :request do
     it :aggregate_failures do
       request
       expect(response).to render_template('admin/pages/websocket_server')
-      expect(response).to render_template('layouts/application')
+      expect(response).to render_template('layouts/admin_application')
       expect(response).to have_http_status(:ok)
     end
 
@@ -150,7 +150,7 @@ RSpec.describe 'Admin::Pages', type: :request do
         expect(WebsocketServerOrdererService).to receive(:call).with('action', %w[arg1 arg2])
         request
         expect(response).to render_template('admin/pages/websocket_server')
-        expect(response).to render_template('layouts/application')
+        expect(response).to render_template('layouts/admin_application')
         expect(response).to have_http_status(:ok)
       end
     end
@@ -165,7 +165,7 @@ RSpec.describe 'Admin::Pages', type: :request do
     it :aggregate_failures do
       request
       expect(response).to render_template('admin/pages/donation_adder')
-      expect(response).to render_template('layouts/application')
+      expect(response).to render_template('layouts/admin_application')
       expect(response).to have_http_status(:ok)
     end
   end
@@ -182,7 +182,7 @@ RSpec.describe 'Admin::Pages', type: :request do
       expect(DonationAdderService).not_to receive(:call)
       request
       expect(response).to render_template('admin/pages/donation_adder')
-      expect(response).to render_template('layouts/application')
+      expect(response).to render_template('layouts/admin_application')
       expect(response).to have_http_status(:ok)
     end
 
@@ -194,7 +194,7 @@ RSpec.describe 'Admin::Pages', type: :request do
         request
         expect(flash.notice).to eq('Donation created')
         expect(response).to render_template('admin/pages/donation_adder')
-        expect(response).to render_template('layouts/application')
+        expect(response).to render_template('layouts/admin_application')
         expect(response).to have_http_status(:ok)
       end
     end
@@ -206,7 +206,7 @@ RSpec.describe 'Admin::Pages', type: :request do
         expect(DonationAdderService).not_to receive(:call)
         request
         expect(response).to render_template('admin/pages/donation_adder')
-        expect(response).to render_template('layouts/application')
+        expect(response).to render_template('layouts/admin_application')
         expect(response).to have_http_status(:ok)
       end
     end
@@ -219,7 +219,7 @@ RSpec.describe 'Admin::Pages', type: :request do
         request
         expect(flash.alert).to eq('Please specify correct date!')
         expect(response).to render_template('admin/pages/donation_adder')
-        expect(response).to render_template('layouts/application')
+        expect(response).to render_template('layouts/admin_application')
         expect(response).to have_http_status(:ok)
       end
     end

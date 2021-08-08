@@ -14,7 +14,7 @@ RSpec.describe 'Admin::Audios', type: :request do
     it :aggregate_failures do
       request
       expect(response).to render_template('admin/audios/index')
-      expect(response).to render_template('layouts/application')
+      expect(response).to render_template('layouts/admin_application')
       expect(response).to have_http_status(:ok)
     end
 
@@ -25,7 +25,7 @@ RSpec.describe 'Admin::Audios', type: :request do
         allow(AudiosFetcherService).to receive(:call).and_return(AudioResponse.empty)
         request
         expect(response).to render_template('admin/audios/index')
-        expect(response).to render_template('layouts/application')
+        expect(response).to render_template('layouts/admin_application')
         expect(response).to have_http_status(:ok)
       end
     end
