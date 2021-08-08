@@ -1,0 +1,12 @@
+en:
+  layouts:
+    application:
+      topbar:
+        dusic: "Dusic"
+        home: "Home"
+        profile: "Profile"
+        logged_in_as_html: "Logged in as <i>%{email}</i>"
+        rails_admin: "Rails Admin"
+        blazer: "Blazer"
+        admin_features: "Admin features"
+        signout: "Signout"
