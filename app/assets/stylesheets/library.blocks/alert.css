@@ -40,9 +40,10 @@
 .alert__close-button::after {
   color: #000000;
   font-size: 32px;
+  line-height: 1;
   content: '✕';
   position: relative;
-  top: -4px;
+  top: -2px;
   left: 2px;
 }
 .alert__close-button:checked {
