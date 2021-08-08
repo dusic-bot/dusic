@@ -17,13 +17,13 @@
         <%= render 'layouts/application/alert', class: 'alert_primary', content: notice %>
       </div>
       <div class="page__header">
-        <%= render 'layouts/application/header' %>
+        <div class="page__header-logo"></div>
       </div>
-      <div class="page__content">
+      <div class="page__content container">
         <%= yield %>
       </div>
-      <div class="page__footer">
-        <%= render 'layouts/application/footer' %>
+      <div class="page__footer container">
+        FOOTER TEXT
       </div>
     </div>
   </body>

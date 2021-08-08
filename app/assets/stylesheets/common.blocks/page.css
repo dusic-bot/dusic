@@ -3,7 +3,8 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #f8f9fa;
+  background-color: #1c1c21;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -22,7 +23,18 @@
 
 
 .page__header {
-  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.page__header-logo {
+  background-image: url("~images/logo.svg");
+  background-size: contain;
+  filter: invert(98%) sepia(12%) saturate(115%) hue-rotate(174deg) brightness(99%) contrast(97%);;
+  height: 64px;
+  width: 64px;
 }
 
 
@@ -32,5 +44,7 @@
 
 
 .page__footer {
+  border-top: 3px solid #2f2f37;
+  padding-top: 15px;
   height: 100px;
 }
