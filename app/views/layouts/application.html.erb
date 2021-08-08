@@ -11,6 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="page">
+      <div class="page__navbar">
+        Navigation bar
+      </div>
+      <div class="page__content">
+        Content
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
