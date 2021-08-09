@@ -1,0 +1,40 @@
+.page-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  flex-direction: row;
+}
+
+
+.page-footer__section {
+  flex-basis: 250px;
+  flex-grow: 1;
+}
+
+
+.page-footer__section-title {
+  color: #5e5e6e;
+  margin-bottom: 0.75em;
+  font-size: 1.15em;
+}
+
+
+.page-footer__section-point {
+  margin-bottom: 0.5em;
+  padding-left: 0.75em;
+}
+
+
+.page-footer__section-link {
+  color: #9c9cab;
+}
+.page-footer__section-link:hover {
+  color: inherit;
+}
+
+
+.page-footer__year-section {
+  color: #5e5e6e;
+  flex-basis: 100%;
+  text-align: center;
+}

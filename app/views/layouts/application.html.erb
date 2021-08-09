@@ -22,8 +22,31 @@
       <div class="page__content container">
         <%= yield %>
       </div>
-      <div class="page__footer container">
-        FOOTER TEXT
+      <div class="page__footer page-footer container">
+        <div class="page-footer__section">
+          <div class="page-footer__section-title">Поддержка</div>
+          <div class="page-footer__section-point">
+            <a href="https://vk.com/dusic_bot" class="page-footer__section-link">
+              Группа ВКонтакте
+            </a>
+          </div>
+          <div class="page-footer__section-point">
+            <a href="https://discord.gg/4sUeCmQ" class="page-footer__section-link">
+              Cервер в Discord
+            </a>
+          </div>
+        </div>
+        <div class="page-footer__section">
+          <div class="page-footer__section-title">О боте</div>
+          <div class="page-footer__section-point">
+            <a href="https://discord.com/oauth2/authorize?client_id=479945608824619009&scope=bot&permissions=3213312" class="page-footer__section-link">
+              Пригласить на свой сервер
+            </a>
+          </div>
+        </div>
+        <div class="page-footer__year-section">
+          <%= Date.current.year %>, <%= t('.dusic') %>
+        </div>
       </div>
     </div>
   </body>
