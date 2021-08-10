@@ -3,12 +3,14 @@
   flex-wrap: wrap;
   gap: 30px;
   flex-direction: row;
+  justify-content: center;
 }
 
 
 .page-footer__section {
-  flex-basis: 250px;
+  flex-basis: 200px;
   flex-grow: 1;
+  max-width: 300px;
 }
 
 
