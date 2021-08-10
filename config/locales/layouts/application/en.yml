@@ -2,3 +2,8 @@ en:
   layouts:
     application:
       dusic: "Dusic"
+      support: "Support"
+      vk_group: "VK group"
+      discord_server: "Discord server"
+      about_the_bot: "Bot"
+      invite_to_server: "Invite the bot"
