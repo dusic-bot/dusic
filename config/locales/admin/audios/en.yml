@@ -6,6 +6,7 @@ en:
         audio_manager_label: "Audio manager:"
         request_type_label: "Request type:"
         query_label: "Query:"
+        load_button: "Load"
         query_placeholder: "URL or search query"
         download_parameters: "Download parameters"
         output_format_label: "Output format:"

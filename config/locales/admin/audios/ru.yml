@@ -6,6 +6,7 @@ ru:
         audio_manager_label: "Аудио менеджер:"
         request_type_label: "Тип запроса:"
         query_label: "Запрос:"
+        load_button: "Загрузить"
         query_placeholder: "URL или поисковой запрос"
         download_parameters: "Параметры загрузки"
         output_format_label: "Формат файла"
