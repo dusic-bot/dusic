@@ -26,12 +26,12 @@
         <div class="application-footer__section">
           <div class="application-footer__section-title"><%= t('.support') %></div>
           <div class="application-footer__section-point">
-            <a href="https://vk.com/dusic_bot" class="application-footer__section-link">
+            <a href="<%= ApplicationHelper::VK_GROUP_URL %>" class="application-footer__section-link">
               <%= t('.vk_group') %>
             </a>
           </div>
           <div class="application-footer__section-point">
-            <a href="https://discord.gg/4sUeCmQ" class="application-footer__section-link">
+            <a href="<%= ApplicationHelper::DISCORD_SERVER_URL %>" class="application-footer__section-link">
               <%= t('.discord_server') %>
             </a>
           </div>
@@ -41,7 +41,7 @@
             <%= t('.about_the_bot') %>
           </div>
           <div class="application-footer__section-point">
-            <a href="https://discord.com/oauth2/authorize?client_id=479945608824619009&scope=bot&permissions=3213312" class="application-footer__section-link">
+            <a href="<%= ApplicationHelper::BOT_INVITE_URL %>" class="application-footer__section-link">
               <%= t('.invite_to_server') %>
             </a>
           </div>
