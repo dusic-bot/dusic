@@ -3,3 +3,4 @@ ru:
     root:
       dusic: "Dusic"
       main_text: "Музыкальный бот для Discord, воспроизводящий музыку из VK"
+      invite_to_server: "Добавить на сервер"

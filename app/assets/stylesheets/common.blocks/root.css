@@ -1,0 +1,43 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 50px;
+  padding-top: 15px;
+  padding-bottom: 50px;
+}
+
+
+.root__content {
+  flex-basis: 300px;
+  flex-grow: 1;
+}
+
+
+.root__content-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+
+.root__content-button {
+  flex-basis: 50px;
+  min-width: fit-content;
+}
+
+
+.root__image-container {
+  flex-basis: 300px;
+  flex-grow: 2;
+}
+
+
+.root__image {
+  background-image: url("~images/play-call.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-bottom: 50%;
+}
