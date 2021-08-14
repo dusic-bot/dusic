@@ -26,14 +26,10 @@
         <div class="application-footer__section">
           <div class="application-footer__section-title"><%= t('.support') %></div>
           <div class="application-footer__section-point">
-            <a href="<%= ApplicationHelper::VK_GROUP_URL %>" class="application-footer__section-link">
-              <%= t('.vk_group') %>
-            </a>
+            <%= link_to t('.vk_group'), ApplicationHelper::VK_GROUP_URL, class: 'application-footer__section-link' %>
           </div>
           <div class="application-footer__section-point">
-            <a href="<%= ApplicationHelper::DISCORD_SERVER_URL %>" class="application-footer__section-link">
-              <%= t('.discord_server') %>
-            </a>
+            <%= link_to t('.discord_server'), ApplicationHelper::DISCORD_SERVER_URL, class: 'application-footer__section-link' %>
           </div>
         </div>
         <div class="application-footer__section">
@@ -41,9 +37,7 @@
             <%= t('.about_the_bot') %>
           </div>
           <div class="application-footer__section-point">
-            <a href="<%= ApplicationHelper::BOT_INVITE_URL %>" class="application-footer__section-link">
-              <%= t('.invite_to_server') %>
-            </a>
+            <%= link_to t('.invite_to_server'), ApplicationHelper::BOT_INVITE_URL, class: 'application-footer__section-link' %>
           </div>
         </div>
         <div class="application-footer__year-section">
