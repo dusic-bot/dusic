@@ -26,18 +26,3 @@
   flex-basis: 50px;
   min-width: fit-content;
 }
-
-
-.root__image-container {
-  flex-basis: 300px;
-  flex-grow: 2;
-}
-
-
-.root__image {
-  background-image: url("~images/play-call.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  padding-bottom: 50%;
-}
