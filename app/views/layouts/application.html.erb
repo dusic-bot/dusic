@@ -11,42 +11,42 @@
   </head>
 
   <body>
-    <div class="page">
-      <div class="page__fixed-top">
+    <div class="application">
+      <div class="application__fixed-top">
         <%= render 'layouts/application/alert', class: 'alert_danger', content: alert %>
         <%= render 'layouts/application/alert', class: 'alert_primary', content: notice %>
       </div>
-      <div class="page__header">
-        <a href="/"><div class="page__header-logo"></div></a>
+      <div class="application__header">
+        <a href="/"><div class="application__header-logo"></div></a>
       </div>
-      <div class="page__content container">
+      <div class="application__content container">
         <%= yield %>
       </div>
-      <div class="page__footer page-footer container">
-        <div class="page-footer__section">
-          <div class="page-footer__section-title"><%= t('.support') %></div>
-          <div class="page-footer__section-point">
-            <a href="https://vk.com/dusic_bot" class="page-footer__section-link">
+      <div class="application__footer application-footer container">
+        <div class="application-footer__section">
+          <div class="application-footer__section-title"><%= t('.support') %></div>
+          <div class="application-footer__section-point">
+            <a href="https://vk.com/dusic_bot" class="application-footer__section-link">
               <%= t('.vk_group') %>
             </a>
           </div>
-          <div class="page-footer__section-point">
-            <a href="https://discord.gg/4sUeCmQ" class="page-footer__section-link">
+          <div class="application-footer__section-point">
+            <a href="https://discord.gg/4sUeCmQ" class="application-footer__section-link">
               <%= t('.discord_server') %>
             </a>
           </div>
         </div>
-        <div class="page-footer__section">
-          <div class="page-footer__section-title">
+        <div class="application-footer__section">
+          <div class="application-footer__section-title">
             <%= t('.about_the_bot') %>
           </div>
-          <div class="page-footer__section-point">
-            <a href="https://discord.com/oauth2/authorize?client_id=479945608824619009&scope=bot&permissions=3213312" class="page-footer__section-link">
+          <div class="application-footer__section-point">
+            <a href="https://discord.com/oauth2/authorize?client_id=479945608824619009&scope=bot&permissions=3213312" class="application-footer__section-link">
               <%= t('.invite_to_server') %>
             </a>
           </div>
         </div>
-        <div class="page-footer__year-section">
+        <div class="application-footer__year-section">
           <%= Date.current.year %>, <%= t('.dusic') %>
         </div>
       </div>

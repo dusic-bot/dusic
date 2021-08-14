@@ -1,4 +1,4 @@
-.page {
+.application {
   font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -13,7 +13,7 @@
 }
 
 
-.page__fixed-top {
+.application__fixed-top {
   position: absolute;
   left: 0;
   top: 0;
@@ -22,14 +22,14 @@
 }
 
 
-.page__header {
+.application__header {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
 
-.page__header-logo {
+.application__header-logo {
   background-image: url("~images/logo.svg");
   background-size: contain;
   filter: invert(98%) sepia(12%) saturate(115%) hue-rotate(174deg) brightness(99%) contrast(97%);;
@@ -38,12 +38,12 @@
 }
 
 
-.page__content {
+.application__content {
   flex-grow: 1;
 }
 
 
-.page__footer {
+.application__footer {
   font-size: 0.9em;
   border-top: 3px solid #2f2f37;
   padding: 15px 50px 50px 50px;
