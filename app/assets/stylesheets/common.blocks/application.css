@@ -3,8 +3,8 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #f8f9fa;
-  background-color: #1c1c21;
+  background-color: #f8f9fa;
+  color: #303030;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
 .application__header-logo {
   background-image: url("~images/logo.svg");
   background-size: contain;
-  filter: invert(98%) sepia(12%) saturate(115%) hue-rotate(174deg) brightness(99%) contrast(97%);;
+  filter: invert(9%) sepia(0%) saturate(8%) hue-rotate(197deg) brightness(102%) contrast(93%);
   height: 64px;
   width: 64px;
 }
@@ -45,6 +45,6 @@
 
 .application__footer {
   font-size: 0.9em;
-  border-top: 3px solid #2f2f37;
+  border-top: 2px solid #2f2f37;
   padding: 15px 50px 30px 50px;
 }

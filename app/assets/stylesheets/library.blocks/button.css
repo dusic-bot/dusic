@@ -1,10 +1,9 @@
 .button {
   padding: 3px 15px;
-  border: 1px solid #2f2f37;
+  border: 1px solid #474747;
   border-radius: 5px;
   line-height: 2em;
   display: block;
   text-decoration: none;
   color: inherit;
-  background-color: #2f2f37;
 }
