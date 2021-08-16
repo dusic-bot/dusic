@@ -8,4 +8,6 @@
   </div>
 </div>
 
-<%= stylesheet_pack_tag 'pages/root', 'data-turbolinks-track': 'reload' %>
+<% content_for :head do %>
+  <%= stylesheet_pack_tag 'pages/root', 'data-turbolinks-track': 'reload' %>
+<% end %>
