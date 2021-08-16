@@ -7,3 +7,6 @@
   text-decoration: none;
   color: inherit;
 }
+.button:hover {
+  background-color: #f5f5f5;
+}
