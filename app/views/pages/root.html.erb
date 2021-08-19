@@ -1,2 +1,13 @@
-<h1><%= t('.dusic') %></h1>
-<p><%= t('.main_text') %></p>
+<div class="root">
+  <div class="root__content">
+    <h1><%= t('.dusic') %></h1>
+    <p><%= t('.main_text') %></p>
+    <div class="root__content-buttons">
+      <%= link_to t('.invite_to_server'), ApplicationHelper::BOT_INVITE_URL, class: 'root__content-button button' %>
+    </div>
+  </div>
+</div>
+
+<% content_for :head do %>
+  <%= stylesheet_pack_tag 'pages/root', 'data-turbolinks-track': 'reload' %>
+<% end %>

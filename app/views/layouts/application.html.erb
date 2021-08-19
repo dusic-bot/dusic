@@ -6,32 +6,46 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'stylesheets/application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'layouts/application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'layouts/application', 'data-turbolinks-track': 'reload' %>
+
+    <%= yield :head %>
   </head>
 
   <body>
-    <%= render 'shared/topbar' %>
-    <div class="container mt-2">
-      <% if alert.present? %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <%= alert %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="<%= t('.close') %>">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="application">
+      <div class="application__fixed-top">
+        <%= render 'layouts/application/alert', class: 'alert_danger', content: alert %>
+        <%= render 'layouts/application/alert', class: 'alert_primary', content: notice %>
+      </div>
+      <div class="application__header">
+        <a href="/"><div class="application__header-logo"></div></a>
+      </div>
+      <div class="application__content container">
+        <%= yield %>
+      </div>
+      <div class="application__footer application-footer container">
+        <div class="application-footer__section">
+          <div class="application-footer__section-title"><%= t('.support') %></div>
+          <div class="application-footer__section-point">
+            <%= link_to t('.vk_group'), ApplicationHelper::VK_GROUP_URL, class: 'application-footer__section-link' %>
+          </div>
+          <div class="application-footer__section-point">
+            <%= link_to t('.discord_server'), ApplicationHelper::DISCORD_SERVER_URL, class: 'application-footer__section-link' %>
+          </div>
         </div>
-      <% end %>
-
-      <% if notice.present? %>
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-          <%= notice %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="<%= t('.close') %>">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="application-footer__section">
+          <div class="application-footer__section-title">
+            <%= t('.about_the_bot') %>
+          </div>
+          <div class="application-footer__section-point">
+            <%= link_to t('.invite_to_server'), ApplicationHelper::BOT_INVITE_URL, class: 'application-footer__section-link' %>
+          </div>
         </div>
-      <% end %>
-
-      <%= yield %>
+        <div class="application-footer__year-section">
+          <%= Date.current.year %>, <%= t('.dusic') %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

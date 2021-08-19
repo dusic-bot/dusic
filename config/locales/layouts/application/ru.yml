@@ -2,4 +2,8 @@ ru:
   layouts:
     application:
       dusic: "Dusic"
-      close: "Закрыть"
+      support: "Поддержка"
+      vk_group: "Группа ВКонтакте"
+      discord_server: "Cервер в Discord"
+      about_the_bot: "О боте"
+      invite_to_server: "Пригласить на свой сервер"

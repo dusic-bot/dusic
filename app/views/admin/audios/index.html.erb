@@ -14,7 +14,7 @@
         <%= f.label :query, t('.query_label') %>
         <%= f.text_field :query, class: 'form-control', placeholder: t('.query_placeholder'), autocomplete: 'off' %>
       </div>
-      <%= f.submit 'Load', class: 'btn btn-primary w-100' %>
+      <%= f.submit t('.load_button'), class: 'btn btn-primary w-100' %>
     <% end %>
 
     <h6><%= t('.download_parameters') %></h6>
@@ -37,4 +37,5 @@
   </div>
 </div>
 
+<%= stylesheet_pack_tag 'admin/audios', 'data-turbolinks-track': 'reload' %>
 <%= javascript_pack_tag 'admin/audios', 'data-turbolinks-track': 'reload' %>
