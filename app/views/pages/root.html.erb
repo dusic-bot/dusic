@@ -1,7 +1,7 @@
 <div class="root">
   <div class="root__content">
     <h1><%= t('.dusic') %></h1>
-    <p><%= t('.main_text') %></p>
+    <p><%= t('.description') %></p>
     <div class="root__content-buttons">
       <%= link_to t('.invite_to_server'), ApplicationHelper::BOT_INVITE_URL, class: 'root__content-button button' %>
     </div>
@@ -10,4 +10,11 @@
 
 <% content_for :packs do %>
   <%= stylesheet_pack_tag 'pages/root', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<% content_for :meta do %>
+  <%= title_tag t('.dusic') %>
+  <meta name="description" content="<%= t('.description') %>">
+  <meta name="ronots" content="index, follow">
+  <link rel="canonical" href="https://dusic.fizvlad.com/">
 <% end %>
