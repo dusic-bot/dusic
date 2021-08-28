@@ -13,7 +13,7 @@ class FormatConverterService
 
       send(method_name, io, *args, **opts)
     rescue NameError => e
-      Rails.logger.debug "Failed conversion #{initial_format} -> #{format}: No converter(#{e})"
+      Rails.logger.debug { "Failed conversion #{initial_format} -> #{format}: No converter(#{e})" }
       nil
     end
 
@@ -52,7 +52,7 @@ class FormatConverterService
       Process.wait spawn(command, in: input, out: output)
       conversion_duration = Time.current - start_time
 
-      Rails.logger.debug "Finished converting in #{conversion_duration}s (#{name})"
+      Rails.logger.debug { "Finished converting in #{conversion_duration}s (#{name})" }
       output.rewind
       output
     end
