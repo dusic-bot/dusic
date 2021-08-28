@@ -87,13 +87,13 @@ module Vk
     def vk_request_wrap
       convert_all(yield).compact
     rescue StandardError => e
-      Rails.logger.error "VK audio convertion error: #{e}\n#{e.backtrace}"
+      Rails.logger.error "VK audio conversion error: #{e}\n#{e.backtrace}"
       []
     end
 
     def convert_all(data)
       if data.is_a? Array
-        data.map { |el| convert_single(el) }.compact
+        data.filter_map { |el| convert_single(el) }
       elsif data.nil?
         []
       else
@@ -137,7 +137,7 @@ module Vk
 
     def fetch_audios(ids)
       audios = client.get_urls(ids)
-      Rails.logger.debug "Fetched #{audios.compact.size}/#{audios.size} audios"
+      Rails.logger.debug { "Fetched #{audios.compact.size}/#{audios.size} audios" }
       audios
     rescue StandardError => e
       Rails.logger.error "VK audio url fetch error: #{e}\n#{e.backtrace}"
