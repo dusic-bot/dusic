@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /$
-Disallow: /
-Sitemap: http://www.example.com/sitemap.xml
+Allow: /
+Disallow: /signin
+Sitemap: https://dusic.fizvlad.com/sitemap.xml
