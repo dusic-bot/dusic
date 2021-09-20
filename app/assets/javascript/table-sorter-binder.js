@@ -63,16 +63,12 @@ function headCellClick() {
   });
 }
 
-function bind(table) {
-  const $table = jQuery(table);
-
-  $table.find(HEAD_CELLS_CSS_SELECTOR).on('click', headCellClick);
-}
-
 jQuery(() => {
   window.console.debug('Fired tale-sorter-binder');
 
   const tables = jQuery('.js-table-sorter-binder');
 
-  tables.each((_i, table) => { bind(table); });
+  tables.each((_i, table) => {
+    jQuery(table).find(HEAD_CELLS_CSS_SELECTOR).on('click', headCellClick);
+  });
 });
