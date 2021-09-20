@@ -6,7 +6,7 @@ function parseCellValue(cell) {
   return cell.innerText;
 }
 
-function IsEqualHTMLCollection(collectionA, collectionB) {
+function isEqualHTMLCollection(collectionA, collectionB) {
   if (collectionA.length !== collectionB.length) return false;
 
   for (let index = 0; index < collectionA.length; index += 1) {
@@ -54,7 +54,7 @@ function headCellClick() {
   const lines = $table.find('tbody tr').toArray();
   const sortedLines = sortLines([...lines], index);
 
-  if (IsEqualHTMLCollection(sortedLines, lines)) {
+  if (isEqualHTMLCollection(sortedLines, lines)) {
     sortedLines.reverse();
   }
 
