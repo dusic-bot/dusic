@@ -52,7 +52,7 @@ function audioButtonClick() {
   });
 }
 
-jQuery(document).ready(() => {
+jQuery(() => {
   window.console.debug('Fired audio-download-button-binder');
 
   const buttons = jQuery('.js-audio-download-button-binder');
