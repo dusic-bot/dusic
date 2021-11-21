@@ -48,7 +48,7 @@ gem 'blueprinter'
 gem 'jwt'
 
 # Vkponchik donations
-gem 'vkponchik'
+gem 'vkponchik', '~> 1.1'
 
 # Vkdonate donations
 gem 'vkdonate'
