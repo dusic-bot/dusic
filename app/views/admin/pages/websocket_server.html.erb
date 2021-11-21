@@ -48,7 +48,7 @@
           </p>
         </div>
         <div class="overflow-auto">
-          <table class="card-body table table-striped table-bordered mb-0">
+          <table class="card-body table table-striped table-bordered mb-0 js-table-sorter-binder">
             <thead class="text-center">
               <tr>
                 <td rowspan=2 class="align-middle"><%= t('.shards') %></td>
@@ -81,3 +81,5 @@
     </div>
   </div>
 <% end %>
+
+<%= javascript_pack_tag 'admin/websocket_server', 'data-turbolinks-track': 'reload' %>
