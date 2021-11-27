@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 class VkponchikDonationsCheckerService < ExternalDonationsCheckerService
-  REQUEST_COUNT = 100
-  PAGES_FETCH_INTERVAL = 6.seconds
-
   class << self
     private
 
-    def request_count
-      REQUEST_COUNT
-    end
-
-    def pages_fetch_interval
-      PAGES_FETCH_INTERVAL
+    def fetch_donations_until(last_external_id)
+      unsafe_fetch(last_external_id)
+    rescue StandardError => e
+      Rails.logger.error "#{donation_class} request error: #{e}\n#{e.backtrace}"
+      []
     end
 
     def donation_class
@@ -23,12 +19,8 @@ class VkponchikDonationsCheckerService < ExternalDonationsCheckerService
       VkponchikDonationCreatorService
     end
 
-    def unsafe_fetch(offset)
-      ::VKPONCHIK_CLIENT.request('donates/get', len: REQUEST_COUNT, offset: offset)[:list]
-    end
-
-    def donation_external_id(donation)
-      donation['id'].to_i
+    def unsafe_fetch(last_external_id)
+      ::VKPONCHIK_CLIENT.request('donates/get-last', last: last_external_id)[:list]
     end
   end
 end

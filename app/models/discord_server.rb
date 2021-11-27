@@ -9,10 +9,12 @@ class DiscordServer < ApplicationRecord
 
   has_one :today_statistic, -> { where(date: Time.zone.today) },
           class_name: 'DailyStatistic',
-          inverse_of: :discord_server
+          inverse_of: :discord_server,
+          dependent: :destroy
   has_one :last_donation, -> { order(date: :desc) },
           class_name: 'Donation',
-          inverse_of: :discord_server
+          inverse_of: :discord_server,
+          dependent: :nullify
 
   scope :of_shard, lambda { |shard_id, shard_num|
     where('(discord_servers.external_id >> 22) % ? = ?', shard_num, shard_id)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class VkponchikDonationsCheckJob < ApplicationJob
-  INTERVAL = 45.seconds
+  INTERVAL = 65.seconds
 
   queue_as :donations
 
