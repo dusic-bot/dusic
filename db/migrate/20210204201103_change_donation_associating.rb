@@ -1,6 +1,6 @@
 class ChangeDonationAssociating < ActiveRecord::Migration[6.1]
   def up
-    change_table :donations do |t|
+    change_table :donations do |t| # rubocop:disable Rails/BulkChangeTable
       t.belongs_to :discord_server, null: true
       t.belongs_to :discord_user, null: true
 
