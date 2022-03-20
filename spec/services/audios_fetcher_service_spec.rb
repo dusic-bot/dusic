@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe AudiosFetcherService do
-  subject(:result) { described_class.call({ manager: manager, type: type, query: query }) }
+  subject(:result) { described_class.call({ manager:, type:, query: }) }
 
   let(:manager) { nil }
   let(:type) { 'type_stub' }

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe AudioLoaderService do
-  subject(:result) { described_class.call({ manager: manager, id: id, format: format }) }
+  subject(:result) { described_class.call({ manager:, id:, format: }) }
 
   let(:manager) { nil }
   let(:id) { nil }

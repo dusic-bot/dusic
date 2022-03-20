@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.7.2']
+        ruby-version: ['3.1.1']
     services:
       postgres:
         image: postgres:11
@@ -33,7 +33,7 @@ jobs:
     - name: Set up Node
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '16'
     - name: Load credentials key
       run: echo '${{ secrets.TEST_CREDENTIALS_KEY }}' > config/credentials/test.key
     - name: Install dependent libraries

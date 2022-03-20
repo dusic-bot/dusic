@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe DonationIdDataFillerService do
-  subject(:result) { described_class.call({ id: id, user_id: user_id, server_id: server_id }) }
+  subject(:result) { described_class.call({ id:, user_id:, server_id: }) }
 
   let(:id) { nil }
   let(:user_id) { nil }

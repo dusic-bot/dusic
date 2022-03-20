@@ -27,7 +27,7 @@ class DiscordServerUpdaterService
 
     def update_today_statistic(server, params)
       date = params[:date]
-      statistic = server.daily_statistics.find_or_create_by!(date: date)
+      statistic = server.daily_statistics.find_or_create_by!(date:)
       return unless statistic&.valid?
 
       permitted_params = params.permit(:tracks_length, :tracks_amount)

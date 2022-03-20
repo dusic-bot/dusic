@@ -14,7 +14,7 @@ FactoryBot.define do
         duration { 60 }
       end
 
-      external { VkMusic::Audio.new(artist: artist, title: title, duration: duration) }
+      external { VkMusic::Audio.new(artist:, title:, duration:) }
     end
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe 'Admin::Audios', type: :request do
   describe 'GET #audios' do
     subject(:request) do
       sign_in create(:user, admin: true)
-      get '/admin/audios', params: params
+      get '/admin/audios', params:
     end
 
     let(:params) { {} }
@@ -34,7 +34,7 @@ RSpec.describe 'Admin::Audios', type: :request do
   describe 'GET #audio' do
     subject(:request) do
       sign_in create(:user, admin: true)
-      get "/admin/audios/#{manager}/#{id}", params: params
+      get "/admin/audios/#{manager}/#{id}", params:
     end
 
     let(:params) { { format: 'mp3' } }

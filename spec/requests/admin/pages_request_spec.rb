@@ -34,7 +34,7 @@ RSpec.describe 'Admin::Pages', type: :request do
   describe 'GET #donation_id' do
     subject(:request) do
       sign_in create(:user, admin: true)
-      get '/admin/donation_id', params: params
+      get '/admin/donation_id', params:
     end
 
     let(:params) { {} }
@@ -76,7 +76,7 @@ RSpec.describe 'Admin::Pages', type: :request do
   describe 'POST #jwt_token' do
     subject(:request) do
       sign_in create(:user, admin: true)
-      post '/admin/jwt_token', params: params
+      post '/admin/jwt_token', params:
     end
 
     let(:params) { {} }
@@ -131,7 +131,7 @@ RSpec.describe 'Admin::Pages', type: :request do
   describe 'POST #websocket_server' do
     subject(:request) do
       sign_in create(:user, admin: true)
-      post '/admin/websocket_server', params: params
+      post '/admin/websocket_server', params:
     end
 
     let(:params) { {} }
@@ -173,7 +173,7 @@ RSpec.describe 'Admin::Pages', type: :request do
   describe 'POST #donation_adder' do
     subject(:request) do
       sign_in create(:user, admin: true)
-      post '/admin/donation_adder', params: params
+      post '/admin/donation_adder', params:
     end
 
     let(:params) { {} }

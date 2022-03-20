@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def switch_locale(&action)
+  def switch_locale(&)
     # NOTE: i18n authors think that using cookies for storing locale is an anti-pattern, but I personally disagree
     locale = params[:locale] || cookies[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
+    I18n.with_locale(locale, &)
   end
 
   def set_response_language_header
@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   def admin_check
     return if current_user&.admin
 
-    redirect_to main_app.root_path, alert: 'Access denied'
+    redirect_to main_app.root_path
   end
 end

@@ -54,7 +54,7 @@ class ExternalDonationCreatorService
 
     def create_external_donation(donation, data)
       donation_class.create!(
-        donation: donation,
+        donation:,
         message: message(data),
         vk_user_external_id: vk_user_external_id(data),
         external_id: external_id(data)

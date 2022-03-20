@@ -1,5 +1,5 @@
 module.exports = function(api) {
-  var validEnv = ['development', 'test', 'production']
+  var validEnv = ['development', 'production']
   var currentEnv = api.env()
   var isDevelopmentEnv = api.env('development')
   var isProductionEnv = api.env('production')
@@ -43,6 +43,18 @@ module.exports = function(api) {
       '@babel/plugin-transform-destructuring',
       [
         '@babel/plugin-proposal-class-properties',
+        {
+          loose: true
+        }
+      ],
+      [
+        '@babel/plugin-proposal-private-property-in-object',
+        {
+          loose: true
+        }
+      ],
+      [
+        '@babel/plugin-proposal-private-methods',
         {
           loose: true
         }

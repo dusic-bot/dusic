@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe AudioResponseBlueprint do
   subject(:result) { JSON.parse(described_class.render(audio_response)) }
 
-  let(:audio_response) { build(:audio_response, request_type: request_type, response: response_items) }
+  let(:audio_response) { build(:audio_response, request_type:, response: response_items) }
   let(:request_type) { 'type' }
   let(:response_items) { [] }
 

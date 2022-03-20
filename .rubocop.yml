@@ -6,7 +6,11 @@ require:
 
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.1
+
+Lint/RedundantCopDisableDirective:
+  Exclude:
+    - db/**/*
 
 Style/Documentation:
   Enabled: false

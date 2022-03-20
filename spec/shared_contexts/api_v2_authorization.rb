@@ -8,7 +8,7 @@ RSpec.shared_context 'with api v2 authorization' do |sample_url, accessed_contro
   let(:authorization_params) { { access: { controllers: [accessed_controller] } } }
 
   context 'when not authorized' do
-    subject(:request) { get sample_url, headers: headers }
+    subject(:request) { get sample_url, headers: }
 
     let(:authorization_params) { { access: { controllers: [] } } }
 
@@ -24,7 +24,7 @@ RSpec.shared_context 'with api v2 authorization' do |sample_url, accessed_contro
   end
 
   context 'when not authorized in deprecated format' do
-    subject(:request) { get sample_url, headers: headers }
+    subject(:request) { get sample_url, headers: }
 
     let(:authorization_params) { { access_level: 0 } }
 

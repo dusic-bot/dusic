@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Playlist do
-  subject(:instance) { build(:playlist, external: external, id: id, audios: audios) }
+  subject(:instance) { build(:playlist, external:, id:, audios:) }
 
   let(:external) { { stub: true } }
   let(:id) { 'id' }

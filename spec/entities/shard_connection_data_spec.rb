@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ShardConnectionData do
   subject(:instance) do
-    build(:shard_connection_data, shard_id: shard_id, shard_num: shard_num, bot_id: bot_id)
+    build(:shard_connection_data, shard_id:, shard_num:, bot_id:)
   end
 
   let(:shard_id) { 0 }
@@ -20,7 +20,7 @@ RSpec.describe ShardConnectionData do
 
     context 'when same other' do
       let(:other) do
-        build(:shard_connection_data, shard_id: shard_id, shard_num: shard_num, bot_id: bot_id)
+        build(:shard_connection_data, shard_id:, shard_num:, bot_id:)
       end
 
       it { expect(result).to be(true) }

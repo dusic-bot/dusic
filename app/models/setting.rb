@@ -3,7 +3,7 @@
 class Setting < ApplicationRecord
   belongs_to :discord_server
 
-  validates :language, presence: true, inclusion: { in: %w[ru en], message: '%<value>s is not a valid language' }
+  validates :language, presence: true, inclusion: { in: %w[ru en] }
   validates :volume, numericality: { greater_than: 0, less_than_or_equal_to: 1000 }
   validate :prefix_is_correct
 

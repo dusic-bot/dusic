@@ -207,7 +207,7 @@ RSpec.describe Vk::AudioManager do
   describe '#url' do
     subject(:result) { instance.url(audio) }
 
-    let(:audio) { build(:vk_audio, external: external, id: id) }
+    let(:audio) { build(:vk_audio, external:, id:) }
     let(:external) { nil }
     let(:id) { nil }
 
