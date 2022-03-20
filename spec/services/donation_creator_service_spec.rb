@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe DonationCreatorService do
-  subject(:result) { described_class.call(20, date, message, previous_donations_query: previous_donations_query) }
+  subject(:result) { described_class.call(20, date, message, previous_donations_query:) }
 
   let(:date) { Time.current }
   let(:message) { '' }

@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Vk::Playlist do
-  subject(:instance) { build(:vk_playlist, external: external, id: id, audios: audios) }
+  subject(:instance) { build(:vk_playlist, external:, id:, audios:) }
 
-  let(:external) { VkMusic::Playlist.new(audios, title: title, subtitle: subtitle) }
+  let(:external) { VkMusic::Playlist.new(audios, title:, subtitle:) }
   let(:title) { 'title' }
   let(:subtitle) { 'subtitle' }
   let(:id) { 'id' }

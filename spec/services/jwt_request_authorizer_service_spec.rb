@@ -14,7 +14,7 @@ RSpec.describe JwtRequestAuthorizerService do
   end
 
   context 'when with actual request' do
-    let(:request) { instance_double('ActionDispatch::Request', headers: headers) }
+    let(:request) { instance_double('ActionDispatch::Request', headers:) }
     let(:headers) { {} }
 
     it :aggregate_failures do

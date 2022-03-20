@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:instance) { build(:user, email: email, password: password) }
+  subject(:instance) { build(:user, email:, password:) }
 
   let(:email) { 'test@email.com' }
   let(:password) { 'password' }

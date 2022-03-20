@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/.freeze
+  EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\z/
 
   validates :email, presence: true, format: EMAIL_REGEX
 

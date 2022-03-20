@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe DiscordServer, type: :model do
-  subject(:instance) { build(:discord_server, external_id: external_id) }
+  subject(:instance) { build(:discord_server, external_id:) }
 
   let(:external_id) { 482473013246296084 }
 
@@ -22,7 +22,7 @@ RSpec.describe DiscordServer, type: :model do
   end
 
   context 'when already exists' do
-    before { create(:discord_server, external_id: external_id) }
+    before { create(:discord_server, external_id:) }
 
     it 'fails instance creation' do
       expect { instance.save! }.to raise_error(ActiveRecord::RecordNotUnique)
@@ -72,7 +72,7 @@ RSpec.describe DiscordServer, type: :model do
   describe '#today_statistic' do
     subject(:result) { instance.today_statistic }
 
-    let(:instance) { create(:discord_server, external_id: external_id) }
+    let(:instance) { create(:discord_server, external_id:) }
 
     it { expect(result).to be_nil }
 
@@ -102,7 +102,7 @@ RSpec.describe DiscordServer, type: :model do
   describe '#last_donation' do
     subject(:result) { instance.last_donation }
 
-    let(:instance) { create(:discord_server, external_id: external_id) }
+    let(:instance) { create(:discord_server, external_id:) }
 
     it { expect(result).to be_nil }
 

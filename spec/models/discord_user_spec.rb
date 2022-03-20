@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe DiscordUser, type: :model do
-  subject(:instance) { build(:discord_user, external_id: external_id) }
+  subject(:instance) { build(:discord_user, external_id:) }
 
   let(:external_id) { 208117693537058817 }
 
@@ -20,7 +20,7 @@ RSpec.describe DiscordUser, type: :model do
   end
 
   context 'when already exists' do
-    before { create(:discord_user, external_id: external_id) }
+    before { create(:discord_user, external_id:) }
 
     it 'fails instance creation' do
       expect { instance.save! }.to raise_error(ActiveRecord::RecordNotUnique)

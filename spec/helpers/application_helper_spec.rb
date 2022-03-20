@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ApplicationHelper do
   describe '#title_tag' do
-    subject(:result) { helper.title_tag(title, env_prefix: env_prefix) }
+    subject(:result) { helper.title_tag(title, env_prefix:) }
 
     let(:title) { 'title' }
     let(:env_prefix) { false }

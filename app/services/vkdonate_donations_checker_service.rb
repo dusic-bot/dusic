@@ -24,7 +24,7 @@ class VkdonateDonationsCheckerService < ExternalDonationsCheckerService
     end
 
     def unsafe_fetch(offset)
-      ::VKDONATE_CLIENT.donates(count: REQUEST_COUNT, offset: offset)
+      ::VKDONATE_CLIENT.donates(count: REQUEST_COUNT, offset:)
     end
 
     def donation_external_id(donation)

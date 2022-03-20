@@ -26,7 +26,7 @@ RSpec.describe DiscordServerBlueprint do
 
   context 'when with donation' do
     let(:donation) do
-      create(:donation, discord_server: discord_server, discord_user: nil, size: 10, date: donation_datetime)
+      create(:donation, discord_server:, discord_user: nil, size: 10, date: donation_datetime)
     end
     let(:donation_datetime) { Time.current }
     let(:expected_last_donation_json) do
@@ -40,7 +40,7 @@ RSpec.describe DiscordServerBlueprint do
 
   context 'when with daily statistic' do
     let(:today_statistic) do
-      create(:daily_statistic, discord_server: discord_server, tracks_amount: 10,
+      create(:daily_statistic, discord_server:, tracks_amount: 10,
                                tracks_length: 10, date: Time.zone.today)
     end
     let(:expected_today_statistic_json) do
@@ -54,7 +54,7 @@ RSpec.describe DiscordServerBlueprint do
 
   context 'when several days after server start' do
     it do
-      Timecop.freeze(Time.current + 1.week) do
+      Timecop.freeze(1.week.from_now) do
         expect(result).to eq(expected_json)
       end
     end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DonationCreatorService
-  DONATION_IDENTIFIERS_REGEX = /([a-zA-Z]+_[a-zA-Z]+)/.freeze
+  DONATION_IDENTIFIERS_REGEX = /([a-zA-Z]+_[a-zA-Z]+)/
 
   class << self
     def call(size, date, message, previous_donations_query: nil)
@@ -11,7 +11,7 @@ class DonationCreatorService
         server_id, user_id = get_server_and_user_ids_based_on_previous_donations(previous_donations_query)
       end
 
-      Donation.create!(size: size, date: date, discord_server_id: server_id, discord_user_id: user_id)
+      Donation.create!(size:, date:, discord_server_id: server_id, discord_user_id: user_id)
     end
 
     private

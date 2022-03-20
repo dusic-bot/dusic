@@ -36,13 +36,13 @@ RSpec.describe DiscordServerUpdaterService do
 
   context 'when today statistic param specified' do
     let(:params_hash) do
-      { today_statistic: { date: date, tracks_amount: 1, tracks_length: 1 } }
+      { today_statistic: { date:, tracks_amount: 1, tracks_length: 1 } }
     end
     let(:date) { '2020-05-01' }
 
     it :aggregate_failures do
       call
-      daily_statistic = server.daily_statistics.find_by(date: date)
+      daily_statistic = server.daily_statistics.find_by(date:)
       expect(daily_statistic.tracks_amount).to eq(1)
       expect(daily_statistic.tracks_length).to eq(1)
     end

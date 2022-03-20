@@ -27,7 +27,7 @@ RSpec.describe RemoteFileDownloaderService do
 
   context 'when StringIO downloaded' do
     let(:download_stub) do
-      file = Tempfile.new(mode: mode)
+      file = Tempfile.new(mode:)
       file.write("Tempfile\ncontent")
       file.flush
     end

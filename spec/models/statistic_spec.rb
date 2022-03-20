@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Statistic, type: :model do
   subject(:update_instance) do
-    discord_server.statistic.update!(tracks_length: tracks_length, tracks_amount: tracks_amount)
+    discord_server.statistic.update!(tracks_length:, tracks_amount:)
   end
 
   let(:discord_server) { create(:discord_server) }
@@ -16,7 +16,7 @@ RSpec.describe Statistic, type: :model do
   end
 
   context 'when statistic for server already exist' do
-    subject(:create_new_instance) { create(:statistic, discord_server: discord_server) }
+    subject(:create_new_instance) { create(:statistic, discord_server:) }
 
     it 'fails new instance creation' do
       expect { create_new_instance }.to raise_error(ActiveRecord::RecordNotUnique)

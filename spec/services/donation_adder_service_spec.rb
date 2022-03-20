@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe DonationAdderService do
   subject(:call) { described_class.call(params) }
 
-  let(:params) { { message: message, size: size, date: date } }
+  let(:params) { { message:, size:, date: } }
   let(:message) { 'msg' }
   let(:size) { 10 }
   let(:date) { '2021-03-14' }

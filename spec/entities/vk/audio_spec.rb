@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Vk::Audio do
-  subject(:instance) { build(:vk_audio, external: external, id: id) }
+  subject(:instance) { build(:vk_audio, external:, id:) }
 
   let(:external) { VkMusic::Audio.new(artist: 'artist', title: 'title', duration: 60) }
   let(:id) { 'id' }

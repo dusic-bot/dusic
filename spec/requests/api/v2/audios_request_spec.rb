@@ -9,7 +9,7 @@ RSpec.describe 'Api::V2::AudiosController', type: :request do
   include_context 'with api v2 authorization', '/api/v2/audios/', '/api/v2/audios/'
 
   describe 'GET #index' do
-    subject(:request) { get '/api/v2/audios/', headers: headers }
+    subject(:request) { get '/api/v2/audios/', headers: }
 
     let(:audio_response) { build(:audio_response) }
 
@@ -27,7 +27,7 @@ RSpec.describe 'Api::V2::AudiosController', type: :request do
 
   describe 'GET #show' do
     subject(:request) do
-      get "/api/v2/audios/#{manager}/#{id}/", params: params, headers: headers
+      get "/api/v2/audios/#{manager}/#{id}/", params:, headers:
     end
 
     let(:manager) { 'manager' }

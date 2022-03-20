@@ -9,7 +9,7 @@ RSpec.describe 'Api::V2::DiscordServersController', type: :request do
   include_context 'with api v2 authorization', '/api/v2/discord_servers/', '/api/v2/discord_servers/'
 
   describe 'GET #index' do
-    subject(:request) { get '/api/v2/discord_servers/', params: params, headers: headers }
+    subject(:request) { get '/api/v2/discord_servers/', params:, headers: }
 
     let(:params) { {} }
     let(:servers) { create_list(:discord_server, servers_count) }
@@ -72,11 +72,11 @@ RSpec.describe 'Api::V2::DiscordServersController', type: :request do
 
   describe 'GET #show' do
     subject(:request) do
-      get "/api/v2/discord_servers/#{requested_server_id}/", headers: headers
+      get "/api/v2/discord_servers/#{requested_server_id}/", headers:
     end
 
     let(:requested_server_id) { '1' }
-    let(:discord_server) { create(:discord_server, external_id: external_id) }
+    let(:discord_server) { create(:discord_server, external_id:) }
     let(:external_id) { 1 }
 
     before { allow(DiscordServerBlueprint).to receive(:render).with(discord_server).and_return(['stub']) }
@@ -124,11 +124,11 @@ RSpec.describe 'Api::V2::DiscordServersController', type: :request do
 
   describe 'PUT #update' do
     subject(:request) do
-      put "/api/v2/discord_servers/#{requested_server_id}/", params: params, headers: headers
+      put "/api/v2/discord_servers/#{requested_server_id}/", params:, headers:
     end
 
     let(:requested_server_id) { external_id }
-    let(:discord_server) { create(:discord_server, external_id: external_id) }
+    let(:discord_server) { create(:discord_server, external_id:) }
     let(:external_id) { 1 }
     let(:params) { { 'stub' => true } }
 

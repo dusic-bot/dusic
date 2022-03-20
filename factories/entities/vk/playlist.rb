@@ -15,7 +15,7 @@ FactoryBot.define do
         external_audios { [] }
       end
 
-      external { VkMusic::Playlist.new(external_audios, title: title, subtitle: subtitle) }
+      external { VkMusic::Playlist.new(external_audios, title:, subtitle:) }
     end
   end
 end

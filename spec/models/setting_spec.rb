@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Setting, type: :model do
   subject(:update_instance) do
-    discord_server.setting.update!(language: language, volume: volume, prefix: prefix)
+    discord_server.setting.update!(language:, volume:, prefix:)
   end
 
   let(:discord_server) { create(:discord_server) }
@@ -17,7 +17,7 @@ RSpec.describe Setting, type: :model do
   end
 
   context 'when settings for server already exist' do
-    subject(:create_new_instance) { create(:setting, discord_server: discord_server) }
+    subject(:create_new_instance) { create(:setting, discord_server:) }
 
     it 'fails new instance create' do
       expect { create_new_instance }.to raise_error(ActiveRecord::RecordNotUnique)

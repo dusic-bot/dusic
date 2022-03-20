@@ -4,7 +4,7 @@ class ShardActionBroadcasterService
   def self.call(shard, action)
     ActionCable.server.broadcast(
       "shards/#{shard.identifier}",
-      action: action
+      action:
     )
   end
 end

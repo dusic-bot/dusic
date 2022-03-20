@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe DailyStatistic, type: :model do
   subject(:instance) do
-    build(:daily_statistic, discord_server: discord_server, tracks_length: tracks_length,
-                            tracks_amount: tracks_amount, date: date)
+    build(:daily_statistic, discord_server:, tracks_length:,
+                            tracks_amount:, date:)
   end
 
   let(:discord_server) { create(:discord_server) }
@@ -18,7 +18,7 @@ RSpec.describe DailyStatistic, type: :model do
   end
 
   context 'when statistic for server already exist' do
-    before { create(:daily_statistic, discord_server: discord_server, date: date) }
+    before { create(:daily_statistic, discord_server:, date:) }
 
     it 'fails instance creation' do
       expect { instance.save! }.to raise_error(ActiveRecord::RecordNotUnique)

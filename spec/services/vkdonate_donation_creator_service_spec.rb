@@ -11,7 +11,7 @@ RSpec.describe VkdonateDonationCreatorService do
 
   context 'when data present' do
     let(:data) do
-      Vkdonate::Donate.new(id: 1, uid: 157230821, date: date, sum: 1, msg: message, anon: false, visible: true)
+      Vkdonate::Donate.new(id: 1, uid: 157230821, date:, sum: 1, msg: message, anon: false, visible: true)
     end
     let(:date) { DateTime.parse('2020-12-15 12:30:42 UTC+3') }
     let(:message) { nil }
@@ -126,7 +126,7 @@ RSpec.describe VkdonateDonationCreatorService do
 
     context 'when data provided' do
       let(:data) do
-        Vkdonate::Donate.new(id: 1, uid: 157230821, date: date, sum: 1, msg: message, anon: false, visible: true)
+        Vkdonate::Donate.new(id: 1, uid: 157230821, date:, sum: 1, msg: message, anon: false, visible: true)
       end
       let(:date) { DateTime.parse('2020-12-15 12:30:42 UTC+3') }
       let(:message) { nil }

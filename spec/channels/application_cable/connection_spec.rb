@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationCable::Connection, type: :channel do
-  subject(:request) { connect '/ws', params: params, headers: headers }
+  subject(:request) { connect '/ws', params:, headers: }
 
   let(:params) do
     {
-      shard_id: shard_id,
-      shard_num: shard_num,
-      bot_id: bot_id
+      shard_id:,
+      shard_num:,
+      bot_id:
     }
   end
   let(:headers) do

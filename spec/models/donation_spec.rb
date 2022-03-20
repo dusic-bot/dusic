@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Donation, type: :model do
-  subject(:instance) { build(:donation, size: size) }
+  subject(:instance) { build(:donation, size:) }
 
   let(:size) { 10 }
 

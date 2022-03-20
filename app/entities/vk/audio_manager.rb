@@ -61,19 +61,19 @@ module Vk
     end
 
     def playlist(url)
-      vk_request_wrap { client.playlist(url: url) }
+      vk_request_wrap { client.playlist(url:) }
     end
 
     def audios(url)
-      vk_request_wrap { client.audios(url: url) }
+      vk_request_wrap { client.audios(url:) }
     end
 
     def wall(url)
-      vk_request_wrap { client.wall(url: url) }
+      vk_request_wrap { client.wall(url:) }
     end
 
     def post(url)
-      vk_request_wrap { client.post(url: url) }
+      vk_request_wrap { client.post(url:) }
     end
 
     def find(query)
@@ -81,7 +81,7 @@ module Vk
     end
 
     def artist(url)
-      vk_request_wrap { client.artist(url: url) }
+      vk_request_wrap { client.artist(url:) }
     end
 
     def vk_request_wrap
