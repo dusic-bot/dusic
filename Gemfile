@@ -60,6 +60,8 @@ gem 'blazer'
 gem 'sitemap_generator'
 
 # Former default gems
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 gem 'net-smtp', require: false
 
 group :development, :test do
