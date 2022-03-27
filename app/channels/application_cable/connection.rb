@@ -8,11 +8,6 @@ module ApplicationCable
       authenticate
       setup_shard_data
       disconnect_outdated
-      Rails.logger.info "#{current_shard.identifier} connection established"
-    end
-
-    def disconnect
-      Rails.logger.info "#{current_shard.identifier} connection closed"
     end
 
     private
@@ -30,12 +25,14 @@ module ApplicationCable
     end
 
     def disconnect_outdated
-      ActionCable.server.connections.each do |c|
+      outdated_connections = ActionCable.server.connections.select do |c|
         shard = c.current_shard
-        next unless shard.identifier == current_shard.identifier && shard.created_at < current_shard.created_at
-
-        c.close
+        shard.identifier == current_shard.identifier && shard.created_at < current_shard.created_at
       end
+      return if outdated_connections.empty?
+
+      Rails.logger.info "Closing #{outdated_connections.size} outdated connections"
+      outdated_connections.each(&:close)
     end
   end
 end
