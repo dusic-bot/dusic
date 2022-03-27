@@ -3,12 +3,13 @@
 class ShardConnectionData
   attr_accessor :servers_count, :cached_servers_count, :active_servers_count
 
-  attr_reader :shard_id, :shard_num, :bot_id
+  attr_reader :shard_id, :shard_num, :bot_id, :created_at
 
   def initialize(shard_id, shard_num, bot_id)
     @shard_id = shard_id
     @shard_num = shard_num
     @bot_id = bot_id
+    @created_at = Time.current
   end
 
   def ==(other)
