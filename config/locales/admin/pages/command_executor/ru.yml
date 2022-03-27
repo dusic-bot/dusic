@@ -1,0 +1,6 @@
+ru:
+  admin:
+    pages:
+      command_executor:
+        admin_features: "Админский функционал"
+        command_executor: "Вызов команд"

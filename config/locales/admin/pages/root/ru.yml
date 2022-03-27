@@ -8,3 +8,4 @@ ru:
         audios: "Аудиозаписи"
         websocket_server: "Websocket сервер"
         donation_adder: "Добавление донатов"
+        command_executor: "Вызов команд"

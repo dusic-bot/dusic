@@ -1,0 +1,6 @@
+en:
+  admin:
+    pages:
+      command_executor:
+        admin_features: "Admin features"
+        command_executor: "Command executor"
