@@ -4,7 +4,7 @@
 <%= form_with method: :post, local: true do |f| %>
   <div class="form-group">
     <%= f.label :shard, t('.shard_label') %>
-    <%= f.select :shard, options_from_collection_for_select(%w[todo todo], :to_s, :capitalize), {}, class: 'form-control' %>
+    <%= f.select :shard, ActionCable.server.connections.map { |c| [c.current_shard.identifier] }, {}, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :payload, t('.payload_label') %>
