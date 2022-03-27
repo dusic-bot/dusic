@@ -42,5 +42,7 @@ class Admin::PagesController < AdminController
 
     CommandCallExecutorService.call(params[:shard], params[:payload])
     flash.notice = 'Command call sent'
+  rescue JSON::ParserError
+    flash.alert = 'Incorrect payload!'
   end
 end
