@@ -4,3 +4,6 @@ en:
       command_executor:
         admin_features: "Admin features"
         command_executor: "Command executor"
+        shard_label: "Shard"
+        payload_label: "Payload"
+        execute_button: "Execute"

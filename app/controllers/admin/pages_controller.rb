@@ -36,4 +36,11 @@ class Admin::PagesController < AdminController
   rescue Date::Error
     flash.alert = 'Please specify correct date!'
   end
+
+  def command_executor
+    return if params[:shard].blank? || params[:payload].blank?
+
+    CommandCallExecutorService.call(params[:shard], params[:payload])
+    flash.notice = 'Command call sent'
+  end
 end

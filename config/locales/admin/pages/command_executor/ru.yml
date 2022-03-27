@@ -4,3 +4,6 @@ ru:
       command_executor:
         admin_features: "Админский функционал"
         command_executor: "Вызов команд"
+        shard_label: "Шард"
+        payload_label: "Данные"
+        execute_button: "Выполнить"

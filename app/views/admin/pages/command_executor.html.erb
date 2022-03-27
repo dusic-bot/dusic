@@ -1,0 +1,14 @@
+<h1><%= t('.admin_features') %></h1>
+<h3><%= t('.command_executor') %></h1>
+
+<%= form_with method: :post, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :shard, t('.shard_label') %>
+    <%= f.select :shard, options_from_collection_for_select(%w[todo todo], :to_s, :capitalize), {}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :payload, t('.payload_label') %>
+    <%= f.text_area :payload, class: 'form-control', autocomplete: 'off' %>
+  </div>
+  <%= f.submit t('.execute_button'), class: 'btn btn-primary' %>
+<% end %>
