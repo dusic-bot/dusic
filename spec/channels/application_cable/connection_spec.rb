@@ -44,7 +44,7 @@ RSpec.describe ApplicationCable::Connection, type: :channel do
     let(:shard_num) { 1 }
     let(:bot_id) { 42 }
 
-    let(:another_connection) { connect '/ws', params: { shard_id:, shard_num:, bot_id: 43}, headers: }
+    let(:another_connection) { connect '/ws', params: { shard_id:, shard_num:, bot_id: 43 }, headers: }
     let(:previous_connection) { connect '/ws', params:, headers: }
 
     before do

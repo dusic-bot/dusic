@@ -16,7 +16,7 @@ RSpec.describe CommandCallExecutorService do
   end
 
   it 'broadcasting message to shard', :aggregate_failures do
-    expect(ShardActionBroadcasterService).to receive(:call).with(shard, 'command_call', { 'stub' => true})
+    expect(ShardActionBroadcasterService).to receive(:call).with(shard, 'command_call', { 'stub' => true })
     expect { call }.not_to raise_error
   end
 
