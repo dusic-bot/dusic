@@ -6,7 +6,7 @@ class CommandCallExecutorService
       shard = find_shard(shard_identifier)
       return if shard.nil?
 
-      ShardActionBroadcasterService.call(shard, 'command_call', JSON.parse(payload))
+      ShardActionBroadcasterService.call(shard, 'command_call', payload)
     end
 
     private

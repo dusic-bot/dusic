@@ -40,7 +40,7 @@ class Admin::PagesController < AdminController
   def command_executor
     return if params[:shard].blank? || params[:payload].blank?
 
-    CommandCallExecutorService.call(params[:shard], params[:payload])
+    CommandCallExecutorService.call(params[:shard], JSON.parse(params[:payload]))
     flash.notice = 'Command call sent'
   rescue JSON::ParserError
     flash.alert = 'Incorrect payload!'

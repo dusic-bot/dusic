@@ -39,6 +39,8 @@ Rails.application.routes.draw do
           get '/:manager/:id', to: 'audios#show', as: :audio
         end
       end
+
+      resources :command_calls, only: %i[create]
     end
   end
 end
