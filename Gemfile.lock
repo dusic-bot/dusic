@@ -384,7 +384,7 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.1.0)
-    vk_music (4.1.5)
+    vk_music (4.1.6)
       execjs (~> 2.7)
       json (~> 2.3)
       logger (~> 1.4)
@@ -454,7 +454,7 @@ DEPENDENCIES
   timecop
   turbolinks (~> 5)
   tzinfo-data
-  vk_music (>= 4.1.5)
+  vk_music (>= 4.1.6)
   vkdonate
   vkponchik (~> 1.1)
   web-console (>= 4.1.0)
