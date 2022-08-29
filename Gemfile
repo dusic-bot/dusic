@@ -33,7 +33,7 @@ gem 'devise'
 gem 'rails_admin'
 
 # VK music
-gem 'vk_music', '>= 4.1.2'
+gem 'vk_music', '>= 4.1.5'
 
 # Small gem for calling same method from time to time
 gem 'handling_queue'
