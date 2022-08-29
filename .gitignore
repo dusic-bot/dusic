@@ -18,6 +18,11 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+# Ignore cookie files, but keep the directory.
+/tmp/cookies/*
+!/tmp/cookies/
+!/tmp/cookies/.keep
+
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
