@@ -42,7 +42,7 @@ module Vk
 
     def client
       @client ||= begin
-        agent = VkMusic::Utility::Authorizer.call(@login, @password, "tmp/cookies/#{@login.parameterize}")
+        agent = VkMusic::Utility::Authorizer.call(@login, @password, "tmp/cookies/#{@login.to_s.parameterize}")
         VkMusic::Client.new(agent:)
       end
     end
