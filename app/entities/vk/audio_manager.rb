@@ -41,7 +41,10 @@ module Vk
     private
 
     def client
-      @client ||= VkMusic::Client.new(login: @login, password: @password)
+      @client ||= begin
+        agent = VkMusic::Utility::Authorizer.call(@login, @password, "tmp/cookies/#{@login.parameterize}")
+        VkMusic::Client.new(agent:)
+      end
     end
 
     def guess_type(arg)
