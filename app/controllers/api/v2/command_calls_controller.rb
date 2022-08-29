@@ -6,7 +6,10 @@ class Api::V2::CommandCallsController < Api::V2Controller
   before_action :find_connection, only: %i[create]
 
   def create
-    CommandCallExecutorService.call(@connection.current_shard.identifier, permitted_params.slice(*PAYLOAD_KEYS))
+    CommandCallExecutorService.call(
+      @connection.current_shard.identifier,
+      permitted_params.slice(*PAYLOAD_KEYS).to_hash
+    )
     head :created
   end
 
