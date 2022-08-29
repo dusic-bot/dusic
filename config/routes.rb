@@ -19,10 +19,9 @@ Rails.application.routes.draw do
     get '/donation_id', to: 'pages#donation_id', as: :donation_id
 
     match '/jwt_token', to: 'pages#jwt_token', via: %i[get post], as: :jwt_token
-
     match '/websocket_server', to: 'pages#websocket_server', via: %i[get post], as: :websocket_server
-
     match '/donation_adder', to: 'pages#donation_adder', via: %i[get post], as: :donation_adder
+    match '/command_executor', to: 'pages#command_executor', via: %i[get post], as: :command_executor
 
     resources :audios, only: %i[index] do
       collection do
@@ -40,6 +39,8 @@ Rails.application.routes.draw do
           get '/:manager/:id', to: 'audios#show', as: :audio
         end
       end
+
+      resources :command_calls, only: %i[create]
     end
   end
 end

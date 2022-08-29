@@ -224,4 +224,88 @@ RSpec.describe 'Admin::Pages', type: :request do
       end
     end
   end
+
+  describe 'GET #command_executor' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      get '/admin/command_executor'
+    end
+
+    it :aggregate_failures do
+      request
+      expect(response).to render_template('admin/pages/command_executor')
+      expect(response).to render_template('layouts/admin_application')
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe 'POST #command_executor' do
+    subject(:request) do
+      sign_in create(:user, admin: true)
+      post '/admin/command_executor', params:
+    end
+
+    let(:params) { {} }
+
+    it :aggregate_failures do
+      expect(CommandCallExecutorService).not_to receive(:call)
+      request
+      expect(response).to render_template('admin/pages/command_executor')
+      expect(response).to render_template('layouts/admin_application')
+      expect(response).to have_http_status(:ok)
+    end
+
+    context 'when with parameters' do
+      let(:params) { { shard: '42', payload: '{}' } }
+
+      it :aggregate_failures do
+        expect(CommandCallExecutorService).to receive(:call).and_call_original
+        request
+        expect(flash.notice).to eq('Command call sent')
+        expect(response).to render_template('admin/pages/command_executor')
+        expect(response).to render_template('layouts/admin_application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when payload is not JSON' do
+      let(:params) { { shard: '42', payload: 'not a payload' } }
+
+      before do
+        allow(CommandCallExecutorService).to receive(:call).and_raise(JSON::ParserError)
+      end
+
+      it :aggregate_failures do
+        request
+        expect(flash.alert).to eq('Incorrect payload!')
+        expect(response).to render_template('admin/pages/command_executor')
+        expect(response).to render_template('layouts/admin_application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when payload is empty' do
+      let(:params) { { shard: '42', payload: '' } }
+
+      it :aggregate_failures do
+        expect(CommandCallExecutorService).not_to receive(:call)
+        request
+        expect(response).to render_template('admin/pages/command_executor')
+        expect(response).to render_template('layouts/admin_application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when shard is empty' do
+      let(:params) { { shard: '', payload: '{}' } }
+
+      it :aggregate_failures do
+        expect(CommandCallExecutorService).not_to receive(:call)
+        request
+        expect(response).to render_template('admin/pages/command_executor')
+        expect(response).to render_template('layouts/admin_application')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end

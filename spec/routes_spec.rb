@@ -27,6 +27,11 @@ RSpec.describe 'routes', type: :routing do
       expect(post: '/admin/donation_adder').to route_to(controller: 'admin/pages', action: 'donation_adder')
     end
 
+    it 'routes command_executor', :aggregate_failures do
+      expect(get: '/admin/command_executor').to route_to(controller: 'admin/pages', action: 'command_executor')
+      expect(post: '/admin/command_executor').to route_to(controller: 'admin/pages', action: 'command_executor')
+    end
+
     it 'routes audios', :aggregate_failures do
       expect(get: '/admin/audios').to route_to(controller: 'admin/audios', action: 'index')
       expect(get: '/admin/audios/manager/id').to route_to(

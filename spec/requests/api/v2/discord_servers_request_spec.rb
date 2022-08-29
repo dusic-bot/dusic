@@ -6,7 +6,7 @@ require 'shared_contexts/api_v2_authorization'
 RSpec.describe 'Api::V2::DiscordServersController', type: :request do
   subject(:response_json) { JSON.parse(response.body) }
 
-  include_context 'with api v2 authorization', '/api/v2/discord_servers/', '/api/v2/discord_servers/'
+  include_context 'with api v2 authorization', :get, '/api/v2/discord_servers/', '/api/v2/discord_servers/'
 
   describe 'GET #index' do
     subject(:request) { get '/api/v2/discord_servers/', params:, headers: }

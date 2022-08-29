@@ -38,8 +38,14 @@ RSpec.describe ShardConnectionData do
   end
 
   describe 'attributes' do
+    let(:current_time) { Time.utc(2022, 3, 8, 20, 0, 0) }
+
     it do
-      expect(instance).to have_attributes(servers_count: nil, cached_servers_count: nil, active_servers_count: nil)
+      Timecop.freeze(current_time) do
+        expect(instance).to have_attributes(
+          servers_count: nil, cached_servers_count: nil, active_servers_count: nil, created_at: current_time
+        )
+      end
     end
   end
 end

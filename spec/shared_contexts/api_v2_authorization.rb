@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.shared_context 'with api v2 authorization' do |sample_url, accessed_controller|
+RSpec.shared_context 'with api v2 authorization' do |sample_method, sample_url, accessed_controller|
   let(:headers) { { 'Accept' => 'application/json', 'Authorization' => authorization_token } }
   let(:authorization_token) { JwtAuthorizationHeaderGeneratorService.call(**authorization_params) }
   let(:authorization_params) { { access: { controllers: [accessed_controller] } } }
 
   context 'when not authorized' do
-    subject(:request) { get sample_url, headers: }
+    subject(:request) { send(sample_method, sample_url, headers:) }
 
     let(:authorization_params) { { access: { controllers: [] } } }
 
@@ -24,7 +24,7 @@ RSpec.shared_context 'with api v2 authorization' do |sample_url, accessed_contro
   end
 
   context 'when not authorized in deprecated format' do
-    subject(:request) { get sample_url, headers: }
+    subject(:request) { send(sample_method, sample_url, headers:) }
 
     let(:authorization_params) { { access_level: 0 } }
 
