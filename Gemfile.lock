@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/fizvlad/vk-music-rb.git
+  revision: 726d5613bb5fcec360d2aee7215658a715c5323b
+  branch: feat/bump-ruby-version
+  specs:
+    vk_music (4.2.0)
+      execjs (~> 2.7)
+      json (~> 2.3)
+      logger (~> 1.4)
+      mechanize (~> 2.7)
+      net-http-persistent (= 2.9.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -64,8 +76,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    addressable (2.8.0)
-      public_suffix (>= 2.0.2, < 5.0)
+    addressable (2.8.4)
+      public_suffix (>= 2.0.2, < 6.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.2)
@@ -142,7 +154,7 @@ GEM
       tilt
     handling_queue (1.1.0)
     html_tokenizer (0.0.7)
-    http-cookie (1.0.4)
+    http-cookie (1.0.5)
       domain_name (~> 0.5)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
@@ -153,7 +165,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (2.6.1)
+    json (2.6.3)
     jwt (2.3.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -170,14 +182,14 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.5.1)
+    logger (1.5.3)
     loofah (2.15.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
-    mechanize (2.8.4)
+    mechanize (2.9.1)
       addressable (~> 2.8)
       domain_name (~> 0.5, >= 0.5.20190701)
       http-cookie (~> 1.0, >= 1.0.3)
@@ -191,7 +203,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2022.0105)
+    mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     minitest (5.15.0)
     msgpack (1.4.5)
@@ -217,17 +229,17 @@ GEM
       timeout
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.13.3-x86_64-linux)
+    nokogiri (1.15.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.21.0)
     parser (3.1.1.0)
       ast (~> 2.4.1)
     pg (1.3.4)
-    public_suffix (4.0.6)
+    public_suffix (5.0.1)
     puma (5.6.2)
       nio4r (~> 2.0)
-    racc (1.6.0)
+    racc (1.6.2)
     rack (2.2.3)
     rack-mini-profiler (2.3.4)
       rack (>= 1.2.0)
@@ -382,14 +394,8 @@ GEM
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.8.1)
+    unf_ext (0.0.8.2)
     unicode-display_width (2.1.0)
-    vk_music (4.1.4)
-      execjs (~> 2.7)
-      json (~> 2.3)
-      logger (~> 1.4)
-      mechanize (~> 2.7)
-      net-http-persistent (= 2.9.4)
     vkdonate (1.1.1)
       json (~> 2.3)
     vkponchik (1.1.0)
@@ -405,7 +411,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    webrick (1.7.0)
+    webrick (1.8.1)
     webrobots (0.1.2)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -454,7 +460,7 @@ DEPENDENCIES
   timecop
   turbolinks (~> 5)
   tzinfo-data
-  vk_music (>= 4.1.2)
+  vk_music!
   vkdonate
   vkponchik (~> 1.1)
   web-console (>= 4.1.0)
