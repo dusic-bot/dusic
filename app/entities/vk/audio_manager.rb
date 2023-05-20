@@ -7,6 +7,8 @@ module Vk
   class AudioManager < ::AudioManager
     TYPES = %i[auto playlist audios wall post find artist].freeze
 
+    attr_writer :forced_cookies
+
     def request(type, query)
       type = guess_type(query) if type == :auto
       return AudioResponse.empty unless TYPES.include?(type)
@@ -25,6 +27,10 @@ module Vk
         end
     end
 
+    def client_initialized?
+      defined?(@client)
+    end
+
     def initialize(login, password)
       @login = login
       @password = password
@@ -41,7 +47,13 @@ module Vk
     private
 
     def client
-      @client ||= VkMusic::Client.new(login: @login, password: @password)
+      return @client if defined?(@client)
+
+      return @client = VkMusic::Client.new(login: @login, password: @password) unless @forced_cookies
+
+      agent = Mechanize.new
+      VkMusic::Utility::CookieReader.call(agent.cookie_jar, @forced_cookies)
+      @client = VkMusic::Client.new(agent:)
     end
 
     def guess_type(arg)

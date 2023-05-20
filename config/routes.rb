@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     match '/websocket_server', to: 'pages#websocket_server', via: %i[get post], as: :websocket_server
     match '/donation_adder', to: 'pages#donation_adder', via: %i[get post], as: :donation_adder
     match '/command_executor', to: 'pages#command_executor', via: %i[get post], as: :command_executor
+    match '/vk_cookies', to: 'pages#vk_cookies', via: %i[get post], as: :vk_cookies
 
     resources :audios, only: %i[index] do
       collection do

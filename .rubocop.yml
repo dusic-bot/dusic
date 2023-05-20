@@ -35,7 +35,7 @@ Metrics/BlockLength:
     - lib/tasks/once/**/*.rake
 
 Metrics/ClassLength:
-  Max: 120
+  Max: 150
 
 Metrics/CyclomaticComplexity:
   Exclude:

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/fizvlad/vk-music-rb.git
-  revision: 726d5613bb5fcec360d2aee7215658a715c5323b
+  revision: c5be4ae805b86ed8cb488a6c19ed57295030fb03
   branch: feat/bump-ruby-version
   specs:
     vk_music (4.2.0)
@@ -229,7 +229,7 @@ GEM
       timeout
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.15.0-x86_64-linux)
+    nokogiri (1.15.1-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.21.0)

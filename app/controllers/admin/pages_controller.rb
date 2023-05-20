@@ -45,4 +45,11 @@ class Admin::PagesController < AdminController
   rescue JSON::ParserError
     flash.alert = 'Incorrect payload!'
   end
+
+  def vk_cookies
+    return if params[:cookies].blank?
+
+    VK_AUDIO_MANAGER.forced_cookies = params[:cookies].to_s
+    flash.notice = 'Cookies updated'
+  end
 end

@@ -1,0 +1,8 @@
+en:
+  admin:
+    pages:
+      vk_cookies:
+        admin_features: "Admin features"
+        vk_cookies: "VK cookies"
+        cookies_label: "Cookies"
+        execute_button: "Update"

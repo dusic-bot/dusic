@@ -1,0 +1,8 @@
+ru:
+  admin:
+    pages:
+      vk_cookies:
+        admin_features: "Админский функционал"
+        vk_cookies: "Куки ВК"
+        cookies_label: "Куки"
+        execute_button: "Обновить"
