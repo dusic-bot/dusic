@@ -21,9 +21,8 @@ class AudioLoaderService
     private
 
     def get_url(manager, id)
-      case manager
-      when :vk then VK_AUDIO_MANAGER.url(Vk::Audio.new(nil, id))
-      end
+      # DEPRECATED
+      nil
     end
 
     def get_io(url, manager, format = nil)

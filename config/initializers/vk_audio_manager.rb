@@ -4,5 +4,6 @@ Rails.configuration.after_initialize do
   Rails.logger.info 'Initializing VK Audio Manager'
   credentials = Rails.application.credentials.vk
 
-  ::VK_AUDIO_MANAGER = Vk::AudioManager.new(credentials[:login], credentials[:password]) unless Rails.env.test?
+  # DEPRECATED: no longer providing audios
+  # ::VK_AUDIO_MANAGER = Vk::AudioManager.new(credentials[:login], credentials[:password]) unless Rails.env.test?
 end
