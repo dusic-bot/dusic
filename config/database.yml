@@ -2,16 +2,19 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
-  host: localhost
-  username: dusic
-  password: <%= Rails.application.credentials.db[:password] %>
 
 development:
   <<: *default
   database: dusic_development
+  host: localhost
+  username: dusic
+  password: <%= Rails.application.credentials.db[:password] %>
 test:
   <<: *default
   database: dusic_test
+  host: localhost
+  username: dusic
+  password: <%= Rails.application.credentials.db[:password] %>
 production:
   <<: *default
-  database: dusic_production
+  url: <%= ENV['DATABASE_URL'] %>
