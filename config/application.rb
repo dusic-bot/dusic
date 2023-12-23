@@ -46,5 +46,11 @@ module Dusic
 
     # Locale directories
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
+    # Disable concurrency for assets
+    # See https://github.com/sass/sassc-ruby/issues/207
+    config.assets.configure do |env|
+      env.export_concurrent = false
+    end
   end
 end
