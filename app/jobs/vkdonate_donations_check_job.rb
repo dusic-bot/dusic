@@ -5,7 +5,7 @@ class VkdonateDonationsCheckJob < ApplicationJob
 
   queue_as :donations
 
-  after_perform { reschedule }
+  before_perform { reschedule }
 
   def perform
     VkdonateDonationsCheckerService.call
