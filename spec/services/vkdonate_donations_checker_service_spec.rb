@@ -9,12 +9,16 @@ RSpec.describe VkdonateDonationsCheckerService do
   let(:stub_requests) do
     allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([])
   end
-  let(:donation1) { instance_double(Vkdonate::Donation, id: 1) }
-  let(:donation2) { instance_double(Vkdonate::Donation, id: 2) }
-  let(:donation3) { instance_double(Vkdonate::Donation, id: 3) }
-  let(:donation4) { instance_double(Vkdonate::Donation, id: 4) }
-  let(:donation5) { instance_double(Vkdonate::Donation, id: 5) }
-  let(:donation6) { instance_double(Vkdonate::Donation, id: 6) }
+  let(:donations) do
+    [
+      instance_double(Vkdonate::Donate, id: 1),
+      instance_double(Vkdonate::Donate, id: 2),
+      instance_double(Vkdonate::Donate, id: 3),
+      instance_double(Vkdonate::Donate, id: 4),
+      instance_double(Vkdonate::Donate, id: 5),
+      instance_double(Vkdonate::Donate, id: 6)
+    ]
+  end
 
   before do
     stub_const('VKDONATE_CLIENT', client)
@@ -41,7 +45,7 @@ RSpec.describe VkdonateDonationsCheckerService do
 
     context 'when no new donations' do
       let(:stub_requests) do
-        allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation2, donation1])
+        allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donations[1], donations[0]])
       end
 
       it do
@@ -52,52 +56,58 @@ RSpec.describe VkdonateDonationsCheckerService do
 
     context 'when 1 new donation' do
       let(:stub_requests) do
-        allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation3, donation2, donation1])
+        allow(client).to receive(:donates)
+          .with(count: 3, offset: 0).and_return([donations[2], donations[1], donations[0]])
       end
 
       it do
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation3)
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[2])
         call
       end
     end
 
     context 'when 2 new donations' do
       let(:stub_requests) do
-        allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation4, donation3, donation2])
+        allow(client).to receive(:donates)
+          .with(count: 3, offset: 0).and_return([donations[3], donations[2], donations[1]])
       end
 
       it :aggregate_failures do
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation4)
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation3)
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[3])
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[2])
         call
       end
     end
 
     context 'when 3 new donations' do
       let(:stub_requests) do
-        allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation5, donation4, donation3])
-        allow(client).to receive(:donates).with(count: 3, offset: 3).and_return([donation2, donation1])
+        allow(client).to receive(:donates)
+          .with(count: 3, offset: 0).and_return([donations[4], donations[3], donations[2]])
+        allow(client).to receive(:donates)
+          .with(count: 3, offset: 3).and_return([donations[1], donations[0]])
       end
 
       it :aggregate_failures do
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation5)
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation4)
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation3)
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[4])
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[3])
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[2])
         call
       end
     end
 
     context 'when 4 new donations' do
       let(:stub_requests) do
-        allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation6, donation5, donation4])
-        allow(client).to receive(:donates).with(count: 3, offset: 3).and_return([donation3, donation2, donation1])
+        allow(client).to receive(:donates)
+          .with(count: 3, offset: 0).and_return([donations[5], donations[4], donations[3]])
+        allow(client).to receive(:donates)
+          .with(count: 3, offset: 3).and_return([donations[2], donations[1], donations[0]])
       end
 
       it :aggregate_failures do
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation6)
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation5)
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation4)
-        expect(VkdonateDonationCreatorService).to receive(:call).with(donation3)
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[5])
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[4])
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[3])
+        expect(VkdonateDonationCreatorService).to receive(:call).with(donations[2])
         call
       end
     end
@@ -116,52 +126,56 @@ RSpec.describe VkdonateDonationsCheckerService do
 
   context 'when 1 new donation' do
     let(:stub_requests) do
-      allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation1])
+      allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donations[0]])
     end
 
     it do
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation1)
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[0])
       call
     end
   end
 
   context 'when 2 new donations' do
     let(:stub_requests) do
-      allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation2, donation1])
+      allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donations[1], donations[0]])
     end
 
     it :aggregate_failures do
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation2)
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation1)
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[1])
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[0])
       call
     end
   end
 
   context 'when 3 new donations' do
     let(:stub_requests) do
-      allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation3, donation2, donation1])
-      allow(client).to receive(:donates).with(count: 3, offset: 3).and_return([])
+      allow(client).to receive(:donates)
+        .with(count: 3, offset: 0).and_return([donations[2], donations[1], donations[0]])
+      allow(client).to receive(:donates)
+        .with(count: 3, offset: 3).and_return([])
     end
 
     it :aggregate_failures do
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation3)
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation2)
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation1)
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[2])
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[1])
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[0])
       call
     end
   end
 
   context 'when 4 new donations' do
     let(:stub_requests) do
-      allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([donation4, donation3, donation2])
-      allow(client).to receive(:donates).with(count: 3, offset: 3).and_return([donation1])
+      allow(client).to receive(:donates)
+        .with(count: 3, offset: 0).and_return([donations[3], donations[2], donations[1]])
+      allow(client).to receive(:donates)
+        .with(count: 3, offset: 3).and_return([donations[0]])
     end
 
     it :aggregate_failures do
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation4)
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation3)
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation2)
-      expect(VkdonateDonationCreatorService).to receive(:call).with(donation1)
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[3])
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[2])
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[1])
+      expect(VkdonateDonationCreatorService).to receive(:call).with(donations[0])
       call
     end
   end

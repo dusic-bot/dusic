@@ -87,25 +87,26 @@ RSpec.describe DonationCreatorService do
   end
 
   context 'when previous donations exist' do
-    let(:donation1) { create(:donation) }
-    let(:donation2) { create(:donation, discord_server: nil, discord_user: nil) }
-    let(:donation3) { create(:donation) }
-    let(:donation4) { create(:donation, discord_server: nil, discord_user: nil) }
-    let(:previous_donations_query) { Donation.where(id: [donation1.id, donation2.id, donation3.id]) }
+    let(:donations) do
+      [
+        create(:donation),
+        create(:donation, discord_server: nil, discord_user: nil),
+        create(:donation),
+        create(:donation, discord_server: nil, discord_user: nil)
+      ]
+    end
+    let(:previous_donations_query) { Donation.where(id: [donations[0].id, donations[1].id, donations[2].id]) }
 
     before do
-      donation1
-      donation2
-      donation3
-      donation4
+      donations
     end
 
     it 'finds last donation in the query with both server and user', :aggregate_failures do
       expect(result).to be_a(Donation)
       expect(result.size).to eq(20)
       expect(result.date).to eq(date)
-      expect(result.discord_server).to eq(donation3.discord_server)
-      expect(result.discord_user).to eq(donation3.discord_user)
+      expect(result.discord_server).to eq(donations[2].discord_server)
+      expect(result.discord_user).to eq(donations[2].discord_user)
     end
   end
 end
