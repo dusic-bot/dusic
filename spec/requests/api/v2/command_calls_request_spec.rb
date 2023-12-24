@@ -3,8 +3,8 @@
 require 'rails_helper'
 require 'shared_contexts/api_v2_authorization'
 
-RSpec.describe 'Api::V2::CommandCallsController', type: :request do
-  subject(:response_json) { JSON.parse(response.body) }
+RSpec.describe 'Api::V2::CommandCallsController' do
+  subject(:response_json) { response.parsed_body }
 
   include_context 'with api v2 authorization', :post, '/api/v2/command_calls/', '/api/v2/command_calls/'
 
@@ -18,15 +18,15 @@ RSpec.describe 'Api::V2::CommandCallsController', type: :request do
     let(:connections) do
       [
         instance_double(
-          'ApplicationCable::Connection',
+          ApplicationCable::Connection,
           current_shard: build(:shard_connection_data, shard_id: 0, shard_num: 2, bot_id: 10)
         ),
         instance_double(
-          'ApplicationCable::Connection',
+          ApplicationCable::Connection,
           current_shard: build(:shard_connection_data, shard_id: 1, shard_num: 2, bot_id: 10)
         ),
         instance_double(
-          'ApplicationCable::Connection',
+          ApplicationCable::Connection,
           current_shard: build(:shard_connection_data, shard_id: 0, shard_num: 1, bot_id: 11)
         )
       ]

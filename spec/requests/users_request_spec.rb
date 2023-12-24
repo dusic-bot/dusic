@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :request do
+RSpec.describe 'Users' do
   describe 'GET devise/registrations#new' do
     it :aggregate_failures do
       get signup_path

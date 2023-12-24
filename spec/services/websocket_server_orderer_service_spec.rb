@@ -14,7 +14,7 @@ RSpec.describe WebsocketServerOrdererService do
     let(:shard) { build(:shard_connection_data) }
     let(:shards) { [shard.identifier] }
 
-    let(:connection_stub) { instance_double('ApplicationCable::Connection', current_shard: shard) }
+    let(:connection_stub) { instance_double(ApplicationCable::Connection, current_shard: shard) }
 
     before do
       allow(ActionCable.server.connections).to receive(:find).and_return(connection_stub)

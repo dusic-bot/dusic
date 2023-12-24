@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ApplicationCable::Connection, type: :channel do
+RSpec.describe ApplicationCable::Connection do
   subject(:request) { connect '/ws', params:, headers: }
 
   let(:params) do

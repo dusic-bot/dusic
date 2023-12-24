@@ -20,9 +20,7 @@ RSpec.describe Admin::PagesHelper do
         let(:item) { build(:audio) }
 
         before do
-          allow(item).to receive(:artist).and_return('stub')
-          allow(item).to receive(:title).and_return('stub')
-          allow(item).to receive(:duration).and_return(42)
+          allow(item).to receive_messages(artist: 'stub', title: 'stub', duration: 42)
         end
 
         it { expect(result).to be_a(String) }

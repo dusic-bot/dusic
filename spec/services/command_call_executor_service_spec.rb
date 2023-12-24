@@ -9,7 +9,7 @@ RSpec.describe CommandCallExecutorService do
   let(:payload) { { 'stub' => true } }
   let(:shard) { build(:shard_connection_data) }
 
-  let(:connection_stub) { instance_double('ApplicationCable::Connection', current_shard: shard) }
+  let(:connection_stub) { instance_double(ApplicationCable::Connection, current_shard: shard) }
 
   before do
     allow(ActionCable.server.connections).to receive(:find).and_return(connection_stub)

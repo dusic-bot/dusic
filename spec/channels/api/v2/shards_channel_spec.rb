@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V2::ShardsChannel, type: :channel do
+RSpec.describe Api::V2::ShardsChannel do
   let(:current_shard) { build(:shard_connection_data, shard_id: 0, shard_num: 1, bot_id: 42) }
 
   before { stub_connection(current_shard:) }

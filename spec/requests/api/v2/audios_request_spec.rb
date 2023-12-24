@@ -3,8 +3,8 @@
 require 'rails_helper'
 require 'shared_contexts/api_v2_authorization'
 
-RSpec.describe 'Api::V2::AudiosController', type: :request do
-  subject(:response_json) { JSON.parse(response.body) }
+RSpec.describe 'Api::V2::AudiosController' do
+  subject(:response_json) { response.parsed_body }
 
   include_context 'with api v2 authorization', :get, '/api/v2/audios/', '/api/v2/audios/'
 
@@ -21,7 +21,7 @@ RSpec.describe 'Api::V2::AudiosController', type: :request do
     it :aggregate_failures do
       request
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)).to eq(['stub'])
+      expect(response.parsed_body).to eq(['stub'])
     end
   end
 

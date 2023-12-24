@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DiscordServer, type: :model do
+RSpec.describe DiscordServer do
   subject(:instance) { build(:discord_server, external_id:) }
 
   let(:external_id) { 482473013246296084 }

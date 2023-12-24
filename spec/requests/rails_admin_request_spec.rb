@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'RailsAdmin', type: :request do
+RSpec.describe 'RailsAdmin' do
   describe 'GET rails_admin/main#dashboard' do
     before { get '/admin/rails' }
 

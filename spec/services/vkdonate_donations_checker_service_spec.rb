@@ -9,12 +9,12 @@ RSpec.describe VkdonateDonationsCheckerService do
   let(:stub_requests) do
     allow(client).to receive(:donates).with(count: 3, offset: 0).and_return([])
   end
-  let(:donation1) { instance_double('Vkdonate::Donation', id: 1) }
-  let(:donation2) { instance_double('Vkdonate::Donation', id: 2) }
-  let(:donation3) { instance_double('Vkdonate::Donation', id: 3) }
-  let(:donation4) { instance_double('Vkdonate::Donation', id: 4) }
-  let(:donation5) { instance_double('Vkdonate::Donation', id: 5) }
-  let(:donation6) { instance_double('Vkdonate::Donation', id: 6) }
+  let(:donation1) { instance_double(Vkdonate::Donation, id: 1) }
+  let(:donation2) { instance_double(Vkdonate::Donation, id: 2) }
+  let(:donation3) { instance_double(Vkdonate::Donation, id: 3) }
+  let(:donation4) { instance_double(Vkdonate::Donation, id: 4) }
+  let(:donation5) { instance_double(Vkdonate::Donation, id: 5) }
+  let(:donation6) { instance_double(Vkdonate::Donation, id: 6) }
 
   before do
     stub_const('VKDONATE_CLIENT', client)
