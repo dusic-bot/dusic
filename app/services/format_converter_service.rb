@@ -4,14 +4,14 @@ class FormatConverterService
   FORMATS = %i[mp3 m3u8url m3u8 dca].freeze
 
   class << self
-    def call(io, initial_format, format, *args, **opts)
+    def call(io, initial_format, format, *, **)
       return if io.nil? || FORMATS.exclude?(initial_format) || FORMATS.exclude?(format)
 
       return io if initial_format == format
 
-      method_name = "#{initial_format}_to_#{format}".to_sym
+      method_name = :"#{initial_format}_to_#{format}"
 
-      send(method_name, io, *args, **opts)
+      send(method_name, io, *, **)
     rescue NameError => e
       Rails.logger.debug { "Failed conversion #{initial_format} -> #{format}: No converter(#{e})" }
       nil
@@ -19,9 +19,9 @@ class FormatConverterService
 
     protected
 
-    def m3u8url_to_dca(io, *args, **opts)
-      tmp = m3u8url_to_mp3(io, *args, **opts)
-      mp3_to_dca(tmp, *args, **opts)
+    def m3u8url_to_dca(io, *, **)
+      tmp = m3u8url_to_mp3(io, *, **)
+      mp3_to_dca(tmp, *, **)
     end
 
     def m3u8url_to_mp3(io, *_args, **_opts)
