@@ -2,7 +2,7 @@
 
 # DEPRECATED
 class AudiosFetcherService
-  def self.call(params)
+  def self.call(_params)
     AudioResponse.empty
   end
 end

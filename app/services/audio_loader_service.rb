@@ -20,7 +20,7 @@ class AudioLoaderService
 
     private
 
-    def get_url(manager, id)
+    def get_url(_manager, _id)
       # DEPRECATED
       nil
     end
