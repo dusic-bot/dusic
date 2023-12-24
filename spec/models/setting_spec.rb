@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Setting, type: :model do
+RSpec.describe Setting do
   subject(:update_instance) do
     discord_server.setting.update!(language:, volume:, prefix:)
   end

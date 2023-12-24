@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Pages', type: :request do
+RSpec.describe 'Pages' do
   describe 'GET #root' do
     it :aggregate_failures do
       get '/'

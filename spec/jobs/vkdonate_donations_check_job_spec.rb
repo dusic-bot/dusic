@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VkdonateDonationsCheckJob, type: :job do
+RSpec.describe VkdonateDonationsCheckJob do
   before do
     ActiveJob::Base.queue_adapter = :test
     ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true

@@ -3,8 +3,8 @@
 require 'rails_helper'
 require 'shared_contexts/api_v2_authorization'
 
-RSpec.describe 'Api::V2::DiscordServersController', type: :request do
-  subject(:response_json) { JSON.parse(response.body) }
+RSpec.describe 'Api::V2::DiscordServersController' do
+  subject(:response_json) { response.parsed_body }
 
   include_context 'with api v2 authorization', :get, '/api/v2/discord_servers/', '/api/v2/discord_servers/'
 

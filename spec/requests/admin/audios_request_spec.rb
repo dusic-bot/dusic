@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Audios', type: :request do
+RSpec.describe 'Admin::Audios' do
   describe 'GET #audios' do
     subject(:request) do
       sign_in create(:user, admin: true)

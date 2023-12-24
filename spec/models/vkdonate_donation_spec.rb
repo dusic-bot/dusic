@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe VkdonateDonation, type: :model do
+RSpec.describe VkdonateDonation do
   subject(:instance) { build(:vkdonate_donation) }
 
   it 'allows instance creation' do

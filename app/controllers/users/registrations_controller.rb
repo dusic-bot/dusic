@@ -62,6 +62,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def require_no_admin
-    return redirect_to root_path if User.exists?(admin: true)
+    redirect_to root_path if User.exists?(admin: true)
   end
 end

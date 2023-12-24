@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DailyStatistic, type: :model do
+RSpec.describe DailyStatistic do
   subject(:instance) do
     build(:daily_statistic, discord_server:, tracks_length:,
                             tracks_amount:, date:)

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DiscordUser, type: :model do
+RSpec.describe DiscordUser do
   subject(:instance) { build(:discord_user, external_id:) }
 
   let(:external_id) { 208117693537058817 }

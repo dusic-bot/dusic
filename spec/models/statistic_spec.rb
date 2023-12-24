@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Statistic, type: :model do
+RSpec.describe Statistic do
   subject(:update_instance) do
     discord_server.statistic.update!(tracks_length:, tracks_amount:)
   end

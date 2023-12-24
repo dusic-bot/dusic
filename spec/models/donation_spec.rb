@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Donation, type: :model do
+RSpec.describe Donation do
   subject(:instance) { build(:donation, size:) }
 
   let(:size) { 10 }

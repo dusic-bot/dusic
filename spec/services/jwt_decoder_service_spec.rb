@@ -14,7 +14,7 @@ RSpec.describe JwtDecoderService do
     let(:payload) { { 'data' => 'stub' } }
 
     it :aggregate_failures do
-      expect(result).to be_a(HashWithIndifferentAccess)
+      expect(result).to be_a(ActiveSupport::HashWithIndifferentAccess)
       expect(result).to eq(payload)
     end
   end

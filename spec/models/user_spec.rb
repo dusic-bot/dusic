@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   subject(:instance) { build(:user, email:, password:) }
 
   let(:email) { 'test@email.com' }

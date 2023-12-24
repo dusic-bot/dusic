@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admin::Pages', type: :request do
+RSpec.describe 'Admin::Pages' do
   describe 'GET #root' do
     before { get '/admin/' }
 

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class VkponchikDonationsCheckJob < ApplicationJob
-  INTERVAL = 65.seconds
+  INTERVAL = 130.seconds
 
   queue_as :donations
 
-  after_perform { reschedule }
+  before_perform { reschedule }
 
   def perform
     VkponchikDonationsCheckerService.call

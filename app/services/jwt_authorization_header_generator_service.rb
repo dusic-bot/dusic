@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class JwtAuthorizationHeaderGeneratorService
-  def self.call(**options)
-    "Bearer #{JwtEncoderService.call(**options)}"
+  def self.call(**)
+    "Bearer #{JwtEncoderService.call(**)}"
   end
 end

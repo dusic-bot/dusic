@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Blazer', type: :request do
+RSpec.describe 'Blazer' do
   describe 'GET blazer#index' do
     before { get '/admin/blazer' }
 
